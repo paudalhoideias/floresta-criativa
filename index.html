@@ -49,6 +49,20 @@
     #caverna { background-color: #9966cc; }
     #pau_dalho { background-color: #cc6b5a; }
 
+    .voltar-mapa {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: white;
+      font-size: 1rem;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .voltar-mapa:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
     /* WhatsApp button */
     #whatsapp {
       position: fixed;
@@ -71,6 +85,7 @@
   </style>
 </head>
 <body>
+  <div id="topo"></div>
   <h1>Ideias que nascem da madeira e crescem com a infância</h1>
   <div class="map-wrapper">
     <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa" />
@@ -84,11 +99,26 @@
   </div>
 
   <!-- Seções de destino para testes -->
-  <section id="torre">Torre da Descoberta</section>
-  <section id="laboratorio">Laboratório da Júlia</section>
-  <section id="clareira">Clareira do Descanso</section>
-  <section id="caverna">Caverna dos Tesouros</section>
-  <section id="pau_dalho">Árvore Pau D'Alho</section>
+  <section id="torre">
+    <a href="#topo" class="voltar-mapa">← Voltar ao mapa</a>
+    Torre da Descoberta
+  </section>
+  <section id="laboratorio">
+    <a href="#topo" class="voltar-mapa">← Voltar ao mapa</a>
+    Laboratório da Júlia
+  </section>
+  <section id="clareira">
+    <a href="#topo" class="voltar-mapa">← Voltar ao mapa</a>
+    Clareira do Descanso
+  </section>
+  <section id="caverna">
+    <a href="#topo" class="voltar-mapa">← Voltar ao mapa</a>
+    Caverna dos Tesouros
+  </section>
+  <section id="pau_dalho">
+    <a href="#topo" class="voltar-mapa">← Voltar ao mapa</a>
+    Árvore Pau D'Alho
+  </section>
 
   <a id="whatsapp" href="https://wa.me/5511934045680" target="_blank">
     <img src="images/whatsapp-icon.png" alt="WhatsApp">
