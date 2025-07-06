@@ -7,24 +7,8 @@
   <style>
     body {
       margin: 0;
-      background-color: #e6f4e9; /* fundo verde claro */
+      background-color: #e6f4e9;
       font-family: Arial, sans-serif;
-    }
-    .boas-vindas {
-      position: absolute;
-      top: 20px;
-      width: 90%;
-      max-width: 600px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 12px;
-      padding: 15px 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      font-size: 1rem;
-      color: #3e2f1c;
-      z-index: 10;
-      text-align: center;
     }
     .mapa-container {
       position: relative;
@@ -37,16 +21,31 @@
       height: auto;
       display: block;
     }
+    .boas-vindas {
+      position: absolute;
+      top: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      padding: 15px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      font-size: 1rem;
+      color: #3e2f1c;
+      text-align: center;
+      z-index: 5;
+    }
     .hotspot {
       position: absolute;
       transform: translate(-50%, -50%);
-      background: rgba(255,255,255,0.8);
-      padding: 5px 10px;
-      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: transparent;
       text-decoration: none;
-      color: #3e2f1c;
-      font-weight: bold;
-      font-size: 0.9rem;
+      z-index: 10;
     }
     #whatsapp {
       position: fixed;
@@ -70,21 +69,21 @@
   </style>
 </head>
 <body>
-  <div class="boas-vindas">
-    <strong>Bem-vindo à Floresta Criativa!</strong><br />
-    Um lugar onde a madeira vira imaginação e cada cantinho guarda uma descoberta. 🌳<br />
-    Desça a trilha e explore as áreas mágicas do nosso catálogo interativo.
-  </div>
-
   <div class="mapa-container">
     <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa" />
 
-    <!-- Hotspots -->
-    <a href="#torre" class="hotspot" style="top: 60.1%; left: 43.7%;">Torre</a>
-    <a href="#laboratorio" class="hotspot" style="top: 75.7%; left: 23.0%;">Lab. Júlia</a>
-    <a href="#clareira" class="hotspot" style="top: 62.5%; left: 14.6%;">Clareira</a>
-    <a href="#caverna" class="hotspot" style="top: 73.0%; left: 50.0%;">Caverna</a>
-    <a href="#pau_dalho" class="hotspot" style="top: 52.3%; left: 80.7%;">Pau D'Alho</a>
+    <div class="boas-vindas">
+      <strong>Bem-vindo à Floresta Criativa!</strong><br />
+      Um lugar onde a madeira vira imaginação e cada cantinho guarda uma descoberta. 🌳<br />
+      Desça a trilha e explore as áreas mágicas do nosso catálogo interativo.
+    </div>
+
+    <!-- Hotspots (invisíveis) -->
+    <a href="#torre" class="hotspot" style="top: 60.1%; left: 43.7%;"></a>
+    <a href="#laboratorio" class="hotspot" style="top: 75.7%; left: 23.0%;"></a>
+    <a href="#clareira" class="hotspot" style="top: 62.5%; left: 14.6%;"></a>
+    <a href="#caverna" class="hotspot" style="top: 73.0%; left: 50.0%;"></a>
+    <a href="#pau_dalho" class="hotspot" style="top: 52.3%; left: 80.7%;"></a>
   </div>
 
   <a id="whatsapp" href="https://wa.me/5511934045680" target="_blank" aria-label="WhatsApp">
