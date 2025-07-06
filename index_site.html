@@ -22,31 +22,37 @@
       display: block;
     }
     .boas-vindas {
-  position: absolute;
-  top: 5%;
-  left: 15%;
-  width: 50%;
-  max-width: 200px;
-  background: rgba(212, 211, 203, 0.493);
-  border-radius: 16px;
-  padding: 20px;
-  font-family: 'Comic Sans MS', 'Segoe UI', cursive;
-  font-size: 1rem;
-  color: #2c2b2a;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 5;
-}
-
+      position: absolute;
+      top: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      padding: 15px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      font-size: 1rem;
+      color: #3e2f1c;
+      text-align: center;
+      z-index: 5;
+    }
+    .bussola {
+      display: block;
+      margin: 10px auto 0;
+      width: 24px;
+      height: 24px;
+    }
     .hotspot {
       position: absolute;
       transform: translate(-50%, -50%);
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: transparent;
+      background: rgba(255, 0, 0, 0.3); /* camada visível temporária */
       text-decoration: none;
       z-index: 10;
+      border: 1px dashed red;
     }
     #whatsapp {
       position: fixed;
@@ -74,12 +80,13 @@
     <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa" />
 
     <div class="boas-vindas">
-      <strong>Bem-vindo(a) à <br>Floresta Criativa!</strong><br />
+      <strong>Bem-vindo à Floresta Criativa!</strong><br />
       Um lugar onde a madeira vira imaginação e cada cantinho guarda uma descoberta. 🌳<br />
       Desça a trilha e explore as áreas mágicas do nosso catálogo interativo.
+      <img class="bussola" src="images/arrow-down-transparent.png" alt="Desça" />
     </div>
 
-    <!-- Hotspots (invisíveis) -->
+    <!-- Hotspots (visíveis temporariamente para ajuste) -->
     <a href="#torre" class="hotspot" style="top: 60.1%; left: 43.7%;"></a>
     <a href="#laboratorio" class="hotspot" style="top: 75.7%; left: 23.0%;"></a>
     <a href="#clareira" class="hotspot" style="top: 62.5%; left: 14.6%;"></a>
