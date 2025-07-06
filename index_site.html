@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Floresta Criativa - Pau D'Alho</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #fdf6ef;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      padding: 20px 0 10px;
+      font-size: 1.2rem;
+      color: #3e2f1c;
+    }
+    .map-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 749px;
+      margin: 0 auto;
+    }
+    .map-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .hotspot {
+      position: absolute;
+      width: 10%;
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+      z-index: 10;
+      background: transparent;
+      border: none;
+    }
+    section {
+      padding: 80px 20px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+    }
+    #torre { background-color: #a3c4dc; }
+    #laboratorio { background-color: #88b04b; }
+    #clareira { background-color: #f6ae2d; }
+    #caverna { background-color: #9966cc; }
+    #pau_dalho { background-color: #cc6b5a; }
+
+    .voltar-mapa {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: white;
+      font-size: 1rem;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .voltar-mapa:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    /* WhatsApp button */
+    #whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+    #whatsapp img {
+      width: 32px;
+      height: 32px;
+    }
+  </style>
+</head>
+<body>
+  <div id="topo"></div>
+  <h1>Ideias que nascem da madeira e crescem com a infância</h1>
+  <div class="map-wrapper">
+    <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa" />
+
+    <!-- Hotspots finais ocultos -->
+    <a href="#torre" class="hotspot" style="top: 60.1%; left: 43.7%;"></a>
+    <a href="#laboratorio" class="hotspot" style="top: 75.7%; left: 23.0%;"></a>
+    <a href="#clareira" class="hotspot" style="top: 62.5%; left: 14.6%;"></a>
+    <a href="#caverna" class="hotspot" style="top: 73.0%; left: 50.0%;"></a>
+    <a href="#pau_dalho" class="hotspot" style="top: 52.3%; left: 80.7%;"></a>
+  </div>
+
+  <!-- Seções de destino para testes -->
+  <section id="torre">
+    <a href="#topo" class="voltar-mapa">← Voltar ao mapa</a>
+    Torre da Descoberta
+  </section>
+  <section id="laboratorio">
+    <a href="#topo" class="voltar-mapa">← Voltar ao mapa</a>
+    Laboratório da Júlia
+  </section>
+  <section id="clareira">
+    <a href="#topo" class="voltar-mapa">← Voltar ao mapa</a>
+    Clareira do Descanso
+  </section>
+  <section id="caverna">
+    <a href="#topo" class="voltar-mapa">← Voltar ao mapa</a>
+    Caverna dos Tesouros
+  </section>
+  <section id="pau_dalho">
+    <a href="#topo" class="voltar-mapa">← Voltar ao mapa</a>
+    Árvore Pau D'Alho
+  </section>
+
+  <a id="whatsapp" href="https://wa.me/5511934045680" target="_blank">
+    <img src="images/whatsapp-icon.png" alt="WhatsApp">
+  </a>
+</body>
+</html>
