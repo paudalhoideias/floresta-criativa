@@ -139,7 +139,57 @@
         font-size: 0.6rem;
       }
     }
+    .produto-detalhe {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      font-family: 'Caudex', serif;
+    }
+    .produto-detalhe h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .carrossel {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .carrossel img {
+      height: 200px;
+      border-radius: 8px;
+    }
+    .botoes-produto {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .botoes-produto button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #4a3c2f;
+      color: #fff;
+    }
+    .info-tecnica {
+      display: none;
+      margin-top: 15px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
   </style>
+  <script>
+    function mostrarInfo() {
+      const info = document.getElementById('info-tecnica');
+      info.style.display = info.style.display === 'block' ? 'none' : 'block';
+    }
+    function comprarProduto() {
+      const msg = encodeURIComponent("Olá! Gostaria de saber mais sobre a Torre 3 em 1.");
+      window.open(`https://wa.me/5511934045680?text=${msg}`, '_blank');
+    }
+  </script>
 </head>
 <body>
   <div class="mapa-container">
@@ -172,6 +222,25 @@
     <div class="texto-torre">
       <h2>Torre da Descoberta</h2>
       <p>Aqui no topo da torre, a vista se abre para um mundo de aprendizados e aventuras!</p>
+    </div>
+  </section>
+
+  <section class="produto-detalhe">
+    <h3>Torre 3 em 1</h3>
+    <div class="carrossel">
+      <img src="images/torre1.jpg" alt="Imagem 1 da Torre" />
+      <img src="images/torre2.jpg" alt="Imagem 2 da Torre" />
+      <img src="images/torre3.jpg" alt="Imagem 3 da Torre" />
+    </div>
+    <div class="botoes-produto">
+      <button onclick="mostrarInfo()">Saiba mais</button>
+      <button onclick="comprarProduto()">Comprar</button>
+    </div>
+    <div class="info-tecnica" id="info-tecnica">
+      <p><strong>Medidas:</strong> 90cm altura x 40cm largura x 50cm profundidade</p>
+      <p><strong>Funções:</strong> Torre de aprendizagem + mesinha + escadinha</p>
+      <p><strong>Material:</strong> Compensado multilaminado naval</p>
+      <p><strong>Acabamento:</strong> Tinta atóxica e verniz à base d’água</p>
     </div>
   </section>
 
