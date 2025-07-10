@@ -107,73 +107,38 @@
         font-size: 1rem;
       }
     }
-    .torre-bg {
-      background: url('images/back_torre.webp') no-repeat center top;
-      background-size: contain;
-      background-repeat: no-repeat;
-      position: relative;
-      padding-top: 460px;
-      max-width: 100%;
-    }
-    .torre-overlay {
-      position: absolute;
-      top: 50px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 700px;
+    .torre-titulo {
       text-align: center;
-      color: #2c2b2a;
       font-family: 'Caudex', serif;
-      z-index: 2;
+      margin-top: 40px;
     }
-    @media (max-width: 600px) {
-      .torre-overlay {
-        top: 10px;
-        font-size: 0.85rem;
-      }
+    .torre-titulo h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
     }
-    .torres-container {
-  position: absolute;
-  top: 250px; /* <--- AJUSTE AQUI */
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  gap: 260px;
-  width: 100%;
-  flex-wrap: nowrap;
-}
+    .torres-container-novo {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding-top: 40px;
+    }
     .torre-card {
       cursor: pointer;
       transition: transform 0.3s ease;
       text-align: center;
+      background: #fff;
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 200px;
     }
     .torre-card:hover {
       transform: scale(1.05);
     }
     .torre-card img {
-      width: 130px;
+      width: 100%;
       height: auto;
-    }
-    .detalhes-torre {
-      display: none;
-      margin-top: 40px;
-      background-color: #ffffffcc;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    }
-    .detalhes-torre.active {
-      display: block;
-    }
-    .voltar-btn {
-      display: inline-block;
-      margin-bottom: 20px;
-      padding: 10px 16px;
-      background-color: #ccc;
-      border-radius: 8px;
-      cursor: pointer;
     }
   </style>
 </head>
@@ -200,29 +165,23 @@
     </p>
   </section>
 
-  <section id="torre" class="torre-bg">
-    <div class="torre-overlay">
-      <h2 style="margin-bottom: 8px;">Torre da Descoberta</h2>
-      <p style="margin-top: 0; font-size: 1rem;">Aqui no topo da torre, a vista se abre para um mundo de aprendizados e aventuras!</p>
-      <div class="torres-container">
-        <div class="torre-card" onclick="mostrarTorre('3em1')">
-          <img src="images/torre3em1.png" alt="Torre 3 em 1">
-          <p>Torre 3 em 1</p>
-        </div>
-        <div class="torre-card" onclick="mostrarTorre('fixa')">
-          <img src="images/torrefixa.png" alt="Torre Fixa">
-          <p>Torre Fixa</p>
-        </div>
+  <section id="torre">
+    <img src="images/back_torre.webp" alt="Torre da Descoberta" style="width:100%; max-width:900px; margin: 0 auto; display:block;">
+    <div class="torre-titulo">
+      <h2>Torre da Descoberta</h2>
+      <p>Aqui no topo da torre, a vista se abre para um mundo de aprendizados e aventuras!</p>
+    </div>
+
+    <div class="torres-container-novo">
+      <div class="torre-card">
+        <img src="images/torre3em1.png" alt="Torre 3 em 1">
+        <p><strong>Torre 3 em 1</strong></p>
+        <p>A queridinha da Pau D’Alho! Ela se transforma em torre, mesinha e banquinho.</p>
       </div>
-      <div id="detalhes-3em1" class="detalhes-torre">
-        <div class="voltar-btn" onclick="voltar()">← Voltar</div>
-        <h3>Torre 3 em 1</h3>
-        <p>A queridinha da Pau D’Alho! Ela se transforma em torre, mesinha e banquinho. Ideal para acompanhar o crescimento e estimular a autonomia da criança com funcionalidade.</p>
-      </div>
-      <div id="detalhes-fixa" class="detalhes-torre">
-        <div class="voltar-btn" onclick="voltar()">← Voltar</div>
-        <h3>Torre Fixa</h3>
-        <p>Um modelo compacto e robusto para quem busca simplicidade e segurança no dia a dia.</p>
+      <div class="torre-card">
+        <img src="images/torrefixa.png" alt="Torre Fixa">
+        <p><strong>Torre Fixa</strong></p>
+        <p>Um modelo compacto e robusto para quem busca simplicidade e segurança.</p>
       </div>
     </div>
   </section>
@@ -232,18 +191,5 @@
       <path d="M16 .396C7.164.396 0 7.56 0 16.396c0 2.885.765 5.727 2.212 8.207L.122 31.396l6.996-2.062c2.387 1.263 5.03 1.93 7.882 1.93 8.835 0 16-7.164 16-16S24.835.396 16 .396zM16 29.396c-2.55 0-5.034-.688-7.2-1.988l-.515-.303-4.15 1.223 1.277-4.033-.34-.52C3.195 21.235 2 18.876 2 16.396 2 8.952 8.556 2.396 16 2.396S30 8.952 30 16.396 23.444 29.396 16 29.396zm8.5-9.282c-.23-.114-1.36-.672-1.57-.75-.21-.08-.36-.114-.51.114-.15.23-.58.75-.71.91-.13.16-.26.17-.49.057-.23-.114-.97-.358-1.85-1.143-.68-.606-1.14-1.356-1.27-1.586-.13-.23-.014-.35.1-.464.104-.104.23-.27.35-.4.12-.13.16-.23.24-.38.08-.15.04-.28-.02-.396-.057-.114-.51-1.23-.7-1.69-.184-.444-.37-.384-.51-.39l-.43-.008c-.15 0-.4.057-.61.27-.21.23-.8.77-.8 1.88s.82 2.19.94 2.34c.12.15 1.61 2.457 3.9 3.447.545.235.97.375 1.3.48.55.18 1.05.154 1.45.094.44-.065 1.36-.555 1.55-1.092.19-.538.19-1.003.13-1.094-.06-.09-.21-.14-.44-.25z"/>
     </svg>
   </a>
-
-  <script>
-    function mostrarTorre(id) {
-      document.querySelector('.torres-container').style.display = 'none';
-      document.getElementById('detalhes-' + id).classList.add('active');
-    }
-    function voltar() {
-      document.querySelector('.torres-container').style.display = 'flex';
-      document.querySelectorAll('.detalhes-torre').forEach(div => {
-        div.classList.remove('active');
-      });
-    }
-  </script>
 </body>
 </html>
