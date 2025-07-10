@@ -92,6 +92,22 @@
       color: #2c2b2a;
       margin-bottom: 20px;
     }
+    .torre-bg {
+      background: url('images/back_torre.webp') no-repeat center center;
+      background-size: cover;
+      position: relative;
+      padding-top: 400px;
+    }
+    .torre-overlay {
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 800px;
+      text-align: center;
+      color: #2c2b2a;
+    }
     .torres-container {
       display: flex;
       justify-content: center;
@@ -150,30 +166,30 @@
     <a href="#pau_dalho" class="hotspot" style="top: 54.3%; left: 87.7%;"></a>
   </div>
 
-  <section id="torre">
-    <h2>Torre da Descoberta</h2>
-    <p>Aqui no topo da torre, a vista se abre para um mundo de aprendizados e aventuras!</p>
-    <div class="torres-container">
-      <div class="torre-card" onclick="mostrarTorre('3em1')">
-        <img src="images/torre3em1.png" alt="Torre 3 em 1">
-        <p>Torre 3 em 1</p>
+  <section id="torre" class="torre-bg">
+    <div class="torre-overlay">
+      <h2>Torre da Descoberta</h2>
+      <p>Aqui no topo da torre, a vista se abre para um mundo de aprendizados e aventuras!</p>
+      <div class="torres-container">
+        <div class="torre-card" onclick="mostrarTorre('3em1')">
+          <img src="images/torre3em1.png" alt="Torre 3 em 1">
+          <p>Torre 3 em 1</p>
+        </div>
+        <div class="torre-card" onclick="mostrarTorre('fixa')">
+          <img src="images/torrefixa.png" alt="Torre Fixa">
+          <p>Torre Fixa</p>
+        </div>
       </div>
-      <div class="torre-card" onclick="mostrarTorre('fixa')">
-        <img src="images/torrefixa.png" alt="Torre Fixa">
-        <p>Torre Fixa</p>
+      <div id="detalhes-3em1" class="detalhes-torre">
+        <div class="voltar-btn" onclick="voltar()">← Voltar</div>
+        <h3>Torre 3 em 1</h3>
+        <p>A queridinha da Pau D’Alho! Ela se transforma em torre, mesinha e banquinho. Ideal para acompanhar o crescimento e estimular a autonomia da criança com funcionalidade.</p>
       </div>
-    </div>
-
-    <div id="detalhes-3em1" class="detalhes-torre">
-      <div class="voltar-btn" onclick="voltar()">← Voltar</div>
-      <h3>Torre 3 em 1</h3>
-      <p>A queridinha da Pau D’Alho! Ela se transforma em torre, mesinha e banquinho. Ideal para acompanhar o crescimento e estimular a autonomia da criança com funcionalidade.</p>
-    </div>
-
-    <div id="detalhes-fixa" class="detalhes-torre">
-      <div class="voltar-btn" onclick="voltar()">← Voltar</div>
-      <h3>Torre Fixa</h3>
-      <p>Um modelo compacto e robusto para quem busca simplicidade e segurança no dia a dia.</p>
+      <div id="detalhes-fixa" class="detalhes-torre">
+        <div class="voltar-btn" onclick="voltar()">← Voltar</div>
+        <h3>Torre Fixa</h3>
+        <p>Um modelo compacto e robusto para quem busca simplicidade e segurança no dia a dia.</p>
+      </div>
     </div>
   </section>
 
