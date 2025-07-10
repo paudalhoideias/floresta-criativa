@@ -1,296 +1,172 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pau D'Alho - Ideias Criativas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Caudex&family=Caveat&display=swap" rel="stylesheet">
+  <title>Pau D'Alho - Floresta Criativa</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #eaf3e6;
       margin: 0;
-      background-color: #e6f4e9;
-      font-family: Arial, sans-serif;
+      padding: 0;
     }
-    .mapa-container {
-      position: relative;
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
+
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
     }
-    .mapa-container img {
+
+    header img {
       width: 100%;
+      max-width: 800px;
       height: auto;
-      display: block;
     }
-    .boas-vindas {
-      position: absolute;
-      top: 5%;
-      left: 15%;
-      width: 50%;
-      max-width: 200px;
-      background: rgba(212, 211, 203, 0.493);
-      border-radius: 16px;
-      padding: 20px;
-      font-family: 'Caudex', serif;
+
+    header h1 {
+      font-size: 2.2rem;
+      color: #4d3b2e;
+    }
+
+    header p {
       font-size: 1rem;
-      color: #2c2b2a;
+      color: #6a5d52;
+    }
+
+    .produto-section {
+      margin: 40px auto;
+      max-width: 1000px;
+      padding: 0 20px;
+    }
+
+    .titulo-produto {
+      font-size: 2rem;
       text-align: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      z-index: 5;
-    }
-    @media (max-width: 600px) {
-      .boas-vindas {
-        font-family: 'Caveat', cursive;
-        font-size: 0.95rem;
-      }
-    }
-    .bussola {
-      display: block;
-      margin: 10px auto 0;
-      width: 40px;
-      height: auto;
-      max-height: 40px;
-    }
-    .hotspot {
-      position: absolute;
-      transform: translate(-50%, -50%);
-      width: 60px;
-      height: 40px;
-      border-radius: 0;
-      background: transparent;
-      text-decoration: none;
-      z-index: 10;
-      border: none;
-    }
-    #whatsapp {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background-color: #25D366;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      z-index: 999;
-    }
-    #whatsapp svg {
-      width: 28px;
-      height: 28px;
-      fill: white;
-    }
-    section {
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    section h2 {
-      font-size: 2em;
-      text-align: center;
-      color: #2c2b2a;
       margin-bottom: 20px;
+      color: #4d3b2e;
     }
-    .intro-torre {
-      max-width: 600px;
-      margin: 40px auto 0;
-      padding: 20px;
-      text-align: center;
-      font-family: 'Caudex', serif;
-      font-size: 1.1rem;
-      color: #3a342f;
-    }
-    @media (max-width: 600px) {
-      .intro-torre {
-        font-family: 'Caveat', cursive;
-        font-size: 1rem;
-      }
-    }
-    .torre-titulo {
-      text-align: center;
-      font-family: 'Caudex', serif;
-      margin-top: 40px;
-    }
-    .torre-titulo h2 {
-      font-size: 2em;
-      margin-bottom: 10px;
-    }
-    .torres-container-novo {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 40px;
-      padding-top: 40px;
-    }
-    .torre-card {
+
+    .imagem-clicavel img {
+      display: block;
+      margin: 0 auto 20px;
+      width: 280px;
+      height: auto;
       cursor: pointer;
-      transition: transform 0.3s ease;
-      text-align: center;
-      background: #fff;
-      padding: 10px;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      max-width: 200px;
+      transition: transform 0.2s;
     }
-    .torre-card:hover {
+
+    .imagem-clicavel img:hover {
       transform: scale(1.05);
     }
-    .torre-card img {
-      width: 100%;
-      height: auto;
+
+    .carousel-container {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding-bottom: 10px;
+      -webkit-overflow-scrolling: touch;
+      text-align: center;
+    }
+
+    .carousel img {
+      display: inline-block;
+      width: 280px;
+      height: 280px;
+      object-fit: contain;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .carousel img:hover {
+      transform: scale(1.05);
+    }
+
+    .oculto {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="mapa-container">
-    <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa" />
-    <div class="boas-vindas">
-      <strong>Bem-vindo à <br>Floresta Criativa!</strong><br />
-      Um lugar onde a madeira vira imaginação e cada cantinho guarda uma descoberta. 🌳<br />
-      Desça a trilha e explore as áreas mágicas do nosso catálogo interativo.
-      <img class="bussola" src="images/arrow-down.svg" alt="Desça" />
-    </div>
-    <a href="#torre" class="hotspot" style="top: 61.6%; left: 50.7%;"></a>
-    <a href="#laboratorio" class="hotspot" style="top: 78.7%; left: 27.5%;"></a>
-    <a href="#clareira" class="hotspot" style="top: 63.5%; left: 20.6%;"></a>
-    <a href="#caverna" class="hotspot" style="top: 76.0%; left: 54.0%;"></a>
-    <a href="#pau_dalho" class="hotspot" style="top: 54.3%; left: 87.7%;"></a>
-  </div>
 
-  <section class="intro-torre">
-    <p>
-      🧗 Você está prestes a explorar nossa coleção de <strong>Torres de Aprendizagem</strong>!<br>
-      Na <strong>Torre da Descoberta</strong>, apresentamos modelos desenvolvidos para incentivar a autonomia, a criatividade e o desenvolvimento das crianças — com segurança, funcionalidade e um toque de magia.
-    </p>
+  <header>
+    <img src="images/banner_torre.jpg" alt="Banner da Torre da Descoberta">
+    <h1>Torre da Descoberta</h1>
+    <p>Aqui no topo da torre, a vista se abre para um mundo de aprendizados e aventuras!</p>
+  </header>
+
+  <!-- TORRE 3 EM 1 -->
+  <section id="torre3em1" class="produto-section">
+    <h2 class="titulo-produto">Torre 3 em 1</h2>
+    <div class="imagem-clicavel">
+      <img src="images/torre3em1.png" alt="Torre 3 em 1" onclick="abrirCarrossel('carousel-torre3em1')">
+    </div>
+    <div class="carousel-container oculto" id="carousel-torre3em1">
+      <div class="carousel">
+        <img src="images/torre3em1_variacao.jpg" alt="Torre 3 em 1 Variação">
+        <img src="images/torre3em1_variacao01.jpg" alt="Torre 3 em 1 Variação 01">
+        <img src="images/torre3em1_variacao02.jpg" alt="Torre 3 em 1 Variação 02">
+        <img src="images/torre3em1_variacao03.jpg" alt="Torre 3 em 1 Variação 03">
+        <img src="images/torre3em1_variacao04.jpg" alt="Torre 3 em 1 Variação 04">
+      </div>
+    </div>
   </section>
 
-  <section id="torre">
-    <img src="images/back_torre.webp" alt="Torre da Descoberta" style="width:100%; max-width:900px; margin: 0 auto; display:block;">
-    <div class="torre-titulo">
-      <h2>Torre da Descoberta</h2>
-      <p>Aqui no topo da torre, a vista se abre para um mundo de aprendizados e aventuras!</p>
-      <!-- Carrossel Torre 3 em 1 -->
-<section id="torre3em1" class="produto-section">
-  <h2 class="titulo-produto">Torre 3 em 1</h2>
-  <div class="carousel-container">
-    <div class="carousel" id="carousel-torre3em1">
-      <img src="images/torre3em1.png" alt="Torre 3 em 1">
-      <img src="images/torre3em1_variacao.jpg" alt="Torre 3 em 1 Variação">
-      <img src="images/torre3em1_variacao01.jpg" alt="Torre 3 em 1 Variação 01">
-      <img src="images/torre3em1_variacao02.jpg" alt="Torre 3 em 1 Variação 02">
-      <img src="images/torre3em1_variacao03.jpg" alt="Torre 3 em 1 Variação 03">
-      <img src="images/torre3em1_variacao04.jpg" alt="Torre 3 em 1 Variação 04">
+  <!-- TORRE FIXA -->
+  <section id="torrefixa" class="produto-section">
+    <h2 class="titulo-produto">Torre Fixa</h2>
+    <div class="imagem-clicavel">
+      <img src="images/torrefixa.png" alt="Torre Fixa" onclick="abrirCarrossel('carousel-torrefixa')">
     </div>
-  </div>
-</section>
-
-<!-- Carrossel Torre Fixa -->
-<section id="torrefixa" class="produto-section">
-  <h2 class="titulo-produto">Torre Fixa</h2>
-  <div class="carousel-container">
-    <div class="carousel" id="carousel-torrefixa">
-      <img src="images/torrefixa.png" alt="Torre Fixa">
-      <img src="images/torrefixa_variacoes.jpg" alt="Torre Fixa Variação">
-      <img src="images/torrefixa_variacoes01.jpg" alt="Torre Fixa Variação 01">
-      <img src="images/torrefixa_variacoes02.jpg" alt="Torre Fixa Variação 02">
-      <img src="images/torrefixa_variacoes03.jpg" alt="Torre Fixa Variação 03">
-      <img src="images/torrefixa_variacoes04.jpg" alt="Torre Fixa Variação 04">
+    <div class="carousel-container oculto" id="carousel-torrefixa">
+      <div class="carousel">
+        <img src="images/torrefixa_variacoes.jpg" alt="Torre Fixa Variação">
+        <img src="images/torrefixa_variacoes01.jpg" alt="Torre Fixa Variação 01">
+        <img src="images/torrefixa_variacoes02.jpg" alt="Torre Fixa Variação 02">
+        <img src="images/torrefixa_variacoes03.jpg" alt="Torre Fixa Variação 03">
+        <img src="images/torrefixa_variacoes04.jpg" alt="Torre Fixa Variação 04">
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CSS Básico -->
-<style>
-.produto-section {
-  margin: 40px auto;
-  max-width: 1000px;
-  padding: 0 20px;
-}
+  <script>
+    function abrirCarrossel(id) {
+      const todos = document.querySelectorAll('.carousel-container');
+      todos.forEach(el => el.classList.add('oculto'));
+      document.getElementById(id).classList.remove('oculto');
+    }
 
-.titulo-produto {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 20px;
-}
+    const imagens = document.querySelectorAll('.carousel img');
+    imagens.forEach(img => {
+      img.addEventListener('click', () => {
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = 0;
+        overlay.style.left = 0;
+        overlay.style.width = '100vw';
+        overlay.style.height = '100vh';
+        overlay.style.background = 'rgba(0, 0, 0, 0.8)';
+        overlay.style.display = 'flex';
+        overlay.style.alignItems = 'center';
+        overlay.style.justifyContent = 'center';
+        overlay.style.zIndex = 9999;
 
-.carousel-container {
-  overflow-x: auto;
-  white-space: nowrap;
-  padding-bottom: 10px;
-  -webkit-overflow-scrolling: touch;
-}
+        const imagemAmpliada = document.createElement('img');
+        imagemAmpliada.src = img.src;
+        imagemAmpliada.style.maxWidth = '90%';
+        imagemAmpliada.style.maxHeight = '90%';
+        imagemAmpliada.style.borderRadius = '10px';
+        imagemAmpliada.style.boxShadow = '0 0 20px #000';
 
-.carousel img {
-  display: inline-block;
-  width: 280px;
-  height: 280px;
-  object-fit: contain;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
+        overlay.appendChild(imagemAmpliada);
+        document.body.appendChild(overlay);
 
-.carousel img:hover {
-  transform: scale(1.05);
-}
-</style>
-
-<!-- JavaScript para Lightbox -->
-<script>
-  const imagens = document.querySelectorAll('.carousel img');
-  imagens.forEach(img => {
-    img.addEventListener('click', () => {
-      const overlay = document.createElement('div');
-      overlay.style.position = 'fixed';
-      overlay.style.top = 0;
-      overlay.style.left = 0;
-      overlay.style.width = '100vw';
-      overlay.style.height = '100vh';
-      overlay.style.background = 'rgba(0, 0, 0, 0.8)';
-      overlay.style.display = 'flex';
-      overlay.style.alignItems = 'center';
-      overlay.style.justifyContent = 'center';
-      overlay.style.zIndex = 9999;
-
-      const imagemAmpliada = document.createElement('img');
-      imagemAmpliada.src = img.src;
-      imagemAmpliada.style.maxWidth = '90%';
-      imagemAmpliada.style.maxHeight = '90%';
-      imagemAmpliada.style.borderRadius = '10px';
-      imagemAmpliada.style.boxShadow = '0 0 20px #000';
-
-      overlay.appendChild(imagemAmpliada);
-      document.body.appendChild(overlay);
-
-      overlay.addEventListener('click', () => {
-        document.body.removeChild(overlay);
+        overlay.addEventListener('click', () => {
+          document.body.removeChild(overlay);
+        });
       });
     });
-  });
-</script>
+  </script>
 
-    </div>
-
-    <div class="torres-container-novo">
-      <div class="torre-card">
-        <img src="images/torre3em1.png" alt="Torre 3 em 1">
-        <p><strong>Torre 3 em 1</strong></p>
-        <p>A queridinha da Pau D’Alho! Ela se transforma em torre, mesinha e banquinho.</p>
-      </div>
-      <div class="torre-card">
-        <img src="images/torrefixa.png" alt="Torre Fixa">
-        <p><strong>Torre Fixa</strong></p>
-        <p>Um modelo compacto e robusto para quem busca simplicidade e segurança.</p>
-      </div>
-    </div>
-  </section>
-
-  <a id="whatsapp" href="https://wa.me/5511934045680" target="_blank" aria-label="WhatsApp">
-    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 .396C7.164.396 0 7.56 0 16.396c0 2.885.765 5.727 2.212 8.207L.122 31.396l6.996-2.062c2.387 1.263 5.03 1.93 7.882 1.93 8.835 0 16-7.164 16-16S24.835.396 16 .396zM16 29.396c-2.55 0-5.034-.688-7.2-1.988l-.515-.303-4.15 1.223 1.277-4.033-.34-.52C3.195 21.235 2 18.876 2 16.396 2 8.952 8.556 2.396 16 2.396S30 8.952 30 16.396 23.444 29.396 16 29.396zm8.5-9.282c-.23-.114-1.36-.672-1.57-.75-.21-.08-.36-.114-.51.114-.15.23-.58.75-.71.91-.13.16-.26.17-.49.057-.23-.114-.97-.358-1.85-1.143-.68-.606-1.14-1.356-1.27-1.586-.13-.23-.014-.35.1-.464.104-.104.23-.27.35-.4.12-.13.16-.23.24-.38.08-.15.04-.28-.02-.396-.057-.114-.51-1.23-.7-1.69-.184-.444-.37-.384-.51-.39l-.43-.008c-.15 0-.4.057-.61.27-.21.23-.8.77-.8 1.88s.82 2.19.94 2.34c.12.15 1.61 2.457 3.9 3.447.545.235.97.375 1.3.48.55.18 1.05.154 1.45.094.44-.065 1.36-.555 1.55-1.092.19-.538.19-1.003.13-1.094-.06-.09-.21-.14-.44-.25z"/>
-    </svg>
-  </a>
 </body>
 </html>
