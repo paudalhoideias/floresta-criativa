@@ -108,23 +108,29 @@
       }
     }
     .torre-bg {
-      background: url('images/back_torre.webp') no-repeat center center;
+      background: url('images/back_torre.webp') no-repeat center top;
       background-size: contain;
-      background-position: top center;
       background-repeat: no-repeat;
       position: relative;
-      padding-top: 520px;
+      padding-top: 380px;
       max-width: 100%;
     }
     .torre-overlay {
       position: absolute;
-      top: 100px;
+      top: 60px;
       left: 50%;
       transform: translateX(-50%);
       width: 90%;
       max-width: 800px;
       text-align: center;
       color: #2c2b2a;
+      z-index: 2;
+    }
+    @media (max-width: 600px) {
+      .torre-overlay {
+        top: 30px;
+        font-size: 0.95rem;
+      }
     }
     .torres-container {
       display: flex;
@@ -169,14 +175,12 @@
 <body>
   <div class="mapa-container">
     <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa" />
-
     <div class="boas-vindas">
       <strong>Bem-vindo à <br>Floresta Criativa!</strong><br />
       Um lugar onde a madeira vira imaginação e cada cantinho guarda uma descoberta. 🌳<br />
       Desça a trilha e explore as áreas mágicas do nosso catálogo interativo.
       <img class="bussola" src="images/arrow-down.svg" alt="Desça" />
     </div>
-
     <a href="#torre" class="hotspot" style="top: 61.6%; left: 50.7%;"></a>
     <a href="#laboratorio" class="hotspot" style="top: 78.7%; left: 27.5%;"></a>
     <a href="#clareira" class="hotspot" style="top: 63.5%; left: 20.6%;"></a>
@@ -186,8 +190,8 @@
 
   <section class="intro-torre">
     <p>
-      🧗 Prepare-se para conhecer nossas incríveis <strong>Torres de Aprendizagem</strong>!<br>
-      Ao entrar na <strong>Torre da Descoberta</strong>, você encontrará modelos que estimulam a autonomia e a criatividade das crianças, com segurança e muito encanto lúdico.
+      🧗 Você está prestes a explorar nossa coleção de <strong>Torres de Aprendizagem</strong>!<br>
+      Na <strong>Torre da Descoberta</strong>, apresentamos modelos desenvolvidos para incentivar a autonomia, a criatividade e o desenvolvimento das crianças — com segurança, funcionalidade e um toque de magia.
     </p>
   </section>
 
