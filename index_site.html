@@ -92,11 +92,27 @@
       color: #2c2b2a;
       margin-bottom: 20px;
     }
+    .intro-torre {
+      max-width: 600px;
+      margin: 40px auto 0;
+      padding: 20px;
+      text-align: center;
+      font-family: 'Caudex', serif;
+      font-size: 1.1rem;
+      color: #3a342f;
+    }
+    @media (max-width: 600px) {
+      .intro-torre {
+        font-family: 'Caveat', cursive;
+        font-size: 1rem;
+      }
+    }
     .torre-bg {
       background: url('images/back_torre.webp') no-repeat center center;
       background-size: cover;
       position: relative;
       padding-top: 400px;
+      max-width: 100%;
     }
     .torre-overlay {
       position: absolute;
@@ -165,6 +181,13 @@
     <a href="#caverna" class="hotspot" style="top: 76.0%; left: 54.0%;"></a>
     <a href="#pau_dalho" class="hotspot" style="top: 54.3%; left: 87.7%;"></a>
   </div>
+
+  <section class="intro-torre">
+    <p>
+      🧗 Você está prestes a conhecer as nossas <strong>Torres de Aprendizagem</strong>!<br>
+      Suba até a <strong>Torre da Descoberta</strong> e explore modelos pensados para estimular a autonomia e a criatividade das crianças, de forma segura, lúdica e funcional.
+    </p>
+  </section>
 
   <section id="torre" class="torre-bg">
     <div class="torre-overlay">
