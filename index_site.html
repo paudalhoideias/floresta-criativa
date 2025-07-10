@@ -166,6 +166,25 @@
     .produto-detalhe {
       display: none;
     }
+    .carrossel {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.carrossel img {
+  height: 180px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.carrossel img:hover {
+  transform: scale(1.05);
+}
+
   </style>
   <script>
     function rolarParaProduto(id) {
