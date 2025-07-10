@@ -1,56 +1,72 @@
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pau D'Alho - Torre da Descoberta</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pau D'Alho - Floresta Criativa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caudex&family=Caveat&display=swap" rel="stylesheet" />
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #ecf4e9;
       margin: 0;
-      padding: 0;
+      font-family: 'Caudex', serif;
+      background-color: #f4f1ec;
     }
-
-    header img {
+    .mapa {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .mapa img {
       width: 100%;
       height: auto;
       display: block;
     }
+    .hotspot {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .hotspot:hover {
+      transform: scale(1.2);
+    }
+    #torre { top: 60.1%; left: 43.7%; }
+    #laboratorio { top: 75.7%; left: 23.0%; }
+    #pau_dalho { top: 52.3%; left: 80.7%; }
+    #clareira { top: 62.5%; left: 14.6%; }
+    #caverna { top: 73.0%; left: 50.0%; }
 
-    .torre-intro {
-      background-color: #eae0cf;
+    .introducao-torre {
       text-align: center;
-      padding: 20px 10px;
-    }
-
-    .torre-intro h2 {
+      padding: 40px 20px 20px;
       font-size: 1.5rem;
-      margin-bottom: 10px;
+      font-family: 'Caveat', cursive;
     }
 
-    .torre-intro p {
-      font-size: 0.9rem;
-      max-width: 600px;
-      margin: 0 auto;
+    .sessao-torre {
+      background: url("images/back_torre.webp") no-repeat center top;
+      background-size: cover;
+      padding: 60px 20px;
+      text-align: center;
     }
 
     .produto-section {
-      margin: 40px auto;
+      margin: 60px auto 40px;
       max-width: 1000px;
-      padding: 0 20px;
     }
 
     .titulo-produto {
-      font-size: 1.4rem;
-      text-align: center;
+      font-family: 'Caudex', serif;
+      font-size: 2rem;
       margin-bottom: 20px;
     }
 
     .imagem-clicavel img {
-      display: block;
-      margin: 0 auto 20px;
       width: 280px;
       height: auto;
       cursor: pointer;
@@ -66,12 +82,13 @@
       white-space: nowrap;
       padding-bottom: 10px;
       -webkit-overflow-scrolling: touch;
+      margin-top: 20px;
     }
 
     .carousel img {
       display: inline-block;
-      width: 180px;
-      height: 180px;
+      width: 200px;
+      height: 200px;
       object-fit: contain;
       margin-right: 10px;
       cursor: pointer;
@@ -89,46 +106,57 @@
 </head>
 <body>
 
-<header>
-  <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa">
-</header>
+<!-- MAPA -->
+<div class="mapa">
+  <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa" />
+  <a href="#torre" class="hotspot" id="torre" title="Torre da Descoberta"></a>
+  <a href="#laboratorio" class="hotspot" id="laboratorio" title="Laboratório da Júlia"></a>
+  <a href="#pau_dalho" class="hotspot" id="pau_dalho" title="Pau D'Alho"></a>
+  <a href="#clareira" class="hotspot" id="clareira" title="Clareira do Descanso"></a>
+  <a href="#caverna" class="hotspot" id="caverna" title="Caverna dos Tesouros"></a>
+</div>
 
-<section class="torre-intro" id="torre">
-  <h2>Torre da Descoberta</h2>
-  <p>Aqui no topo da torre, a vista se abre para um mundo de aprendizados e aventuras! Explore abaixo as nossas Torres de Aprendizagem, pensadas para incentivar a autonomia, criatividade e segurança das crianças.</p>
-</section>
+<!-- Introdução Torre da Descoberta -->
+<div class="introducao-torre" id="torre">
+  Você chegou à <strong>Torre da Descoberta</strong>, onde moram as incríveis <strong>Torres de Aprendizagem</strong> da Pau D'Alho.
+</div>
 
-<section id="torre3em1" class="produto-section">
-  <h3 class="titulo-produto">Torre 3 em 1</h3>
-  <div class="imagem-clicavel">
-    <img src="images/torre3em1.png" alt="Torre 3 em 1" onclick="abrirCarrossel('carousel-torre3em1')">
-  </div>
-  <div class="carousel-container oculto" id="carousel-torre3em1">
-    <div class="carousel">
-      <img src="images/torre3em1_variacao.jpg" alt="Torre 3 em 1 Variação">
-      <img src="images/torre3em1_variacao01.jpg" alt="Torre 3 em 1 Variação 01">
-      <img src="images/torre3em1_variacao02.jpg" alt="Torre 3 em 1 Variação 02">
-      <img src="images/torre3em1_variacao03.jpg" alt="Torre 3 em 1 Variação 03">
-      <img src="images/torre3em1_variacao04.jpg" alt="Torre 3 em 1 Variação 04">
+<!-- Seção com fundo -->
+<div class="sessao-torre">
+  <!-- TORRE 3 EM 1 -->
+  <section id="torre3em1" class="produto-section">
+    <h2 class="titulo-produto">Torre 3 em 1</h2>
+    <div class="imagem-clicavel">
+      <img src="images/torre3em1.png" alt="Torre 3 em 1" onclick="abrirCarrossel('carousel-torre3em1')">
     </div>
-  </div>
-</section>
-
-<section id="torrefixa" class="produto-section">
-  <h3 class="titulo-produto">Torre Fixa</h3>
-  <div class="imagem-clicavel">
-    <img src="images/torrefixa.png" alt="Torre Fixa" onclick="abrirCarrossel('carousel-torrefixa')">
-  </div>
-  <div class="carousel-container oculto" id="carousel-torrefixa">
-    <div class="carousel">
-      <img src="images/torrefixa_variacoes.jpg" alt="Torre Fixa Variação">
-      <img src="images/torrefixa_variacoes01.jpg" alt="Torre Fixa Variação 01">
-      <img src="images/torrefixa_variacoes02.jpg" alt="Torre Fixa Variação 02">
-      <img src="images/torrefixa_variacoes03.jpg" alt="Torre Fixa Variação 03">
-      <img src="images/torrefixa_variacoes04.jpg" alt="Torre Fixa Variação 04">
+    <div class="carousel-container oculto" id="carousel-torre3em1">
+      <div class="carousel">
+        <img src="images/torre3em1_variacao.jpg" alt="Torre 3 em 1 Variação">
+        <img src="images/torre3em1_variacao01.jpg" alt="Torre 3 em 1 Variação 01">
+        <img src="images/torre3em1_variacao02.jpg" alt="Torre 3 em 1 Variação 02">
+        <img src="images/torre3em1_variacao03.jpg" alt="Torre 3 em 1 Variação 03">
+        <img src="images/torre3em1_variacao04.jpg" alt="Torre 3 em 1 Variação 04">
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- TORRE FIXA -->
+  <section id="torrefixa" class="produto-section">
+    <h2 class="titulo-produto">Torre Fixa</h2>
+    <div class="imagem-clicavel">
+      <img src="images/torrefixa.png" alt="Torre Fixa" onclick="abrirCarrossel('carousel-torrefixa')">
+    </div>
+    <div class="carousel-container oculto" id="carousel-torrefixa">
+      <div class="carousel">
+        <img src="images/torrefixa_variacoes.jpg" alt="Torre Fixa Variação">
+        <img src="images/torrefixa_variacoes01.jpg" alt="Torre Fixa Variação 01">
+        <img src="images/torrefixa_variacoes02.jpg" alt="Torre Fixa Variação 02">
+        <img src="images/torrefixa_variacoes03.jpg" alt="Torre Fixa Variação 03">
+        <img src="images/torrefixa_variacoes04.jpg" alt="Torre Fixa Variação 04">
+      </div>
+    </div>
+  </section>
+</div>
 
 <script>
 function abrirCarrossel(id) {
@@ -137,8 +165,7 @@ function abrirCarrossel(id) {
   document.getElementById(id).classList.remove('oculto');
 }
 
-const imagens = document.querySelectorAll('.carousel img');
-imagens.forEach(img => {
+document.querySelectorAll('.carousel img').forEach(img => {
   img.addEventListener('click', () => {
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
@@ -146,24 +173,24 @@ imagens.forEach(img => {
     overlay.style.left = 0;
     overlay.style.width = '100vw';
     overlay.style.height = '100vh';
-    overlay.style.background = 'rgba(0, 0, 0, 0.8)';
+    overlay.style.background = 'rgba(0,0,0,0.85)';
     overlay.style.display = 'flex';
     overlay.style.alignItems = 'center';
     overlay.style.justifyContent = 'center';
-    overlay.style.zIndex = 9999;
+    overlay.style.zIndex = 10000;
 
-    const imagemAmpliada = document.createElement('img');
-    imagemAmpliada.src = img.src;
-    imagemAmpliada.style.maxWidth = '90%';
-    imagemAmpliada.style.maxHeight = '90%';
-    imagemAmpliada.style.borderRadius = '10px';
-    imagemAmpliada.style.boxShadow = '0 0 20px #000';
+    const bigImg = document.createElement('img');
+    bigImg.src = img.src;
+    bigImg.style.maxWidth = '90%';
+    bigImg.style.maxHeight = '90%';
+    bigImg.style.borderRadius = '10px';
+    bigImg.style.boxShadow = '0 0 20px #000';
 
-    overlay.appendChild(imagemAmpliada);
+    overlay.appendChild(bigImg);
     document.body.appendChild(overlay);
 
     overlay.addEventListener('click', () => {
-      document.body.removeChild(overlay);
+      overlay.remove();
     });
   });
 });
