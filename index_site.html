@@ -116,25 +116,23 @@
       max-width: 100%;
     }
     .torre-overlay {
-  position: absolute;
-  top: 50px;
-  left: 49%;
-  transform: translateX(-50%);
-  width: 70%;
-  max-width: 500px; /* Largura mais próxima da madeira */
-  text-align: center;
-  color: #2c2b2a;
-  font-family: 'Caudex', serif;
-  z-index: 2;
-}
-
-
+      position: absolute;
+      top: 50px;
+      left: 49%;
+      transform: translateX(-50%);
+      width: 70%;
+      max-width: 500px;
+      text-align: center;
+      color: #2c2b2a;
+      font-family: 'Caudex', serif;
+      z-index: 2;
+    }
     @media (max-width: 600px) {
-  .torre-overlay {
-    top: 7px;
-    font-size: 0.4rem;
-  }
-}
+      .torre-overlay {
+        top: 7px;
+        font-size: 0.9rem;
+      }
+    }
     .torres-container {
       display: flex;
       justify-content: center;
@@ -151,7 +149,7 @@
       transform: scale(1.05);
     }
     .torre-card img {
-      width: 120px;
+      width: 180px;
       height: auto;
     }
     .detalhes-torre {
@@ -201,7 +199,7 @@
   <section id="torre" class="torre-bg">
     <div class="torre-overlay">
       <h2 style="margin-bottom: 8px;">Torre da Descoberta</h2>
-      <p style="margin-top: 0; font-size: 0,99rem;">Aqui no topo da torre, a vista se abre para um mundo de aprendizados e aventuras!</p>
+      <p style="margin-top: 0; font-size: 1rem;">Aqui no topo da torre, a vista se abre para um mundo de aprendizados e aventuras!</p>
       <div class="torres-container">
         <div class="torre-card" onclick="mostrarTorre('3em1')">
           <img src="images/torre3em1.png" alt="Torre 3 em 1">
