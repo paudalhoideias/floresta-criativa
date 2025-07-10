@@ -116,22 +116,25 @@
       max-width: 100%;
     }
     .torre-overlay {
-      position: absolute;
-      top: 100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 800px;
-      text-align: center;
-      color: #2c2b2a;
-      z-index: 2;
-    }
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 580px; /* Largura mais próxima da madeira */
+  text-align: center;
+  color: #2c2b2a;
+  font-family: 'Caudex', serif;
+  z-index: 2;
+}
+
+
     @media (max-width: 600px) {
-      .torre-overlay {
-        top: 60px;
-        font-size: 0.95rem;
-      }
-    }
+  .torre-overlay {
+    top: 60px;
+    font-size: 0.95rem;
+  }
+}
     .torres-container {
       display: flex;
       justify-content: center;
