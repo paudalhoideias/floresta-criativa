@@ -163,16 +163,29 @@
       cursor: pointer;
       z-index: 9999;
     }
+    .produto-detalhe {
+      display: none;
+    }
   </style>
   <script>
     function rolarParaProduto(id) {
-      const produto = document.getElementById(id);
-      produto.scrollIntoView({ behavior: 'smooth' });
+      document.querySelectorAll('.produto-detalhe').forEach(el => el.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+    function mostrarInfo() {
+      document.getElementById('modalInfo').style.display = 'block';
+    }
+    function fecharModal() {
+      document.getElementById('modalInfo').style.display = 'none';
+    }
+    function comprarProduto() {
+      window.open('https://wa.me/5511934045680', '_blank');
     }
   </script>
 </head>
 <body>
-  <div class="mapa-container">
+   <div class="mapa-container">
     <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa" />
     <div class="boas-vindas">
       <strong>Bem-vindo à <br>Floresta Criativa!</strong><br />
