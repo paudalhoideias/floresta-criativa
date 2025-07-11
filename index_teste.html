@@ -96,6 +96,36 @@
       cursor: pointer;
       float: right;
     }
+
+    #lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+    }
+
+    #lightbox .close-lightbox {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
     @media (max-width: 768px) {
       .produto-header {
         flex-direction: column;
@@ -151,6 +181,11 @@
     </div>
   </div>
 
+  <div id="lightbox" onclick="fecharLightbox()">
+    <span class="close-lightbox" onclick="fecharLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Imagem ampliada" />
+  </div>
+
   <script>
     function mostrarInfo() {
       document.getElementById('modalInfo').style.display = 'flex';
@@ -165,8 +200,12 @@
     }
 
     function abrirLightbox(src) {
-      const novaJanela = window.open('', '_blank');
-      novaJanela.document.write('<img src="' + src + '" style="width:100%">');
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function fecharLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
     }
   </script>
 </body>
