@@ -11,6 +11,15 @@
       background-color: #e6f4e9;
       font-family: Arial, sans-serif;
     }
+    .mapa-container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .mapa-container img {
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+    }
     .produto-detalhe {
       max-width: 960px;
       margin: 0 auto;
@@ -96,7 +105,6 @@
       cursor: pointer;
       float: right;
     }
-
     #lightbox {
       position: fixed;
       top: 0;
@@ -109,13 +117,11 @@
       justify-content: center;
       z-index: 10000;
     }
-
     #lightbox img {
       max-width: 90%;
       max-height: 90%;
       border-radius: 8px;
     }
-
     #lightbox .close-lightbox {
       position: absolute;
       top: 20px;
@@ -125,7 +131,6 @@
       font-weight: bold;
       cursor: pointer;
     }
-
     @media (max-width: 768px) {
       .produto-header {
         flex-direction: column;
@@ -143,6 +148,10 @@
   </style>
 </head>
 <body>
+  <section class="mapa-container">
+    <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa">
+  </section>
+
   <section class="produto-detalhe" id="produto3em1">
     <div class="produto-header">
       <div class="produto-header-texto">
@@ -190,20 +199,16 @@
     function mostrarInfo() {
       document.getElementById('modalInfo').style.display = 'flex';
     }
-
     function fecharModal() {
       document.getElementById('modalInfo').style.display = 'none';
     }
-
     function comprarProduto() {
       window.open('https://wa.me/5511999999999', '_blank');
     }
-
     function abrirLightbox(src) {
       document.getElementById('lightbox-img').src = src;
       document.getElementById('lightbox').style.display = 'flex';
     }
-
     function fecharLightbox() {
       document.getElementById('lightbox').style.display = 'none';
     }
