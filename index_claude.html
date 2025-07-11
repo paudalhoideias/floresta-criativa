@@ -12,64 +12,169 @@
       font-family: Arial, sans-serif;
     }
     .mapa-container {
-      text-align: center;
-      padding: 40px 20px;
       position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
     }
     .mapa-container img {
       width: 100%;
-      max-width: 1000px;
       height: auto;
+      display: block;
+    }
+    .boas-vindas {
+      position: absolute;
+      top: 5%;
+      left: 15%;
+      width: 50%;
+      max-width: 200px;
+      background: rgba(212, 211, 203, 0.493);
+      border-radius: 16px;
+      padding: 20px;
+      font-family: 'Caudex', serif;
+      font-size: 1rem;
+      color: #2c2b2a;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 5;
+    }
+    @media (max-width: 767px) {
+      .boas-vindas {
+        font-family: 'Caveat', cursive;
+      }
+    }
+    .bussola {
+      display: block;
+      margin: 10px auto 0;
+      width: 40px;
+      height: auto;
+      max-height: 40px;
     }
     .hotspot {
       position: absolute;
-      width: 8vw;
-      height: 10vh;
-      cursor: pointer;
-      z-index: 2;
+      transform: translate(-50%, -50%);
+      width: 65px;
+      height: 45px;
+      background: rgba(255, 0, 0, 0.3);
+      border: 1px dashed red;
+      z-index: 10;
+      opacity: 0;
     }
-    #torre { top: 60.1%; left: 43.7%; }
-    #laboratorio { top: 75.7%; left: 23.0%; }
-    #pau_dalho { top: 52.3%; left: 80.7%; }
-    #clareira { top: 62.5%; left: 14.6%; }
-    #caverna { top: 73.0%; left: 50.0%; }
-
-    .produto-detalhe {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      background: #fff;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      border-radius: 12px;
-    }
-    .produto-header {
+    #whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #25D366;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+    #whatsapp svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+    .respiro {
+      background-color: #fdfcf6;
+      padding: 60px 20px 40px;
+      text-align: center;
+      font-family: 'Caudex', serif;
+      font-size: 1.2rem;
+      color: #4a4a4a;
+      line-height: 1.6;
+    }
+    @media (max-width: 767px) {
+      .respiro {
+        font-family: 'Caveat', cursive;
+        font-size: 1.4rem;
+      }
+    }
+    .torre-container {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .torre-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .texto-torre {
+      position: absolute;
+      top: 8%;
+      left: 6%;
+      width: 40%;
+      font-family: 'Caudex', serif;
+      color: #4a3c2f;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .texto-torre h2 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    .texto-torre p {
+      margin-top: 8px;
+      font-size: 1.1rem;
+    }
+    @media (max-width: 767px) {
+      .texto-torre {
+        width: 55%;
+        top: 4%;
+        left: 5%;
+        padding: 5px;
+      }
+      .texto-torre h2 {
+        font-size: 1.0rem;
+      }
+      .texto-torre p {
+        font-size: 0.6rem;
+      }
+    }
+    .imagem-torres {
+      position: absolute;
+      top: 55%;
+      left: 18%;
+      width: 20%;
+      height: 30%;
+      z-index: 20;
+      cursor: pointer;
+    }
+    .imagem-torres.segunda {
+      left: 42%;
+    }
+    .produto-detalhe {
+      display: none;
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .produto-detalhe h3 {
+      color: #2a6c3d;
+      font-family: 'Caudex', serif;
+      font-size: 1.5rem;
+    }
+    .produto-detalhe p {
+      color: #333;
+      font-size: 1rem;
       margin-bottom: 20px;
     }
-    .produto-header-texto {
-      flex: 1;
-      min-width: 250px;
-      margin-right: 20px;
-    }
-    .produto-header-texto h3 {
-      margin-top: 0;
-      color: #2d7041;
-      font-family: 'Caudex', serif;
-    }
-    .produto-header-texto p {
-      color: #333;
+    .botoes-produto {
       margin-top: 10px;
-      font-size: 1rem;
     }
-    .produto-header-botoes {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .produto-header-botoes button {
+    .botoes-produto button {
+      margin: 0 10px;
       padding: 8px 14px;
       font-family: 'Caudex', serif;
       font-size: 1rem;
@@ -77,99 +182,138 @@
     }
     .carrossel {
       display: flex;
-      flex-wrap: nowrap;
+      justify-content: center;
       overflow-x: auto;
       gap: 10px;
-      justify-content: center;
+      padding: 10px 0;
+      flex-wrap: nowrap;
     }
     .carrossel img {
-      height: 150px;
-      object-fit: contain;
+      height: 160px;
+      flex-shrink: 0;
+      border-radius: 8px;
       cursor: pointer;
+      transition: transform 0.3s ease;
     }
-    .modal {
+    .carrossel img:hover {
+      transform: scale(1.05);
+    }
+    @media (max-width: 767px) {
+      .carrossel img {
+        height: 120px;
+      }
+    }
+    .lightbox {
+      display: none;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      display: none;
+      background-color: rgba(0, 0, 0, 0.9);
       justify-content: center;
       align-items: center;
-      z-index: 9999;
+      z-index: 10000;
     }
-    .modal-content {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 700px;
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
     }
-    .modal .close {
-      position: sticky;
-      top: 0;
-      left: 100%;
-      font-size: 24px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      float: right;
-    }
-    #lightbox {
+    .modal {
+      display: none;
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0,0,0,0.8);
-      display: none;
-      align-items: center;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
       justify-content: center;
-      z-index: 10000;
+      align-items: center;
+      z-index: 10001;
     }
-    #lightbox img {
-      max-width: 90%;
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 600px;
       max-height: 90%;
-      border-radius: 8px;
+      overflow-y: auto;
+      position: relative;
     }
-    #lightbox .close-lightbox {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: white;
-      font-size: 32px;
-      font-weight: bold;
+    .modal-content .close {
+      position: sticky;
+      top: 0;
+      right: 0;
+      font-size: 24px;
       cursor: pointer;
-    }
-    @media (max-width: 768px) {
-      .produto-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .produto-header-botoes {
-        flex-direction: row;
-        width: 100%;
-        justify-content: flex-start;
-      }
-      .carrossel img {
-        height: 120px;
-      }
+      float: right;
+      background: none;
+      border: none;
+      color: #000;
     }
   </style>
+  <script>
+    function rolarParaProduto(id) {
+      document.querySelectorAll('.produto-detalhe').forEach(el => el.style.display = 'none');
+      const target = document.getElementById(id);
+      target.style.display = 'block';
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+    function mostrarInfo() {
+      document.getElementById('modalInfo').style.display = 'flex';
+    }
+    function fecharModal() {
+      document.getElementById('modalInfo').style.display = 'none';
+    }
+    function comprarProduto() {
+      window.open('https://wa.me/5511934045680', '_blank');
+    }
+    function abrirLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.style.display = 'flex';
+      lightbox.querySelector('img').src = src;
+    }
+    function fecharLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+    window.onload = () => {
+      document.querySelectorAll('.carrossel img').forEach(img => {
+        img.addEventListener('click', () => abrirLightbox(img.src));
+      });
+    };
+  </script>
 </head>
 <body>
-  <section class="mapa-container">
-    <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa">
-    <a id="torre" class="hotspot" href="#produto3em1"></a>
-    <a id="laboratorio" class="hotspot" href="#"></a>
-    <a id="pau_dalho" class="hotspot" href="#"></a>
-    <a id="clareira" class="hotspot" href="#"></a>
-    <a id="caverna" class="hotspot" href="#"></a>
+<div class="mapa-container">
+    <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa" />
+    <div class="boas-vindas">
+      <strong>Bem-vindo à <br>Floresta Criativa!</strong><br />
+      Um lugar onde a madeira vira imaginação e cada cantinho guarda uma descoberta. 🌳<br />
+      Desça a trilha e explore as áreas mágicas do nosso catálogo interativo.
+      <br><img src="images/arrow-down.svg" class="bussola" alt="Desça" />
+    </div>
+    <a href="#torre" class="hotspot" style="top: 61.6%; left: 50.7%;"></a>
+    <a href="#laboratorio" class="hotspot" style="top: 78.7%; left: 27.5%;"></a>
+    <a href="#clareira" class="hotspot" style="top: 63.5%; left: 20.6%;"></a>
+    <a href="#caverna" class="hotspot" style="top: 76.0%; left: 54.0%;"></a>
+    <a href="#pau_dalho" class="hotspot" style="top: 54.3%; left: 87.7%;"></a>
+  </div>
+
+  <section class="respiro">
+    🧷 Você está prestes a explorar nossa coleção de <strong>Torres de Aprendizagem</strong>!<br>
+    Na <strong>Torre da Descoberta</strong>, apresentamos modelos desenvolvidos para incentivar a autonomia, a criatividade e o desenvolvimento das crianças — com segurança, funcionalidade e um toque de magia.
   </section>
+
+  <div class="torre-container" id="torre">
+    <img src="images/back_torre.webp" alt="Imagem Torre da Descoberta" />
+    <div class="imagem-torres" onclick="rolarParaProduto('produto3em1')"></div>
+    <div class="imagem-torres segunda" onclick="rolarParaProduto('produtoFixa')"></div>
+    <div class="texto-torre">
+      <h2>Torre da Descoberta</h2>
+      <p>Aqui no topo da torre, a vista se abre para um mundo de aprendizados e aventuras!</p>
+    </div>
+  </div>
 
   <section class="produto-detalhe" id="produto3em1">
     <h3>Torre 3 em 1</h3>
@@ -191,9 +335,22 @@
     </div>
   </section>
 
+  <section class="produto-detalhe" id="produtoFixa">
+    <h3>Torre Fixa</h3>
+    <div class="carrossel">
+      <img src="images/torrefixa1.jpg" alt="Imagem 1 da Torre Fixa" />
+      <img src="images/torrefixa2.jpg" alt="Imagem 2 da Torre Fixa" />
+      <img src="images/torrefixa3.jpg" alt="Imagem 3 da Torre Fixa" />
+    </div>
+    <div class="botoes-produto">
+      <button onclick="mostrarInfo()">Saiba mais</button>
+      <button onclick="comprarProduto()">Comprar</button>
+    </div>
+  </section>
+
   <div id="modalInfo" class="modal">
     <div class="modal-content">
-      <button class="close" onclick="fecharModal()">&times;</button>
+      <span class="close" onclick="fecharModal()">&times;</span>
       <h4>Torre de Aprendizagem 3 em 1</h4>
       <p><strong>O que é?</strong><br>
         Uma Torre que cresce com a criança! Ela ajuda os pequenos a alcançar a altura dos adultos com segurança, e ainda se transforma em cadeira de alimentação e em mesa de atividades. Ideal para momentos como: lavar louça, preparar receitas ou sentar-se à mesa da família.</p>
@@ -209,28 +366,12 @@
     </div>
   </div>
 
-  <div id="lightbox" onclick="fecharLightbox()">
-    <span class="close-lightbox" onclick="fecharLightbox()">&times;</span>
-    <img id="lightbox-img" src="" alt="Imagem ampliada" />
+  <div id="lightbox" class="lightbox" onclick="fecharLightbox()">
+    <img src="" alt="Visualização da imagem" />
   </div>
 
-  <script>
-    function mostrarInfo() {
-      document.getElementById('modalInfo').style.display = 'flex';
-    }
-    function fecharModal() {
-      document.getElementById('modalInfo').style.display = 'none';
-    }
-    function comprarProduto() {
-      window.open('https://wa.me/5511999999999', '_blank');
-    }
-    function abrirLightbox(src) {
-      document.getElementById('lightbox-img').src = src;
-      document.getElementById('lightbox').style.display = 'flex';
-    }
-    function fecharLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
-  </script>
+  <a id="whatsapp" href="https://wa.me/5511934045680" target="_blank" title="Fale conosco no WhatsApp">
+    <svg viewBox="0 0 32 32"><path d="M19.11 17.93c-.27-.13-1.59-.79-1.84-.88-.25-.09-.43-.13-.61.13s-.7.87-.86 1.05c-.16.18-.32.2-.59.07-.27-.13-1.12-.41-2.14-1.3-.79-.7-1.32-1.56-1.47-1.83-.15-.27-.02-.42.11-.55.11-.11.27-.3.41-.45.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.47-.07-.13-.61-1.47-.84-2.02-.22-.54-.44-.47-.61-.48-.16-.01-.34-.01-.52-.01s-.47.07-.72.34c-.25.27-.95.93-.95 2.27s.98 2.63 1.12 2.81c.14.18 1.93 2.96 4.67 4.15.65.28 1.15.45 1.55.57.65.21 1.24.18 1.7.11.52-.08 1.59-.65 1.81-1.27.22-.61.22-1.14.16-1.25-.06-.11-.25-.18-.52-.31zM16.12 4c-6.62 0-12 5.38-12 12 0 2.11.55 4.09 1.51 5.82l-1.6 5.84 6-1.57c1.66.91 3.57 1.43 5.61 1.43 6.62 0 12-5.38 12-12S22.74 4 16.12 4zM16 26c-1.8 0-3.49-.49-4.95-1.33l-.35-.2-3.57.93.95-3.47-.22-.36C7.52 19.58 7 18.07 7 16.41 7 10.92 11.49 6.43 17 6.43S27 10.92 27 16.41 22.51 26 16 26z"/></svg>
+  </a>
 </body>
 </html>
