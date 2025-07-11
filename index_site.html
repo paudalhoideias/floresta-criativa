@@ -159,7 +159,6 @@
       background: white;
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      text-align: center;
     }
     .produto-detalhe h3 {
       color: #2a6c3d;
@@ -172,7 +171,7 @@
       margin-bottom: 20px;
     }
     .botoes-produto {
-      margin-bottom: 20px;
+      margin-top: 10px;
     }
     .botoes-produto button {
       margin: 0 10px;
@@ -220,6 +219,39 @@
       max-width: 90%;
       max-height: 90%;
     }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10001;
+    }
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 600px;
+      max-height: 90%;
+      overflow-y: auto;
+      position: relative;
+    }
+    .modal-content .close {
+      position: sticky;
+      top: 0;
+      right: 0;
+      font-size: 24px;
+      cursor: pointer;
+      float: right;
+      background: none;
+      border: none;
+      color: #000;
+    }
   </style>
   <script>
     function rolarParaProduto(id) {
@@ -229,7 +261,7 @@
       target.scrollIntoView({ behavior: 'smooth' });
     }
     function mostrarInfo() {
-      document.getElementById('modalInfo').style.display = 'block';
+      document.getElementById('modalInfo').style.display = 'flex';
     }
     function fecharModal() {
       document.getElementById('modalInfo').style.display = 'none';
