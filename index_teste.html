@@ -14,12 +14,26 @@
     .mapa-container {
       text-align: center;
       padding: 40px 20px;
+      position: relative;
     }
     .mapa-container img {
       width: 100%;
       max-width: 1000px;
       height: auto;
     }
+    .hotspot {
+      position: absolute;
+      width: 8vw;
+      height: 10vh;
+      cursor: pointer;
+      z-index: 2;
+    }
+    #torre { top: 60.1%; left: 43.7%; }
+    #laboratorio { top: 75.7%; left: 23.0%; }
+    #pau_dalho { top: 52.3%; left: 80.7%; }
+    #clareira { top: 62.5%; left: 14.6%; }
+    #caverna { top: 73.0%; left: 50.0%; }
+
     .produto-detalhe {
       max-width: 960px;
       margin: 0 auto;
@@ -150,6 +164,11 @@
 <body>
   <section class="mapa-container">
     <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa">
+    <a id="torre" class="hotspot" href="#produto3em1"></a>
+    <a id="laboratorio" class="hotspot" href="#"></a>
+    <a id="pau_dalho" class="hotspot" href="#"></a>
+    <a id="clareira" class="hotspot" href="#"></a>
+    <a id="caverna" class="hotspot" href="#"></a>
   </section>
 
   <section class="produto-detalhe" id="produto3em1">
