@@ -163,28 +163,65 @@
       cursor: pointer;
       z-index: 9999;
     }
+    .modal-content {
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      margin: 40px auto;
+      width: 90%;
+      max-width: 600px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+    }
     .produto-detalhe {
       display: none;
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
     }
     .carrossel {
-  display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  padding: 10px 0;
-}
-
-.carrossel img {
-  height: 180px;
-  flex-shrink: 0;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.carrossel img:hover {
-  transform: scale(1.05);
-}
-
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px 0;
+    }
+    .carrossel img {
+      height: 180px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .carrossel img:hover {
+      transform: scale(1.05);
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+    }
   </style>
   <script>
     function rolarParaProduto(id) {
@@ -201,10 +238,23 @@
     function comprarProduto() {
       window.open('https://wa.me/5511934045680', '_blank');
     }
+    function abrirLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.style.display = 'flex';
+      lightbox.querySelector('img').src = src;
+    }
+    function fecharLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+    window.onload = () => {
+      document.querySelectorAll('.carrossel img').forEach(img => {
+        img.addEventListener('click', () => abrirLightbox(img.src));
+      });
+    };
   </script>
 </head>
 <body>
-   <div class="mapa-container">
+ <div class="mapa-container">
     <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa" />
     <div class="boas-vindas">
       <strong>Bem-vindo à <br>Floresta Criativa!</strong><br />
