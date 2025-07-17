@@ -126,27 +126,43 @@
       background: linear-gradient(90deg, #4CAF50, #8BC34A, #4CAF50);
     }
     
-.cards-floresta {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px 40px;
-  padding: 40px 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-  justify-items: center;
+.card-floresta {
+  background: #fdf5e6;
+  border: 2px solid #d1a35e;
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  font-family: 'Comic Neue', sans-serif;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-@media (max-width: 900px) {
-  .cards-floresta {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.card-floresta:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(255, 200, 80, 0.4);
 }
 
-@media (max-width: 600px) {
-  .cards-floresta {
-    grid-template-columns: 1fr;
-  }
+.card-floresta img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
 }
+
+.card-floresta h3 {
+  font-size: 1.1rem;
+  margin: 10px 0 5px;
+  color: #5a3d1a;
+}
+
+.card-floresta p {
+  font-size: 0.9rem;
+  color: #6e4f2f;
+  margin: 0;
+}
+
 
 
 
