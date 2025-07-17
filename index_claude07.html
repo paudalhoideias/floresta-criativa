@@ -126,7 +126,17 @@
       background: linear-gradient(90deg, #4CAF50, #8BC34A, #4CAF50);
     }
     
-.card-floresta {
+.cards-floresta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px 40px;
+  padding: 40px 20px;
+  max-width: 1020px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+    .card-floresta {
   background: #fdf5e6;
   border: 2px solid #d1a35e;
   border-radius: 16px;
@@ -208,7 +218,17 @@
         padding: 20px;
       }
     }
-    
+    @media (max-width: 950px) {
+  .cards-floresta {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .cards-floresta {
+    grid-template-columns: 1fr;
+  }
+}
     @media (max-width: 480px) {
       .hotspot {
         width: 45px;
