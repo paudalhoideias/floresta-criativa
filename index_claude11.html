@@ -481,37 +481,42 @@
   const menu = document.getElementById('menuDropdown');
   const button = document.getElementById('menuButton');
   const hoverZone = document.getElementById('hoverZone');
-
   let lastScroll = 0;
 
   window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
+    const currentScroll = window.pageYOffset;
 
-  if (currentScroll > lastScroll) {
-    topBar.classList.add('hidden');
-    button.classList.add('transparent');
-
-    // Fecha o menu somente se ele estiver aberto
-    if (menu.style.display === 'block') {
-      menu.style.display = 'none';
+    if (currentScroll > lastScroll) {
+      topBar.classList.add('hidden');
+      button.classList.add('transparent');
+    } else {
+      topBar.classList.remove('hidden');
+      button.classList.remove('transparent');
     }
 
-  } else {
+    lastScroll = currentScroll;
+  });
+
+  // Alterna o menu ao clicar
+  button.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const isVisible = menu.style.display === 'block';
+    menu.style.display = isVisible ? 'none' : 'block';
+  });
+
+  // Fecha o menu se clicar fora
+  document.addEventListener('click', (event) => {
+    if (!menu.contains(event.target) && event.target !== button) {
+      menu.style.display = 'none';
+    }
+  });
+
+  // Hover na borda superior faz a barra reaparecer
+  hoverZone.addEventListener('mouseenter', () => {
     topBar.classList.remove('hidden');
     button.classList.remove('transparent');
-  }
-
-  lastScroll = currentScroll;
-});
-
-
-  // Mostrar barra ao passar o mouse no topo da tela
-const hoverZone = document.getElementById('hoverZone');
-
-hoverZone.addEventListener('mouseenter', () => {
-  topBar.classList.remove('hidden');
-  button.classList.remove('transparent');
-});
+  });
+</script>
 
   button.addEventListener('click', () => {
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
