@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pau D'Alho - Floresta Criativa</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Caudex', serif;
+      background-color: #fefefe;
+    }
+
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+
+    .top-bar.hidden {
+      transform: translateY(-100%);
+    }
+
+    .logo {
+      height: 40px;
+    }
+
+    .menu-button {
+      font-size: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .menu-button.transparent {
+      opacity: 0.3;
+    }
+
+    #menuDropdown {
+      display: none;
+      position: fixed;
+      top: 60px;
+      right: 0;
+      background-color: white;
+      border-left: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      padding: 10px;
+      z-index: 999;
+      min-width: 200px;
+    }
+
+    #menuDropdown a {
+      display: block;
+      padding: 8px 10px;
+      color: #333;
+      text-decoration: none;
+      text-align: right;
+    }
+
+    #menuDropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .hotspot {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      transition: transform 0.2s ease;
+    }
+
+    .hotspot::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.1);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      background-color: #eee;
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar" id="topBar">
+    <img src="images/logo.png" alt="Logo" class="logo">
+    <button class="menu-button" id="menuButton">☰</button>
+  </div>
+
+  <div id="menuDropdown">
+    <a href="#">Produtos</a>
+    <a href="#">Novidades</a>
+    <a href="#">Sobre nós</a>
+    <a href="#">Fale conosco</a>
+  </div>
+
+  <!-- Exemplo de hotspots com nova posição -->
+  <div class="hotspot" style="top: 64.6%; left: 50.7%;" onclick="irPara('torre-descoberta.html')" title="Torre da Descoberta"></div>
+  <div class="hotspot" style="top: 81.7%; left: 27.5%;" onclick="irPara('laboratorio.html')" title="Laboratório de Ideias"></div>
+  <div class="hotspot" style="top: 66.5%; left: 20.6%;" onclick="irPara('clareira.html')" title="Clareira dos Sonhos"></div>
+  <div class="hotspot" style="top: 79.0%; left: 54.0%;" onclick="irPara('caverna.html')" title="Caverna das Aventuras"></div>
+  <div class="hotspot" style="top: 57.3%; left: 87.7%;" onclick="irPara('pau-dalho.html')" title="Sobre Pau D'Alho"></div>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2025 Pau D'Alho - Ideias Criativas. Todos os direitos reservados.</p>
+    <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
+  </footer>
+
+  <script>
+    const topBar = document.getElementById('topBar');
+    const menu = document.getElementById('menuDropdown');
+    const button = document.getElementById('menuButton');
+
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll > lastScroll) {
+        topBar.classList.add('hidden');
+        button.classList.add('transparent');
+      } else {
+        topBar.classList.remove('hidden');
+        button.classList.remove('transparent');
+      }
+
+      lastScroll = currentScroll;
+      menu.style.display = 'none'; // fecha ao rolar
+    });
+
+    button.addEventListener('click', () => {
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    });
+  </script>
+</body>
+</html>
