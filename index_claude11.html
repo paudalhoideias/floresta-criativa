@@ -24,7 +24,15 @@
       font-family: Arial, sans-serif;
       overflow-x: hidden;
     }
-    
+    #hoverZone {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  z-index: 1001;
+}
+
     .mapa-container {
       position: relative;
       width: 100%;
@@ -73,87 +81,75 @@
       60% { transform: translateY(-5px); }
     }
     /* TOPO FIXO */
-<style>
-  #topo-site {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-    transition: top 0.4s ease;
-  }
+#topo-site {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  padding: 5px 20px;
+}
 
-  .container-topo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 20px;
-  }
+.container-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-  .logo-topo {
-    height: 50px;
-  }
+.logo-topo {
+  height: 50px;
+}
 
-  #menu-toggle {
-    font-size: 2rem;
-    cursor: pointer;
-    color: #5a3d1a;
-    transition: opacity 0.3s ease;
-  }
+#menu-toggle {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #5a3d1a;
+  transition: transform 0.3s ease;
+}
 
-  #menu-dropdown {
-    display: none;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: #fff;
-    border: 1px solid #d1a35e;
-    border-radius: 10px;
-    padding: 10px 15px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-    min-width: 180px;
-  }
+#menu-toggle:hover {
+  transform: scale(1.1);
+}
 
-  #menu-dropdown ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: right;
-  }
+/* DROPDOWN */
+#menu-dropdown {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 60px;
+  background-color: #fff9f0;
+  border: 1px solid #d1a35e;
+  border-radius: 10px;
+  padding: 10px 15px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
 
-  #menu-dropdown li {
-    margin: 8px 0;
-  }
+#menu-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-  #menu-dropdown a {
-    text-decoration: none;
-    color: #5a3d1a;
-    font-family: 'Caudex', serif;
-    font-size: 0.95rem;
-  }
+#menu-dropdown li {
+  margin: 8px 0;
+}
 
-  #menu-dropdown a:hover {
-    text-decoration: underline;
-  }
+#menu-dropdown a {
+  text-decoration: none;
+  color: #5a3d1a;
+  font-family: 'Caudex', serif;
+  font-size: 0.95rem;
+}
 
-  @media (max-width: 600px) {
-    #menu-toggle {
-      font-size: 1.8rem;
-      margin-right: 5px;
-    }
+#menu-dropdown a:hover {
+  text-decoration: underline;
+}
 
-    .logo-topo {
-      height: 45px;
-    }
-
-    #menu-dropdown {
-      right: 10px;
-      top: 55px;
-      font-size: 0.9rem;
-    }
-  }
-}.hotspot {
+    
+    .hotspot {
   position: absolute;
   width: 60px;
   height: 60px;
@@ -346,6 +342,7 @@
   </style>
 </head>
 <body>
+  <div id="hoverZone"></div>
     <header id="topo-site">
   <div class="container-topo">
     <img src="images/logo.png" alt="Logo Pau D'Alho" class="logo-topo">
@@ -353,24 +350,15 @@
   </div>
   <nav id="menu-dropdown">
     <ul>
-      <li><a href="#produtos">Produtos</a>
-        <!-- Submenu futuro -->
-        <!--
-        <ul class="submenu">
-          <li><a href="#torres">Torres de Aprendizagem</a></li>
-          <li><a href="#cadeiras">Mesas e Cadeiras</a></li>
-          <li><a href="#nichos">Nichos e Organização</a></li>
-        </ul>
-        -->
-      </li>
-      <li><a href="#novidades">Novidades</a></li>
-      <li><a href="#sobre">Sobre nós</a></li>
-      <li><a href="#contato">Fale conosco</a></li>
+      <li><a href="#torre">Torre da Descoberta</a></li>
+      <li><a href="#laboratorio">Laboratório da Júlia</a></li>
+      <li><a href="#clareira">Clareira do Descanso</a></li>
+      <li><a href="#caverna">Caverna dos Tesouros</a></li>
+      <li><a href="#pau_dalho">Sobre a Pau D’Alho</a></li>
+      <li><a href="#contato">Fale Conosco</a></li>
     </ul>
   </nav>
 </header>
-
-
   <!-- Loading Screen -->
   <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #e6f4e9; display: flex; align-items: center; justify-content: center; z-index: 9999;">
     <div style="text-align: center; font-family: 'Caudex', serif; color: #4a4a4a;">
@@ -488,37 +476,39 @@
       transform: scale(1.1);
     }
   </style>
- <script>
-  let lastScrollTop = 0;
-  const topo = document.getElementById("topo-site");
-  const toggle = document.getElementById("menu-toggle");
-  const dropdown = document.getElementById("menu-dropdown");
+  <script>
+  const topBar = document.getElementById('topBar');
+  const menu = document.getElementById('menuDropdown');
+  const button = document.getElementById('menuButton');
+  const hoverZone = document.getElementById('hoverZone');
 
-  function toggleMenu() {
-    dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
-  }
+  let lastScroll = 0;
 
-  window.addEventListener("scroll", function () {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop > lastScrollTop) {
-      topo.style.top = "-70px";
-      toggle.style.opacity = 0.3;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > lastScroll && currentScroll > 60) {
+      topBar.classList.add('hidden');
+      button.classList.add('transparent');
     } else {
-      topo.style.top = "0";
-      toggle.style.opacity = 1;
+      topBar.classList.remove('hidden');
+      button.classList.remove('transparent');
     }
-    lastScrollTop = scrollTop;
+
+    lastScroll = currentScroll;
+    menu.style.display = 'none';
   });
 
-  toggle.addEventListener("mouseenter", function () {
-    topo.style.top = "0";
-    toggle.style.opacity = 1;
-  });
+  // Mostrar barra ao passar o mouse no topo da tela
+const hoverZone = document.getElementById('hoverZone');
 
-  window.addEventListener('click', function (e) {
-    if (!dropdown.contains(e.target) && !toggle.contains(e.target)) {
-      dropdown.style.display = 'none';
-    }
+hoverZone.addEventListener('mouseenter', () => {
+  topBar.classList.remove('hidden');
+  button.classList.remove('transparent');
+});
+
+  button.addEventListener('click', () => {
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
   });
 </script>
 
