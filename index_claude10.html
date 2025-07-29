@@ -499,10 +499,13 @@
     menu.style.display = 'none';
   });
 
-  hoverZone.addEventListener('mouseenter', () => {
-    topBar.classList.remove('hidden');
-    button.classList.remove('transparent');
-  });
+  // Mostrar barra ao passar o mouse no topo da tela
+const hoverZone = document.getElementById('hoverZone');
+
+hoverZone.addEventListener('mouseenter', () => {
+  topBar.classList.remove('hidden');
+  button.classList.remove('transparent');
+});
 
   button.addEventListener('click', () => {
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
