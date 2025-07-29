@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pau D'Alho - Floresta Criativa</title>
+  <meta name="description" content="Explore nossa Floresta Criativa e descubra produtos únicos em madeira para crianças. Torres de aprendizagem, brinquedos educativos e muito mais!">
+  
+  <!-- Preload de recursos críticos -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Caveat:wght@400;700&display=swap" as="style">
+  <link rel="preload" href="images/mapa.jpg" as="image">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Externo -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <style>
+    /* CSS específico da página principal */
+    body {
+      margin: 0;
+      background-color: #e6f4e9;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+    
+    .mapa-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      min-height: 50vh;
+      padding-top: 70px;
+    }
+    
+    .mapa-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .boas-vindas {
+      position: absolute;
+      top: 5%;
+      left: 15%;
+      width: 50%;
+      max-width: 200px;
+      background: rgba(212, 211, 203, 0.9);
+      border-radius: 16px;
+      padding: 20px;
+      font-family: 'Caudex', serif;
+      font-size: 1rem;
+      color: #2c2b2a;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 5;
+      backdrop-filter: blur(5px);
+    }
+    
+    .bussola {
+      display: block;
+      margin: 10px auto 0;
+      width: 40px;
+      height: auto;
+      max-height: 40px;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+    /* TOPO FIXO */
+#topo-site {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  padding: 5px 20px;
+}
+
+.container-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-topo {
+  height: 50px;
+}
+
+#menu-toggle {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #5a3d1a;
+  transition: transform 0.3s ease;
+  margin-right: 10px;
+}
+
+#menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+#menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #ffffff;
+  border: 1px solid #d1a35e;
+  border-radius: 10px;
+  padding: 10px 15px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+}
+
+#menu-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+
+#menu-dropdown li {
+  margin: 8px 0;
+}
+
+#menu-dropdown a {
+  text-decoration: none;
+  color: #5a3d1a;
+  font-family: 'Caudex', serif;
+  font-size: 0.95rem;
+}
+
+#menu-dropdown a:hover {
+  text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  #menu-toggle {
+    font-size: 1.8rem;
+    margin-right: 5px;
+  }
+
+  .logo-topo {
+    height: 45px;
+  }
+
+  #menu-dropdown {
+    right: 10px;
+    top: 55px;
+    font-size: 0.9rem;
+  }
+}
+   
+    .hotspot {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+
+.hotspot:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 12px rgba(255, 215, 100, 0.8);
+  border: 2px solid rgba(255, 223, 127, 0.6);
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 215, 100, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(255, 215, 100, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 215, 100, 0.4);
+  }
+}
+
+
+    
+    .introducao {
+      background: linear-gradient(135deg, #fdfcf6 0%, #f8f6f0 100%);
+      padding: 60px 20px;
+      text-align: center;
+      font-family: 'Caudex', serif;
+      font-size: 1.2rem;
+      color: #4a4a4a;
+      line-height: 1.6;
+      position: relative;
+    }
+    
+    .introducao::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #4CAF50, #8BC34A, #4CAF50);
+    }
+    
+.cards-floresta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px 40px;
+  padding: 40px 20px;
+  max-width: 1020px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+ .card-floresta {
+  background: url('images/bg-madeira-clara.webp') repeat;
+  background-size: cover;
+  border: 2px solid #a8713a;
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  font-family: 'Caudex', serif;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+
+
+.card-floresta:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(255, 200, 80, 0.4);
+}
+
+.card-floresta img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.card-floresta h3,
+.card-floresta p {
+  font-family: 'Caudex', serif;
+}
+
+@media (max-width: 768px) {
+  .card-floresta h3,
+  .card-floresta p {
+    font-family: 'Caveat', cursive;
+  }
+}
+  
+    .btn-explorar {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: 'Caudex', serif;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .btn-explorar:hover {
+      background: #45a049;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 767px) {
+      .boas-vindas {
+        font-family: 'Caveat', cursive;
+        font-size: 0.9rem;
+        padding: 15px;
+        width: 60%;
+      }
+      
+      .introducao {
+        font-family: 'Caveat', cursive;
+        font-size: 1.4rem;
+        padding: 40px 15px;
+      }
+      
+      .areas-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 40px 15px;
+      }
+      
+      .area-card {
+        padding: 20px;
+      }
+    }
+    @media (max-width: 950px) {
+  .cards-floresta {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .cards-floresta {
+    grid-template-columns: 1fr;
+  }
+}
+    @media (max-width: 480px) {
+      .hotspot {
+        width: 45px;
+        height: 32px;
+      }
+      
+      .boas-vindas {
+        width: 70%;
+        left: 15%;
+      }
+    }
+    #toco-whats {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  animation: balanco-toco 3s ease-in-out infinite;
+  cursor: pointer;
+}
+
+#toco-whats img {
+  height: 100px;
+  transition: transform 0.3s ease;
+}
+
+#toco-whats:hover img {
+  transform: scale(1.05);
+}
+
+@keyframes balanco-toco {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+  </style>
+</head>
+<body>
+    <header id="topo-site">
+  <div class="container-topo">
+    <img src="images/logo.png" alt="Logo Pau D'Alho" class="logo-topo">
+    <div id="menu-toggle" onclick="toggleMenu()">☰</div>
+  </div>
+  <nav id="menu-dropdown">
+    <ul>
+      <li><a href="#produtos">Produtos</a>
+        <!-- Submenu futuro -->
+        <!--
+        <ul class="submenu">
+          <li><a href="#torres">Torres de Aprendizagem</a></li>
+          <li><a href="#cadeiras">Mesas e Cadeiras</a></li>
+          <li><a href="#nichos">Nichos e Organização</a></li>
+        </ul>
+        -->
+      </li>
+      <li><a href="#novidades">Novidades</a></li>
+      <li><a href="#sobre">Sobre nós</a></li>
+      <li><a href="#contato">Fale conosco</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <!-- Loading Screen -->
+  <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #e6f4e9; display: flex; align-items: center; justify-content: center; z-index: 9999;">
+    <div style="text-align: center; font-family: 'Caudex', serif; color: #4a4a4a;">
+      <div style="font-size: 2rem; margin-bottom: 20px;">🌳</div>
+      <div>Carregando a Floresta Criativa...</div>
+    </div>
+  </div>
+
+  <!-- Mapa Interativo -->
+  <div class="mapa-container">
+    <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa" loading="eager">
+    
+    <div class="boas-vindas">
+      <strong>Bem-vindo à <br>Floresta Criativa!</strong><br>
+      Um lugar onde a madeira vira imaginação e cada cantinho guarda uma descoberta. 🌳<br>
+      Explore as áreas mágicas do nosso catálogo interativo.
+      <img src="images/arrow-down.svg" class="bussola" alt="Explore">
+    </div>
+    
+    <!-- Hotspots Interativos -->
+    <div class="hotspot" style="top: 61.6%; left: 50.7%;" onclick="irPara('torre-descoberta.html')" title="Torre da Descoberta"></div>
+    <div class="hotspot" style="top: 78.7%; left: 27.5%;" onclick="irPara('laboratorio.html')" title="Laboratório de Ideias"></div>
+    <div class="hotspot" style="top: 63.5%; left: 20.6%;" onclick="irPara('clareira.html')" title="Clareira dos Sonhos"></div>
+    <div class="hotspot" style="top: 76.0%; left: 54.0%;" onclick="irPara('caverna.html')" title="Caverna das Aventuras"></div>
+    <div class="hotspot" style="top: 54.3%; left: 87.7%;" onclick="irPara('pau-dalho.html')" title="Sobre Pau D'Alho"></div>
+  </div>
+
+  <!-- Introdução -->
+  <section class="introducao">
+    🌲 Cada produto é uma nova aventura esperando para ser descoberta!<br>
+    Clique nas áreas do mapa ou explore as seções abaixo para encontrar o produto perfeito para sua família.
+  </section>
+
+  <!-- Grid de Áreas -->
+  <section class="cards-floresta">
+  <div class="card-floresta" onclick="irPara('torre-descoberta.html')">
+    <img src="images/sessao-torre.png" alt="Torre da Descoberta" />
+    <h3>Torre da Descoberta</h3>
+    <p>Encontre nossas torres de aprendizagem e os clássicos da linha Montessori.</p>
+  </div>
+<div class="card-floresta" onclick="irPara('clareira.html')">
+    <img src="images/sessao-clareira.png" alt="Clareira do Descanso" />
+    <h3>Clareira do Descanso</h3>
+    <p>Descubra nossas cadeiras, bancos e espaços de pausa e afeto.</p>
+  </div>
+
+  <div class="card-floresta" onclick="irPara('caverna.html')">
+    <img src="images/sessao-caverna.png" alt="Caverna dos Tesouros" />
+    <h3>Caverna dos Tesouros</h3>
+    <p>Organizadores, brinquedos e itens encantados da floresta.</p>
+  </div>
+ <div class="card-floresta" onclick="irPara('laboratorio.html')">
+    <img src="images/sessao-laboratorio.png" alt="Laboratório da Júlia" />
+    <h3>Laboratório da Júlia</h3>
+    <p>Veja os bastidores, novos projetos, protótipos e ideias em teste.</p>
+  </div>
+  <div class="card-floresta" onclick="irPara('pau-dalho.html')">
+    <img src="images/sessao-paudalho.png" alt="Pau D'Alho" />
+    <h3>Pau D’Alho</h3>
+    <p>Conheça a história da marca, nossos valores e como tudo começou.</p>
+  </div>
+</section>
+
+
+
+  <a href="https://wa.me/5511934045680" target="_blank" id="toco-whats" title="Falar com a Pau D'Alho no WhatsApp">
+  <img src="images/toco_whats.png" alt="Fale com Toco no WhatsApp" />
+</a>
+
+
+  <script>
+    // Função para navegar entre páginas
+    function irPara(pagina) {
+      // Adiciona uma pequena animação antes da navegação
+      document.body.style.opacity = '0.8';
+      setTimeout(() => {
+        window.location.href = pagina;
+      }, 200);
+    }
+    
+    // Remove loading screen quando página carregar
+    window.addEventListener('load', () => {
+      document.getElementById('loading').style.display = 'none';
+    });
+    
+    // Melhora a experiência com lazy loading para imagens futuras
+    if ('loading' in HTMLImageElement.prototype) {
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      images.forEach(img => {
+        img.loading = 'lazy';
+      });
+    }
+  </script>
+  
+  <!-- CSS comum para WhatsApp -->
+  <style>
+    #whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 999;
+      transition: transform 0.3s ease;
+      text-decoration: none;
+    }
+    
+    #whatsapp:hover {
+      transform: scale(1.1);
+    }
+  </style>
+  <script>
+  function toggleMenu() {
+    const menu = document.getElementById('menu-dropdown');
+    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+  }
+
+  window.addEventListener('click', function (e) {
+    const menu = document.getElementById('menu-dropdown');
+    const toggle = document.getElementById('menu-toggle');
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+      menu.style.display = 'none';
+    }
+  });
+
+  window.addEventListener('scroll', function () {
+    const menu = document.getElementById('menu-dropdown');
+    if (menu.style.display === 'block') {
+      menu.style.display = 'none';
+    }
+  });
+</script>
+
+
+</body>
+</html>
