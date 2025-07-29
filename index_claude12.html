@@ -13,6 +13,15 @@
       background-color: #fefefe;
     }
 
+    #hoverZone {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      z-index: 1001;
+    }
+
     .top-bar {
       position: fixed;
       top: 0;
@@ -94,14 +103,66 @@
     }
 
     @keyframes pulse {
-      0% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(1.5);
-        opacity: 0;
-      }
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    .mapa-container {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 100px auto 0;
+    }
+
+    .mapa-container img {
+      width: 100%;
+      display: block;
+    }
+
+    .boas-vindas {
+      text-align: center;
+      padding: 40px 20px 10px;
+      font-family: 'Caveat', cursive;
+      font-size: 32px;
+      color: #4a3d2b;
+    }
+
+    .cards-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
+      background-image: url('images/card-bg.jpg');
+      background-size: cover;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-family: 'Caveat', cursive;
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #3b2f1d;
+    }
+
+    .card p {
+      font-family: 'Caudex', serif;
+      font-size: 16px;
+      color: #555;
     }
 
     footer {
@@ -114,6 +175,8 @@
   </style>
 </head>
 <body>
+  <div id="hoverZone"></div>
+
   <div class="top-bar" id="topBar">
     <img src="images/logo.png" alt="Logo" class="logo">
     <button class="menu-button" id="menuButton">☰</button>
@@ -126,14 +189,47 @@
     <a href="#">Fale conosco</a>
   </div>
 
-  <!-- Exemplo de hotspots com nova posição -->
-  <div class="hotspot" style="top: 64.6%; left: 50.7%;" onclick="irPara('torre-descoberta.html')" title="Torre da Descoberta"></div>
-  <div class="hotspot" style="top: 81.7%; left: 27.5%;" onclick="irPara('laboratorio.html')" title="Laboratório de Ideias"></div>
-  <div class="hotspot" style="top: 66.5%; left: 20.6%;" onclick="irPara('clareira.html')" title="Clareira dos Sonhos"></div>
-  <div class="hotspot" style="top: 79.0%; left: 54.0%;" onclick="irPara('caverna.html')" title="Caverna das Aventuras"></div>
-  <div class="hotspot" style="top: 57.3%; left: 87.7%;" onclick="irPara('pau-dalho.html')" title="Sobre Pau D'Alho"></div>
+  <div class="boas-vindas">Bem-vindo à Floresta Criativa! Um lugar onde a madeira vira imaginação...</div>
 
-  <!-- Rodapé -->
+  <div class="mapa-container">
+    <img src="images/mapa.jpg" alt="Mapa da Floresta Criativa">
+
+    <!-- Hotspots -->
+    <div class="hotspot" style="top: 60.1%; left: 43.7%;" onclick="irPara('torre-descoberta.html')" title="Torre da Descoberta"></div>
+    <div class="hotspot" style="top: 75.7%; left: 23.0%;" onclick="irPara('laboratorio.html')" title="Laboratório da Júlia"></div>
+    <div class="hotspot" style="top: 62.5%; left: 14.6%;" onclick="irPara('clareira.html')" title="Clareira do Descanso"></div>
+    <div class="hotspot" style="top: 73.0%; left: 50.0%;" onclick="irPara('caverna.html')" title="Caverna dos Tesouros"></div>
+    <div class="hotspot" style="top: 52.3%; left: 80.7%;" onclick="irPara('pau-dalho.html')" title="Pau D'Alho"></div>
+  </div>
+
+  <div class="cards-section">
+    <div class="card">
+      <img src="images/torre.png" alt="Torre">
+      <h3>Torre da Descoberta</h3>
+      <p>Onde as torres de aprendizagem ganham vida e ajudam os pequenos a explorar o mundo com segurança.</p>
+    </div>
+    <div class="card">
+      <img src="images/laboratorio.png" alt="Laboratório">
+      <h3>Laboratório da Júlia</h3>
+      <p>Nosso espaço de testes, inovações e curiosidades direto da oficina da Pau D'Alho.</p>
+    </div>
+    <div class="card">
+      <img src="images/clareira.png" alt="Clareira">
+      <h3>Clareira do Descanso</h3>
+      <p>Banquinhos, cadeiras e aconchego para momentos tranquilos e muito especiais.</p>
+    </div>
+    <div class="card">
+      <img src="images/caverna.png" alt="Caverna">
+      <h3>Caverna dos Tesouros</h3>
+      <p>Brinquedos, nichos e organizadores que ajudam a guardar, brincar e sonhar.</p>
+    </div>
+    <div class="card">
+      <img src="images/pau.png" alt="Pau D'Alho">
+      <h3>Pau D'Alho</h3>
+      <p>A árvore que dá nome à marca, onde você conhece nossa história, valores e formas de contato.</p>
+    </div>
+  </div>
+
   <footer>
     <p>&copy; 2025 Pau D'Alho - Ideias Criativas. Todos os direitos reservados.</p>
     <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
@@ -143,12 +239,11 @@
     const topBar = document.getElementById('topBar');
     const menu = document.getElementById('menuDropdown');
     const button = document.getElementById('menuButton');
-
+    const hoverZone = document.getElementById('hoverZone');
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset;
-
       if (currentScroll > lastScroll) {
         topBar.classList.add('hidden');
         button.classList.add('transparent');
@@ -156,13 +251,24 @@
         topBar.classList.remove('hidden');
         button.classList.remove('transparent');
       }
-
       lastScroll = currentScroll;
-      menu.style.display = 'none';
     });
 
-    button.addEventListener('click', () => {
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const isVisible = menu.style.display === 'block';
+      menu.style.display = isVisible ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!menu.contains(event.target) && event.target !== button) {
+        menu.style.display = 'none';
+      }
+    });
+
+    hoverZone.addEventListener('mouseenter', () => {
+      topBar.classList.remove('hidden');
+      button.classList.remove('transparent');
     });
   </script>
 </body>
