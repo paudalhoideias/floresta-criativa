@@ -26,11 +26,11 @@
       padding: 0 20px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      transition: transform 0.3s ease;
+      transition: top 0.3s ease;
     }
 
     .top-bar.hidden {
-      transform: translateY(-100%);
+      top: -60px;
     }
 
     .logo {
@@ -42,6 +42,7 @@
       background: none;
       border: none;
       cursor: pointer;
+      transition: opacity 0.3s ease;
     }
 
     .menu-button.transparent {
@@ -53,12 +54,11 @@
       position: fixed;
       top: 60px;
       right: 0;
-      background-color: white;
-      border-left: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
       padding: 10px;
       z-index: 999;
-      min-width: 200px;
+      min-width: 220px;
     }
 
     #menuDropdown a {
@@ -158,7 +158,7 @@
       }
 
       lastScroll = currentScroll;
-      menu.style.display = 'none'; // fecha ao rolar
+      menu.style.display = 'none';
     });
 
     button.addEventListener('click', () => {
