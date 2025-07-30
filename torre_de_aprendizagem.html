@@ -262,47 +262,61 @@
 
   <!-- SCRIPTS -->
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById("menu-dropdown");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
+  function toggleMenu() {
+    const menu = document.getElementById("menu-dropdown");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+
+  function mostrar(tipo) {
+    // Oculta todos os blocos
+    document.getElementById("conteudo-fixa").style.display = "none";
+    document.getElementById("conteudo-3em1").style.display = "none";
+    document.getElementById("curiosidade").style.display = "none";
+
+    let alvo = null;
+
+    // Mostra o conteúdo e define alvo de rolagem
+    if (tipo === 'fixa') {
+      document.getElementById("conteudo-fixa").style.display = "block";
+      alvo = document.getElementById("conteudo-fixa");
+    } else if (tipo === '3em1') {
+      document.getElementById("conteudo-3em1").style.display = "block";
+      alvo = document.getElementById("conteudo-3em1");
+    } else if (tipo === 'curiosidade') {
+      document.getElementById("curiosidade").style.display = "block";
+      alvo = document.getElementById("curiosidade");
     }
 
-    // Mostrar apenas um conteúdo por vez
-    function mostrar(tipo) {
-      document.getElementById("conteudo-fixa").style.display = "none";
-      document.getElementById("conteudo-3em1").style.display = "none";
-      document.getElementById("curiosidade").style.display = "none";
-
-      if (tipo === 'fixa') {
-        document.getElementById("conteudo-fixa").style.display = "block";
-      } else if (tipo === '3em1') {
-        document.getElementById("conteudo-3em1").style.display = "block";
-      } else if (tipo === 'curiosidade') {
-        document.getElementById("curiosidade").style.display = "block";
-      }
+    // Scroll suave até o conteúdo (se for desktop)
+    if (alvo && window.innerWidth > 768) {
+      setTimeout(() => {
+        alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 200); // espera animação terminar
     }
+  }
 
-    // Ocultar topo ao rolar
-    let lastScrollTop = 0;
-    const topBar = document.getElementById("top-bar");
-    const dropdown = document.getElementById("menu-dropdown");
+  // Ocultar topo ao rolar
+  let lastScrollTop = 0;
+  const topBar = document.getElementById("top-bar");
+  const dropdown = document.getElementById("menu-dropdown");
 
-    window.addEventListener("scroll", function () {
-      let st = window.pageYOffset || document.documentElement.scrollTop;
-      if (st > lastScrollTop) {
-        topBar.style.top = "-100px";
-        dropdown.style.display = "none";
-      } else {
-        topBar.style.top = "0";
-      }
-      lastScrollTop = st <= 0 ? 0 : st;
-    });
+  window.addEventListener("scroll", function () {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      topBar.style.top = "-100px";
+      dropdown.style.display = "none";
+    } else {
+      topBar.style.top = "0";
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+  });
 
-    document.body.addEventListener("mousemove", function (e) {
-      if (e.clientY < 50) {
-        topBar.style.top = "0";
-      }
-    });
-  </script>
+  document.body.addEventListener("mousemove", function (e) {
+    if (e.clientY < 50) {
+      topBar.style.top = "0";
+    }
+  });
+</script>
+
 </body>
 </html>
