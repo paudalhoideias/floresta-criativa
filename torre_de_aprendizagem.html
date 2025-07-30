@@ -80,6 +80,48 @@
     }
 
     /* IMAGEM PRINCIPAL */
+    .boas-vindas-torre {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 40%;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-family: 'Caudex', serif;
+  z-index: 3;
+}
+
+.boas-vindas-torre h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #4d3e2a;
+}
+
+.boas-vindas-torre p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .boas-vindas-torre {
+    width: 90%;
+    top: 5%;
+    left: 5%;
+    font-family: 'Caveat', cursive;
+  }
+
+  .boas-vindas-torre h1 {
+    font-size: 22px;
+  }
+
+  .boas-vindas-torre p {
+    font-size: 17px;
+  }
+}
+
     .imagem-torre {
       width: 100%;
       display: block;
@@ -225,6 +267,13 @@
   <!-- IMAGEM CENÁRIO -->
   <div style="position: relative;">
     <img src="images/back_torre.webp" alt="Torres de Aprendizagem" class="imagem-torre" />
+    <div class="boas-vindas-torre">
+  <h1>Bem-vindo à Torre da Descoberta!</h1>
+  <p>Um lugar onde os pequenos sobem alto na imaginação!<br>
+  Aqui você vai conhecer nossas <strong>Torres de Aprendizagem</strong> — criadas para estimular a autonomia, o equilíbrio e a curiosidade das crianças de forma segura e divertida.<br>
+  <em>Clique em uma das torres para descobrir todos os detalhes…</em> e fique de olho na capivara, ela adora contar curiosidades!</p>
+</div>
+
     <div id="hotspot-fixa" class="hotspot" onclick="mostrar('fixa')"></div>
     <div id="hotspot-3em1" class="hotspot" onclick="mostrar('3em1')"></div>
     <div id="hotspot-capivara" class="hotspot" onclick="mostrar('curiosidade')"></div>
