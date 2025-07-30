@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torre da Descoberta | Pau D’Alho</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Caudex&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Caudex', serif;
+      background-color: #fff;
+    }
+
+    /* TOPO */
+    #top-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      z-index: 9999;
+      transition: top 0.4s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .logo-menu-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    #logo-topo {
+      height: 40px;
+    }
+
+    #hamburguer {
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    #menu-dropdown {
+      display: none;
+      background: white;
+      border-top: 1px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    #menu-dropdown ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px 20px;
+    }
+
+    #menu-dropdown ul li {
+      position: relative;
+      padding: 8px 0;
+    }
+
+    #menu-dropdown ul li > ul {
+      display: none;
+      padding-left: 15px;
+    }
+
+    #menu-dropdown ul li:hover > ul {
+      display: block;
+    }
+
+    #menu-dropdown a {
+      text-decoration: none;
+      color: #333;
+      font-family: 'Caudex', serif;
+    }
+
+    @media screen and (max-width: 768px) {
+      #menu-dropdown a {
+        font-family: 'Caveat', cursive;
+        font-size: 20px;
+      }
+    }
+
+    /* IMAGEM PRINCIPAL */
+    .imagem-torre {
+      width: 100%;
+      display: block;
+      position: relative;
+      margin-top: 70px;
+    }
+
+    .hotspot {
+      position: absolute;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    #hotspot-fixa {
+      top: 55%;
+      left: 10%;
+      width: 15%;
+      height: 30%;
+    }
+
+    #hotspot-3em1 {
+      top: 55%;
+      left: 35%;
+      width: 15%;
+      height: 30%;
+    }
+
+    #hotspot-capivara {
+      top: 25%;
+      left: 72%;
+      width: 10%;
+      height: 25%;
+    }
+
+    /* CONTEÚDO DAS TORRES */
+    .conteudo-torre {
+      display: none;
+      padding: 30px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .conteudo-torre h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .conteudo-torre p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* CURIOSIDADE */
+    #curiosidade {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      background: #fff9e5;
+      border-left: 6px solid #ffc107;
+      font-style: italic;
+      font-size: 16px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
+
+    /* RODAPÉ */
+    #rodape {
+      background: #f9f9f9;
+      color: #555;
+      text-align: center;
+      padding: 30px 10px 20px 10px;
+      font-size: 14px;
+      font-family: 'Caudex', serif;
+      border-top: 1px solid #ddd;
+      margin-top: 50px;
+    }
+
+    .links-rodape {
+      margin-bottom: 10px;
+    }
+
+    .links-rodape a {
+      margin: 0 10px;
+      color: #555;
+      text-decoration: none;
+    }
+
+    .links-rodape a:hover {
+      text-decoration: underline;
+    }
+
+    .frase-rodape {
+      font-style: italic;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    @media screen and (max-width: 768px) {
+      #rodape {
+        font-family: 'Caveat', cursive;
+        font-size: 16px;
+      }
+
+      .links-rodape a {
+        display: block;
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOPO -->
+  <div id="top-bar">
+    <div class="logo-menu-container">
+      <img src="images/logo.png" alt="Logo Pau D'Alho" id="logo-topo" />
+      <div id="hamburguer" onclick="toggleMenu()">☰</div>
+    </div>
+    <nav id="menu-dropdown">
+      <ul>
+        <li>Produtos
+          <ul>
+            <li><a href="torre_de_aprendizagem.html">Torres de Aprendizagem</a></li>
+            <li><a href="clareira.html">Cadeiras</a></li>
+            <li><a href="clareira.html">Mesas</a></li>
+            <li><a href="caverna.html">Organização</a></li>
+          </ul>
+        </li>
+        <li><a href="laboratorio.html">Novidades</a></li>
+        <li><a href="pau_dalho.html">Sobre nós</a></li>
+        <li><a href="contato.html">Fale Conosco</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- IMAGEM CENÁRIO -->
+  <div style="position: relative;">
+    <img src="images/back_torre.webp" alt="Torres de Aprendizagem" class="imagem-torre" />
+    <div id="hotspot-fixa" class="hotspot" onclick="mostrar('fixa')"></div>
+    <div id="hotspot-3em1" class="hotspot" onclick="mostrar('3em1')"></div>
+    <div id="hotspot-capivara" class="hotspot" onclick="mostrar('curiosidade')"></div>
+  </div>
+
+  <!-- CURIOSIDADE -->
+  <div id="curiosidade">
+    🌿 Sabia que usamos compensado multilaminado de alta resistência, com acabamento atóxico e durável? Perfeito para aventuras seguras!
+  </div>
+
+  <!-- CONTEÚDO DAS TORRES -->
+  <div id="conteudo-fixa" class="conteudo-torre">
+    <h2>Torre de Aprendizagem Fixa</h2>
+    <p>A clássica, resistente e prática. Ideal para quem busca simplicidade, firmeza e segurança no dia a dia.</p>
+    <!-- Você pode adicionar imagens e botão WhatsApp aqui -->
+  </div>
+
+  <div id="conteudo-3em1" class="conteudo-torre">
+    <h2>Torre de Aprendizagem 3 em 1</h2>
+    <p>A queridinha da Pau D’Alho! Torre, mesinha e escada em um só produto — versátil, linda e super divertida.</p>
+    <!-- Você pode adicionar imagens e botão WhatsApp aqui -->
+  </div>
+
+  <!-- RODAPÉ -->
+  <footer id="rodape">
+    <div class="links-rodape">
+      <a href="torre_de_aprendizagem.html">Produtos</a>
+      <a href="pau_dalho.html">Sobre</a>
+      <a href="contato.html">Contato</a>
+      <a href="politica.html">Política</a>
+    </div>
+    <p class="frase-rodape">Feito com madeira, amor e imaginação</p>
+    <p class="copyright">© Pau D'Alho - Ideias Criativas. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menu-dropdown");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    // Mostrar apenas um conteúdo por vez
+    function mostrar(tipo) {
+      document.getElementById("conteudo-fixa").style.display = "none";
+      document.getElementById("conteudo-3em1").style.display = "none";
+      document.getElementById("curiosidade").style.display = "none";
+
+      if (tipo === 'fixa') {
+        document.getElementById("conteudo-fixa").style.display = "block";
+      } else if (tipo === '3em1') {
+        document.getElementById("conteudo-3em1").style.display = "block";
+      } else if (tipo === 'curiosidade') {
+        document.getElementById("curiosidade").style.display = "block";
+      }
+    }
+
+    // Ocultar topo ao rolar
+    let lastScrollTop = 0;
+    const topBar = document.getElementById("top-bar");
+    const dropdown = document.getElementById("menu-dropdown");
+
+    window.addEventListener("scroll", function () {
+      let st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop) {
+        topBar.style.top = "-100px";
+        dropdown.style.display = "none";
+      } else {
+        topBar.style.top = "0";
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+    });
+
+    document.body.addEventListener("mousemove", function (e) {
+      if (e.clientY < 50) {
+        topBar.style.top = "0";
+      }
+    });
+  </script>
+</body>
+</html>
