@@ -31,7 +31,6 @@
       max-width: 600px;
       margin: 0 auto;
       min-height: 50vh;
-      padding-top: 70px;
     }
     
     .mapa-container img {
@@ -72,74 +71,6 @@
       40% { transform: translateY(-10px); }
       60% { transform: translateY(-5px); }
     }
-    /* TOPO FIXO */
-#topo-site {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  z-index: 999;
-  padding: 5px 20px;
-}
-
-.container-topo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.logo-topo {
-  height: 50px;
-}
-
-#menu-toggle {
-  font-size: 2rem;
-  cursor: pointer;
-  color: #5a3d1a;
-  transition: transform 0.3s ease;
-}
-
-#menu-toggle:hover {
-  transform: scale(1.1);
-}
-
-/* DROPDOWN */
-#menu-dropdown {
-  display: none;
-  position: absolute;
-  right: 20px;
-  top: 60px;
-  background-color: #fff9f0;
-  border: 1px solid #d1a35e;
-  border-radius: 10px;
-  padding: 10px 15px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-}
-
-#menu-dropdown ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-#menu-dropdown li {
-  margin: 8px 0;
-}
-
-#menu-dropdown a {
-  text-decoration: none;
-  color: #5a3d1a;
-  font-family: 'Caudex', serif;
-  font-size: 0.95rem;
-}
-
-#menu-dropdown a:hover {
-  text-decoration: underline;
-}
-
     
     .hotspot {
   position: absolute;
@@ -334,22 +265,128 @@
   </style>
 </head>
 <body>
-    <header id="topo-site">
-  <div class="container-topo">
-    <img src="images/logo.png" alt="Logo Pau D'Alho" class="logo-topo">
-    <div id="menu-toggle" onclick="toggleMenu()">☰</div>
+  <!-- TOPO COM LOGO E MENU -->
+<div id="top-bar">
+  <div class="logo-menu-container">
+    <img src="images/logo.png" alt="Logo Pau D'Alho" id="logo-topo" />
+    <div id="hamburguer" onclick="toggleMenu()">☰</div>
   </div>
   <nav id="menu-dropdown">
     <ul>
-      <li><a href="#torre">Torre da Descoberta</a></li>
-      <li><a href="#laboratorio">Laboratório da Júlia</a></li>
-      <li><a href="#clareira">Clareira do Descanso</a></li>
-      <li><a href="#caverna">Caverna dos Tesouros</a></li>
-      <li><a href="#pau_dalho">Sobre a Pau D’Alho</a></li>
-      <li><a href="#contato">Fale Conosco</a></li>
+      <li>
+        Produtos
+        <ul>
+          <li><a href="torre.html">Torres de Aprendizagem</a></li>
+          <li><a href="clareira.html">Cadeiras</a></li>
+          <li><a href="clareira.html">Mesas</a></li>
+          <li><a href="caverna.html">Organização</a></li>
+        </ul>
+      </li>
+      <li><a href="laboratorio.html">Novidades</a></li>
+      <li><a href="pau_dalho.html">Sobre nós</a></li>
+      <li><a href="contato.html">Fale Conosco</a></li>
     </ul>
   </nav>
-</header>
+</div>
+
+<!-- ESTILO -->
+<style>
+  #top-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    z-index: 9999;
+    transition: top 0.4s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .logo-menu-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  #logo-topo {
+    height: 40px;
+  }
+
+  #hamburguer {
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  #menu-dropdown {
+    display: none;
+    background: white;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+
+  #menu-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px 20px;
+  }
+
+  #menu-dropdown ul li {
+    position: relative;
+    padding: 8px 0;
+  }
+
+  #menu-dropdown ul li > ul {
+    display: none;
+    padding-left: 15px;
+  }
+
+  #menu-dropdown ul li:hover > ul {
+    display: block;
+  }
+
+  #menu-dropdown a {
+    text-decoration: none;
+    color: #333;
+    font-family: 'Caudex', serif;
+  }
+
+  @media screen and (max-width: 768px) {
+    #menu-dropdown a {
+      font-family: 'Caveat', cursive;
+      font-size: 20px;
+    }
+  }
+</style>
+
+<!-- SCRIPT -->
+<script>
+  let lastScrollTop = 0;
+  const topBar = document.getElementById("top-bar");
+  const dropdown = document.getElementById("menu-dropdown");
+
+  window.addEventListener("scroll", function () {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      topBar.style.top = "-100px";
+      dropdown.style.display = "none";
+    } else {
+      topBar.style.top = "0";
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+  });
+
+  document.body.addEventListener("mousemove", function (e) {
+    if (e.clientY < 50) {
+      topBar.style.top = "0";
+    }
+  });
+
+  function toggleMenu() {
+    const menu = document.getElementById("menu-dropdown");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+</script>
+
   <!-- Loading Screen -->
   <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #e6f4e9; display: flex; align-items: center; justify-content: center; z-index: 9999;">
     <div style="text-align: center; font-family: 'Caudex', serif; color: #4a4a4a;">
@@ -467,21 +504,6 @@
       transform: scale(1.1);
     }
   </style>
-  <script>
-  function toggleMenu() {
-    const menu = document.getElementById('menu-dropdown');
-    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-  }
-
-  // Fecha o menu ao clicar fora
-  window.addEventListener('click', function(e) {
-    const menu = document.getElementById('menu-dropdown');
-    const toggle = document.getElementById('menu-toggle');
-    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-      menu.style.display = 'none';
-    }
-  });
-</script>
-
+  
 </body>
 </html>
