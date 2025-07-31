@@ -129,10 +129,15 @@
     }
 
     .hotspot {
-      position: absolute;
-      cursor: pointer;
-      z-index: 2;
-    }
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+  border-radius: 8px;
+}
+
+.hotspot:hover {
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.4);
+  border: 1px dashed rgba(255, 193, 7, 0.5);
+}
+
 
     /* HOTSPOTS AJUSTADOS */
 #hotspot-3em1 {
