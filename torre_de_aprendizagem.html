@@ -132,27 +132,15 @@
   position: absolute;
   cursor: pointer;
   z-index: 2;
-  border-radius: 8px;
+  border-radius: 5px;
   transition: box-shadow 0.3s ease, border 0.3s ease;
 }
 
 .hotspot:hover {
-  transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: 0 0 12px rgba(255, 215, 100, 0.8);
-  border: 2px solid rgba(255, 223, 127, 0.6);
-  animation: pulse 1.2s infinite;
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.4);
+  border: 0px dashed rgba(255, 193, 7, 0.5);
 }
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 10px rgba(255, 215, 100, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 18px rgba(255, 215, 100, 0.8);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(255, 215, 100, 0.4);
-  }
-}
+
 
     /* HOTSPOTS AJUSTADOS */
 #hotspot-3em1 {
