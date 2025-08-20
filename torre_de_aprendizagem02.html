@@ -454,39 +454,6 @@
 
     let alvo = null;
 
-document.addEventListener('DOMContentLoaded', function () {
-    const checkboxPadrao = document.querySelector('input[value="padrao"]');
-    const checkboxRevestimento = document.querySelector('input[value="revestimento"]');
-    const checkboxLousa = document.querySelector('input[value="lousa"]');
-
-    const grupoCoresPadrao = document.getElementById('cores-padrao');
-    const grupoCoresRevestimento = document.getElementById('cores-revestimento');
-
-    // 🔁 função que atualiza a visibilidade das cores e o estado dos checkboxes
-    function atualizarInterface() {
-      // Controle exclusivo entre Padrão e Revestimento
-      if (checkboxPadrao.checked) {
-        checkboxRevestimento.checked = false;
-        grupoCoresPadrao.style.display = 'block';
-        grupoCoresRevestimento.style.display = 'none';
-      } else {
-        grupoCoresPadrao.style.display = 'none';
-      }
-
-      if (checkboxRevestimento.checked) {
-        checkboxPadrao.checked = false;
-        grupoCoresRevestimento.style.display = 'block';
-        grupoCoresPadrao.style.display = 'none';
-      } else {
-        grupoCoresRevestimento.style.display = 'none';
-      }
-    }
-
-    // ⏯️ Eventos de clique
-    checkboxPadrao.addEventListener('change', atualizarInterface);
-    checkboxRevestimento.addEventListener('change', atualizarInterface);
-  });
-
     // Mostra o conteúdo e define alvo de rolagem
     if (tipo === 'fixa') {
       document.getElementById("conteudo-fixa").style.display = "block";
@@ -527,6 +494,38 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.clientY < 50) {
       topBar.style.top = "0";
     }
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    const checkboxPadrao = document.querySelector('input[value="padrao"]');
+    const checkboxRevestimento = document.querySelector('input[value="revestimento"]');
+    const checkboxLousa = document.querySelector('input[value="lousa"]');
+
+    const grupoCoresPadrao = document.getElementById('cores-padrao');
+    const grupoCoresRevestimento = document.getElementById('cores-revestimento');
+
+    // 🔁 função que atualiza a visibilidade das cores e o estado dos checkboxes
+    function atualizarInterface() {
+      // Controle exclusivo entre Padrão e Revestimento
+      if (checkboxPadrao.checked) {
+        checkboxRevestimento.checked = false;
+        grupoCoresPadrao.style.display = 'block';
+        grupoCoresRevestimento.style.display = 'none';
+      } else {
+        grupoCoresPadrao.style.display = 'none';
+      }
+
+      if (checkboxRevestimento.checked) {
+        checkboxPadrao.checked = false;
+        grupoCoresRevestimento.style.display = 'block';
+        grupoCoresPadrao.style.display = 'none';
+      } else {
+        grupoCoresRevestimento.style.display = 'none';
+      }
+    }
+
+    // ⏯️ Eventos de clique
+    checkboxPadrao.addEventListener('change', atualizarInterface);
+    checkboxRevestimento.addEventListener('change', atualizarInterface);
   });
 </script>
 
