@@ -908,10 +908,8 @@
     // chamada inicial protege contra estados prévios
     atualizar();
   }
-</script>
 
-
-    // Listener do botão COMPRAR (funciona mesmo com o bloco inicialmente oculto)
+  // Listener do botão COMPRAR (funciona mesmo com o bloco inicialmente oculto)
     document.addEventListener('click', function(e){
       const btn = e.target.closest('#btn-comprar');
       if (!btn) return;
