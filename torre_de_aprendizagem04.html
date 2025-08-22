@@ -492,7 +492,87 @@
   </div>
 </section>
 
-  
+ <!-- ===== Modal: Saiba Mais (oculto por padrão) ===== -->
+<div id="modal-saiba-mais" role="dialog" aria-modal="true" aria-labelledby="modal-saiba-mais-titulo" hidden>
+  <div class="modal-backdrop" data-close-modal></div>
+
+  <div class="modal-dialog">
+    <header>
+      <h3 id="modal-saiba-mais-titulo">Informações técnicas — Torre 3 em 1</h3>
+      <button class="btn-close" type="button" aria-label="Fechar" data-close-modal>&times;</button>
+    </header>
+
+    <div class="modal-content" id="modal-saiba-mais-content">
+      <!-- Conteúdo exemplo (você pode editar livremente depois) -->
+      <p>
+        A Torre de Aprendizagem 3 em 1 é produzida em compensado multilaminado (plywood), com foco em segurança e durabilidade.
+        Abaixo, um resumo técnico que você pode ajustar com seus dados finais.
+      </p>
+
+      <div class="grid-infos">
+        <div class="card-info">
+          <h4>Dimensões</h4>
+          <ul>
+            <li>Altura: <em>definir</em></li>
+            <li>Largura: <em>definir</em></li>
+            <li>Profundidade: <em>definir</em></li>
+          </ul>
+        </div>
+
+        <div class="card-info">
+          <h4>Materiais</h4>
+          <ul>
+            <li>Compensado multilaminado</li>
+            <li>Acabamento: Padrão, Revestimento ou Lousa</li>
+            <li>Fixações e ferragens de alta resistência</li>
+          </ul>
+        </div>
+
+        <div class="card-info">
+          <h4>Capacidade</h4>
+          <ul>
+            <li>Carga máxima recomendada: <em>definir (Kg)</em></li>
+            <li>Uso supervisionado por adulto</li>
+          </ul>
+        </div>
+
+        <div class="card-info">
+          <h4>Faixa etária</h4>
+          <ul>
+            <li>Indicação: <em>definir</em></li>
+            <li>Adequar altura conforme a criança</li>
+          </ul>
+        </div>
+
+        <div class="card-info">
+          <h4>Segurança</h4>
+          <ul>
+            <li>Quinas arredondadas</li>
+            <li>Estabilidade e base reforçada</li>
+            <li>Acabamento não tóxico</li>
+          </ul>
+        </div>
+
+        <div class="card-info">
+          <h4>Personalizações</h4>
+          <ul>
+            <li>Cores conforme acabamento selecionado</li>
+            <li>Opções de borda quando sem revestimento</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="margin-top:12px">
+        <small><strong>Observação:</strong> você pode incluir aqui vídeos, GIFs ou um passo a passo de montagem, se desejar.</small>
+      </p>
+    </div>
+
+    <footer>
+      <button class="btn btn-neutral" type="button" data-close-modal>Fechar</button>
+      <button class="btn btn-primary" type="button" data-close-modal>Entendi</button>
+    </footer>
+  </div>
+</div> 
 
   <!-- RODAPÉ -->
   <footer id="rodape">
@@ -670,6 +750,53 @@
       cbRev.addEventListener('change', atualizar);
     })();
   });
+
+  (function(){
+    const modal   = document.getElementById('modal-saiba-mais');
+    const content = document.getElementById('modal-saiba-mais-content');
+    let lastFocus = null;
+
+    function openModalSaibaMais(customHTML){
+      lastFocus = document.activeElement;
+      if (customHTML) content.innerHTML = customHTML;
+
+      modal.hidden = false;
+      document.body.classList.add('modal-open');
+
+      // foca o título para leitores de tela
+      const title = document.getElementById('modal-saiba-mais-titulo');
+      if (title) title.focus({ preventScroll: true });
+
+      // pequena proteção de foco dentro do modal (bem leve)
+      document.addEventListener('keydown', trapEsc, true);
+    }
+
+    function closeModalSaibaMais(){
+      modal.hidden = true;
+      document.body.classList.remove('modal-open');
+      document.removeEventListener('keydown', trapEsc, true);
+      if (lastFocus) lastFocus.focus({ preventScroll: true });
+    }
+
+    function trapEsc(e){
+      if (e.key === 'Escape') closeModalSaibaMais();
+    }
+
+    // Fechamento por clique no backdrop ou botões com data-close-modal
+    modal.addEventListener('click', function(e){
+      if (e.target.matches('[data-close-modal], .modal-backdrop')) {
+        closeModalSaibaMais();
+      }
+    });
+
+    // Delegação: abre quando clicar no botão Saiba Mais dentro do card
+    document.addEventListener('click', function(e){
+      const btn = e.target.closest('#btn-saiba-mais');
+      if (!btn) return;
+      // Se quiser, dá pra montar conteúdo dinâmico aqui com base nas seleções atuais
+      openModalSaibaMais();
+    });
+  })();
 </script>
 
 </body>
