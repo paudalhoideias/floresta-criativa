@@ -209,15 +209,13 @@
     width: 100px;
     margin: 5px 0;
   }
-
-  .carrossel {
-    margin-top: 40px;
-  }
-
-   /* Quando "Sem cor" estiver ativo, desabilita visualmente as opções de cor */
+ /* Quando "Sem cor" estiver ativo, desabilita visualmente as opções de cor */
   #torre-3em1 #cores-padrao.off label {
     opacity: .5;
     pointer-events: none;
+  }
+  .carrossel {
+    margin-top: 40px;
   }
 
   .carrossel-imagens {
@@ -455,7 +453,12 @@
         <label><input type="checkbox" name="acabamento" value="revestimento"> Revestimento</label>
         <label><input type="checkbox" name="acabamento" value="lousa"> Lousa</label>
       </div>
-
+<div class="linha-sem-cor" style="margin-top:8px;">
+  <label>
+    <input type="checkbox" id="padrao-sem-cor" name="padrao-sem-cor" value="sem-cor">
+    Sem cor (madeira)
+  </label>
+</div>
       <div class="cores-opcoes" id="cores-padrao" style="display:none;">
         <h4>Cores Padrão</h4>
         <label><input type="radio" name="cor-padrao" value="preto"> Preto</label>
@@ -465,13 +468,9 @@
         <label><input type="radio" name="cor-padrao" value="rosa"> Rosa</label>
         <label><input type="radio" name="cor-padrao" value="verde"> Verde</label>
         <label><input type="radio" name="cor-padrao" value="vermelho"> Vermelho</label>
-        <div class="linha-sem-cor" style="margin-top:8px;">
-  <label>
-    <input type="checkbox" id="padrao-sem-cor" name="padrao-sem-cor" value="sem-cor">
-    Sem cor (madeira)
-  </label>
-</div>
       </div>
+
+
 
       <div class="cores-opcoes" id="cores-revestimento" style="display:none;">
         <h4>Cores de Revestimento</h4>
@@ -853,68 +852,64 @@
       return (lbl && lbl.textContent.trim()) || sel.value;
     }
 
-    function montarMensagem() {
-    const raiz   = document.getElementById('torre-3em1');
-    const prod   = "Torre de Aprendizagem 3 em 1";
+    <script>
+  // SUBSTITUA sua função initTorre3em1Interactions por esta versão
+  function initTorre3em1Interactions(){
+    const raiz = document.getElementById('torre-3em1');
+    if (!raiz) return;
 
-    const cbPadrao = raiz?.querySelector('input[value="padrao"]');
-    const cbRevest = raiz?.querySelector('input[value="revestimento"]');
-    const cbLousa  = raiz?.querySelector('input[value="lousa"]');
+    const checkboxPadrao = raiz.querySelector('input[value="padrao"]');
+    const checkboxRevest = raiz.querySelector('input[value="revestimento"]');
+    const checkboxLousa  = raiz.querySelector('input[value="lousa"]'); // continua combinável
 
-    const lPadrao = cbPadrao && cbPadrao.checked;
-    const lRev    = cbRevest && cbRevest.checked;
-    const lLousa  = cbLousa  && cbLousa.checked;
+    const grupoPadrao = document.getElementById('cores-padrao');
+    const grupoRevest = document.getElementById('cores-revestimento');
 
-    // util para pegar label legível da cor
-    function labelCor(radiosSelector) {
-      const sel = raiz?.querySelector(radiosSelector + ':checked');
-      if (!sel) return null;
-      const lbl = sel.closest('label');
-      return (lbl && lbl.textContent.trim()) || sel.value;
-    }
+    // NOVO: sem cor
+    const semCor       = raiz.querySelector('#padrao-sem-cor');
+    const radiosPadrao = raiz.querySelectorAll('input[name="cor-padrao"]');
 
-    if (!lPadrao && !lRev) {
-      alert("Por favor, selecione o tipo de acabamento (Padrão ou Revestimento) antes de comprar.");
-      cbPadrao?.focus();
-      return null;
-    }
-
-    let acabamento = "";
-    let corEscolhida = "";
-
-    if (lPadrao) {
-      acabamento = "Padrão";
-      const semCor = raiz?.querySelector('#padrao-sem-cor');
+    function aplicarSemCorUI() {
+      if (!grupoPadrao) return;
       if (semCor && semCor.checked) {
-        corEscolhida = "Sem cor (madeira)";
+        // limpa e "desliga" as rádios de cor
+        radiosPadrao.forEach(r => { r.checked = false; });
+        grupoPadrao.classList.add('off');
       } else {
-        const cor = labelCor('input[name="cor-padrao"]');
-        if (!cor) {
-          alert("Selecione a cor do acabamento Padrão ou marque 'Sem cor (madeira)'.");
-          return null;
-        }
-        corEscolhida = cor;
+        grupoPadrao.classList.remove('off');
       }
-    } else if (lRev) {
-      acabamento = "Revestimento";
-      const cor = labelCor('input[name="cor-revestimento"]');
-      if (!cor) {
-        alert("Selecione a cor do Revestimento antes de comprar.");
-        return null;
-      }
-      corEscolhida = cor;
     }
 
-    const linhas = [
-      "Olá! Quero fazer um pedido 👋",
-      `Produto: ${prod}`,
-      `Acabamento: ${acabamento} (${corEscolhida})`,
-      `Lousa: ${lLousa ? "Sim" : "Não"}`,
-      `Página: ${location.href}`
-    ];
+    function atualizar(){
+      // Exclusividade Padrão x Revestimento
+      if (checkboxPadrao && checkboxPadrao.checked) {
+        if (checkboxRevest) checkboxRevest.checked = false;
+        if (grupoPadrao)    grupoPadrao.style.display = 'block';
+        if (grupoRevest)    grupoRevest.style.display = 'none';
+        aplicarSemCorUI();
+      } else {
+        if (grupoPadrao) grupoPadrao.style.display = 'none';
+      }
 
-    return linhas.join("\n");
+      if (checkboxRevest && checkboxRevest.checked) {
+        if (checkboxPadrao) checkboxPadrao.checked = false;
+        if (semCor)         semCor.checked = false; // se for para revestimento, "Sem cor" não se aplica
+        if (grupoRevest)    grupoRevest.style.display = 'block';
+        if (grupoPadrao)    { grupoPadrao.style.display = 'none'; grupoPadrao.classList.remove('off'); }
+      } else {
+        if (grupoRevest) grupoRevest.style.display = 'none';
+      }
+    }
+
+    checkboxPadrao?.addEventListener('change', atualizar);
+    checkboxRevest?.addEventListener('change', atualizar);
+    semCor?.addEventListener('change', aplicarSemCorUI);
+
+    // chamada inicial protege contra estados prévios
+    atualizar();
   }
+</script>
+
 
     // Listener do botão COMPRAR (funciona mesmo com o bloco inicialmente oculto)
     document.addEventListener('click', function(e){
