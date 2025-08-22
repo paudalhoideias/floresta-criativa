@@ -1,269 +1,609 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Torre da Descoberta — Torres de Aprendizagem</title>
-
-  <!-- Fontes do site (desktop: Caudex, mobile: Caveat) -->
-  <link href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torre da Descoberta | Pau D’Alho</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Caudex&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --cor-acao: #e8a229; /* amarelo alaranjado */
-      --borda: #ddd;
-      --fundo: #fdfdfd;
-      --texto: #222;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:#fff;color:var(--texto)}
-    body{font-family:"Caudex",serif; line-height:1.45}
-
-    /* (Opcional) Faixa superior simples — pode remover se já tiver topo global */
-    .topbar{
-      position:sticky; top:0; z-index:5;
-      background:#fff; border-bottom:1px solid var(--borda);
-      padding:8px 16px; display:flex; align-items:center; gap:12px;
-    }
-    .topbar img{width:36px;height:36px;object-fit:contain}
-    .topbar h1{font-size:1.1rem; margin:0}
-
-    /* ====== BEGIN – TORRES (pode mover CSS para seu arquivo global) ====== */
-    main{max-width:1200px;margin:18px auto 48px;padding:0 16px}
-
-    .grid-torres{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-      gap:24px;
-      margin:12px 0 8px;
-    }
-    .card-torre{
-      background:#fff; border:2px solid var(--borda); border-radius:14px;
-      padding:14px; cursor:pointer; outline:none;
-      box-shadow:0 2px 10px rgba(0,0,0,.06);
-      transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-    }
-    .card-torre:hover, .card-torre:focus{
-      transform:translateY(-2px);
-      box-shadow:0 6px 16px rgba(0,0,0,.10);
-      border-color:var(--cor-acao);
-    }
-    .card-torre img{
-      width:100%; display:block; border-radius:10px; object-fit:cover; aspect-ratio:4/3;
-      background:#f3f3f3;
-    }
-    .card-torre h3{margin:10px 0 0; text-align:center; font-size:1.1rem}
-
-    /* container do conteúdo dinâmico injetado */
-    #conteudo-torre .torre-bloco{
-      background:var(--fundo); border:2px solid #ccc; border-radius:12px;
-      padding:20px; margin:32px auto 48px; max-width:960px;
-    }
-    #conteudo-torre .titulo-produto{font-size:2rem;margin-bottom:20px}
-    #conteudo-torre .torre-container{display:flex;flex-wrap:wrap;gap:30px}
-    #conteudo-torre .foto-produto img{
-      width:100%; max-width:400px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.1);
-      background:#f3f3f3;
-    }
-    #conteudo-torre .acabamento-opcoes{flex:1;min-width:260px}
-    #conteudo-torre .checkbox-grupo, #conteudo-torre .cores-opcoes{margin-top:10px}
-    #conteudo-torre .cores-opcoes label{display:inline-block; min-width:90px; margin:5px 12px 5px 0}
-
-    #conteudo-torre .carrossel{margin-top:28px}
-    #conteudo-torre .carrossel-imagens{display:flex; gap:10px; overflow-x:auto}
-    #conteudo-torre .carrossel-imagens img{
-      width:100px; height:100px; border-radius:8px; object-fit:cover; cursor:pointer; background:#f3f3f3;
+    body {
+      margin: 0;
+      font-family: 'Caudex', serif;
+      background-color: #fff;
     }
 
-    #conteudo-torre .botoes-torre{margin-top:24px; display:flex; gap:16px; flex-wrap:wrap}
-    #conteudo-torre .botoes-torre button{
-      padding:10px 18px; font-size:1.05rem; border:none; border-radius:8px; cursor:pointer;
+    /* TOPO */
+    #top-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      z-index: 9999;
+      transition: top 0.4s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    #conteudo-torre #btn-saiba-mais{background:#ddd}
-    #conteudo-torre #btn-comprar{background:var(--cor-acao); color:#fff}
 
-    /* Mobile: usa Caveat no corpo para manter seu padrão */
-    @media (max-width: 768px){
-      body{font-family:"Caveat", cursive}
-      .card-torre h3{font-size:1.25rem}
-      #conteudo-torre .titulo-produto{font-size:1.8rem}
+    .logo-menu-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
     }
-    /* ====== END – TORRES ====== */
 
-    /* (Opcional) Rodapé simples — pode remover se já tiver rodapé global */
-    footer{
-      border-top:1px solid var(--borda); padding:24px 16px; text-align:center; color:#555; font-size:.95rem;
+    #logo-topo {
+      height: 40px;
+    }
+
+    #hamburguer {
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    #menu-dropdown {
+      display: none;
+      background: white;
+      border-top: 1px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    #menu-dropdown ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px 20px;
+    }
+
+    #menu-dropdown ul li {
+      position: relative;
+      padding: 8px 0;
+    }
+
+    #menu-dropdown ul li > ul {
+      display: none;
+      padding-left: 15px;
+    }
+
+    #menu-dropdown ul li:hover > ul {
+      display: block;
+    }
+
+    #menu-dropdown a {
+      text-decoration: none;
+      color: #333;
+      font-family: 'Caudex', serif;
+    }
+
+    @media screen and (max-width: 768px) {
+      #menu-dropdown a {
+        font-family: 'Caveat', cursive;
+        font-size: 20px;
+      }
+    }
+
+    /* IMAGEM PRINCIPAL */
+   .boas-vindas-torre {
+  background: #fffdf5;
+  padding: 60px 20px 20px;
+  text-align: center;
+  font-family: 'Caudex', serif;
+  border-bottom: 1px solid #eee;
+}
+
+.container-boas-vindas {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.boas-vindas-torre h1 {
+  font-size: 28px;
+  color: #4d3e2a;
+  margin-bottom: 15px;
+}
+
+.boas-vindas-torre p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .boas-vindas-torre {
+    font-family: 'Caveat', cursive;
+    padding: 50px 15px 15px;
+  }
+
+  .boas-vindas-torre h1 {
+    font-size: 24px;
+  }
+
+  .boas-vindas-torre p {
+    font-size: 18px;
+  }
+}
+
+
+    .imagem-torre {
+      width: 100%;
+      display: block;
+      position: relative;
+      margin-top: 70px;
+    }
+
+   .hotspot {
+  position: absolute;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.hotspot:hover {
+  box-shadow: 0 0 0 1px rgba(255, 193, 7, 0.4);
+  border: 0px dashed rgba(255, 193, 7, 0.5);
+}
+
+
+    /* HOTSPOTS AJUSTADOS */
+#hotspot-3em1 {
+  top: 45%;
+  left: 5%;
+  width: 20%;
+  height: 40%;
+}
+
+#hotspot-fixa {
+  top: 35%;
+  left: 40%;
+  width: 15%;
+  height: 40%;
+}
+
+#hotspot-capivara {
+  top: 23%;
+  left: 68%;
+  width: 10%;
+  height: 15%;
+}
+
+
+    /* CONTEÚDO DAS TORRES */
+   .torre-bloco {
+    font-family: "Caudex", serif;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    margin: 40px auto;
+    max-width: 960px;
+    background-color: #fdfdfd;
+  }
+
+  .titulo-produto {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .torre-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .foto-produto img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .acabamento-opcoes {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .checkbox-grupo,
+  .cores-opcoes {
+    margin-top: 10px;
+  }
+
+  .cores-opcoes label {
+    display: inline-block;
+    width: 100px;
+    margin: 5px 0;
+  }
+
+  .carrossel {
+    margin-top: 40px;
+  }
+
+  .carrossel-imagens {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+  }
+
+  .carrossel-imagens img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    cursor: pointer;
+    object-fit: cover;
+  }
+
+  .botoes-torre {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+  }
+
+  .botoes-torre button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  #btn-saiba-mais {
+    background-color: #ddd;
+  }
+
+  #btn-comprar {
+    background-color: #e8a229;
+    color: white;
+  }
+
+    /* CURIOSIDADE */
+    #curiosidade {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      background: #fff9e5;
+      border-left: 6px solid #ffc107;
+      font-style: italic;
+      font-size: 16px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
+
+    /* RODAPÉ */
+    #rodape {
+      background: #f9f9f9;
+      color: #555;
+      text-align: center;
+      padding: 30px 10px 20px 10px;
+      font-size: 14px;
+      font-family: 'Caudex', serif;
+      border-top: 1px solid #ddd;
+      margin-top: 50px;
+    }
+
+    .links-rodape {
+      margin-bottom: 10px;
+    }
+
+    .links-rodape a {
+      margin: 0 10px;
+      color: #555;
+      text-decoration: none;
+    }
+
+    .links-rodape a:hover {
+      text-decoration: underline;
+    }
+
+    .frase-rodape {
+      font-style: italic;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    @media screen and (max-width: 768px) {
+      #rodape {
+        font-family: 'Caveat', cursive;
+        font-size: 16px;
+      }
+
+      .links-rodape a {
+        display: block;
+        margin: 5px 0;
+      }
     }
   </style>
 </head>
-<body>
 
-  <!-- (Opcional) topo simples — troque pelo seu header fixo se quiser -->
-  <div class="topbar">
-    <img src="images/logo.png" alt="Pau D'Alho">
-    <h1>Torre da Descoberta</h1>
+<body>
+    <section class="boas-vindas-torre">
+  <div class="container-boas-vindas">
+    <h1>Bem-vindo(a) à Torre da Descoberta!</h1>
+    <p>
+      Um lugar onde os pequenos sobem alto na imaginação!<br>
+      Aqui você vai conhecer nossas <strong>Torres de Aprendizagem</strong> — criadas para estimular a autonomia, o equilíbrio e a curiosidade das crianças de forma segura e divertida.<br>
+      <em>Clique em uma das torres para descobrir todos os detalhes…</em> e fique de olho na capivara, ela adora contar curiosidades!
+    </p>
+  </div>
+</section>
+
+  <!-- TOPO -->
+  <div id="top-bar">
+    <div class="logo-menu-container">
+      <a href="index.html">
+  <img src="images/logo.png" alt="Logo Pau D'Alho" id="logo-topo" />
+</a>
+      <div id="hamburguer" onclick="toggleMenu()">☰</div>
+    </div>
+    <nav id="menu-dropdown">
+      <ul>
+        <li>Produtos
+          <ul>
+            <li><a href="torre_de_aprendizagem.html">Torres de Aprendizagem</a></li>
+            <li><a href="clareira.html">Cadeiras</a></li>
+            <li><a href="clareira.html">Mesas</a></li>
+            <li><a href="caverna.html">Organização</a></li>
+          </ul>
+        </li>
+        <li><a href="laboratorio.html">Novidades</a></li>
+        <li><a href="pau_dalho.html">Sobre nós</a></li>
+        <li><a href="contato.html">Fale Conosco</a></li>
+      </ul>
+    </nav>
   </div>
 
-  <main>
-    <!-- ====== BEGIN – TORRES (conteúdo desta página) ====== -->
+  <!-- IMAGEM CENÁRIO -->
+  <div style="position: relative;">
+    <img src="images/back_torre.webp" alt="Torres de Aprendizagem" class="imagem-torre" />
+    <div id="hotspot-3em1" class="hotspot" onclick="mostrar('3em1')"></div>
+<div id="hotspot-fixa" class="hotspot" onclick="mostrar('fixa')"></div>
+<div id="hotspot-capivara" class="hotspot" onclick="mostrar('curiosidade')"></div>
 
-    <!-- Cards clicáveis das torres -->
-    <section id="grid-torres" class="grid-torres">
-      <!-- Card: Torre 3 em 1 -->
-      <article class="card-torre" data-torre="3em1" id="card-3em1" role="button" tabindex="0" aria-label="Abrir Torre de Aprendizagem 3 em 1">
-        <!-- Substitua a imagem de capa do card pela sua -->
-        <img src="images/torre-3em1-card.jpg" alt="Torre de Aprendizagem 3 em 1">
-        <h3>Torre de Aprendizagem 3 em 1</h3>
-      </article>
+  </div>
 
-      <!-- Card: Torre Fixa -->
-      <article class="card-torre" data-torre="fixa" id="card-fixa" role="button" tabindex="0" aria-label="Abrir Torre de Aprendizagem Fixa">
-        <!-- Substitua a imagem de capa do card pela sua -->
-        <img src="images/torre-fixa-card.jpg" alt="Torre de Aprendizagem Fixa">
-        <h3>Torre de Aprendizagem Fixa</h3>
-      </article>
-    </section>
+  <!-- CURIOSIDADE -->
+  <div id="curiosidade">
+    🌿 Sabia que usamos compensado multilaminado de alta resistência, com acabamento atóxico e durável? Perfeito para aventuras seguras!
+  </div>
 
-    <!-- Container dinâmico (oculto inicialmente) -->
-    <div id="conteudo-torre" hidden></div>
+  <!-- CONTEÚDO DAS TORRES -->
+  <!-- BLOCO TORRE 3 EM 1 -->
+<section id="torre-3em1" class="torre-bloco" hidden>
+  <h2 class="titulo-produto">Torre de Aprendizagem 3 em 1</h2>
 
-    <!-- ====== END – TORRES ====== -->
-  </main>
+  <div class="torre-container">
+    <!-- Foto principal -->
+    <div class="foto-produto">
+      <img id="imagem-principal" src="images/torre_padrao_preto.jpg" alt="Foto da Torre 3 em 1">
+    </div>
 
-  <!-- (Opcional) Rodapé simples -->
-  <footer>
-    Feito com madeira, amor e imaginação — Pau D'Alho Ideias Criativas
+    <!-- Seleção de acabamento -->
+    <div class="acabamento-opcoes">
+      <h3>Tipos de Acabamento</h3>
+
+      <div class="checkbox-grupo">
+        <label><input type="checkbox" name="acabamento" value="padrao"> Acabamento Padrão</label>
+        <label><input type="checkbox" name="acabamento" value="revestimento"> Revestimento</label>
+        <label><input type="checkbox" name="acabamento" value="lousa"> Lousa</label>
+      </div>
+
+      <div class="cores-opcoes" id="cores-padrao" style="display:none;">
+        <h4>Cores Padrão</h4>
+        <label><input type="radio" name="cor-padrao" value="preto"> Preto</label>
+        <label><input type="radio" name="cor-padrao" value="branco"> Branco</label>
+        <label><input type="radio" name="cor-padrao" value="azul"> Azul</label>
+        <label><input type="radio" name="cor-padrao" value="amarelo"> Amarelo</label>
+        <label><input type="radio" name="cor-padrao" value="rosa"> Rosa</label>
+        <label><input type="radio" name="cor-padrao" value="verde"> Verde</label>
+        <label><input type="radio" name="cor-padrao" value="vermelho"> Vermelho</label>
+      </div>
+
+      <div class="cores-opcoes" id="cores-revestimento" style="display:none;">
+        <h4>Cores de Revestimento</h4>
+        <label><input type="radio" name="cor-revestimento" value="preto"> Preto</label>
+        <label><input type="radio" name="cor-revestimento" value="branco"> Branco</label>
+        <label><input type="radio" name="cor-revestimento" value="azul"> Azul</label>
+        <label><input type="radio" name="cor-revestimento" value="amarelo"> Amarelo</label>
+        <label><input type="radio" name="cor-revestimento" value="rosa"> Rosa</label>
+        <label><input type="radio" name="cor-revestimento" value="vermelho"> Vermelho</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carrossel de fotos -->
+  <div class="carrossel">
+    <h3>Outras fotos</h3>
+    <div class="carrossel-imagens">
+      <img src="images/torre01.jpg" alt="Foto 1">
+      <img src="images/torre02.jpg" alt="Foto 2">
+      <img src="images/torre03.jpg" alt="Foto 3">
+      <img src="images/torre04.jpg" alt="Foto 4">
+      <img src="images/torre05.jpg" alt="Foto 5">
+    </div>
+  </div>
+
+  <!-- Botões -->
+  <div class="botoes-torre">
+    <button id="btn-saiba-mais">Saiba Mais</button>
+    <button id="btn-comprar">Comprar</button>
+  </div>
+</section>
+
+  
+
+  <!-- RODAPÉ -->
+  <footer id="rodape">
+    <div class="links-rodape">
+      <a href="torre_de_aprendizagem.html">Produtos</a>
+      <a href="pau_dalho.html">Sobre</a>
+      <a href="contato.html">Contato</a>
+      <a href="politica.html">Política</a>
+    </div>
+    <p class="frase-rodape">Feito com madeira, amor e imaginação</p>
+    <p class="copyright">© Pau D'Alho - Ideias Criativas. Todos os direitos reservados.</p>
   </footer>
 
-  <!-- ======================== JS ======================== -->
+  <!-- SCRIPTS -->
   <script>
-    // ========= Templates =========
-    const templateTorre3em1 = `
-    <section id="torre-3em1" class="torre-bloco">
-      <h2 class="titulo-produto">Torre de Aprendizagem 3 em 1</h2>
+  function toggleMenu() {
+    const menu = document.getElementById("menu-dropdown");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
 
-      <div class="torre-container">
-        <!-- Foto principal (trocaremos dinamicamente depois) -->
-        <div class="foto-produto">
-          <img id="imagem-principal" src="images/torre_padrao_preto.jpg" alt="Foto da Torre 3 em 1">
-        </div>
+  function mostrar(tipo) {
+    // Oculta todos os blocos
+    document.getElementById("conteudo-fixa").style.display = "none";
+    document.getElementById("conteudo-3em1").style.display = "none";
+    document.getElementById("curiosidade").style.display = "none";
 
-        <!-- Seleção de acabamento -->
-        <div class="acabamento-opcoes">
-          <h3>Tipos de Acabamento</h3>
+    let alvo = null;
 
-          <div class="checkbox-grupo">
-            <label><input type="checkbox" name="acabamento" value="padrao"> Acabamento Padrão</label>
-            <label><input type="checkbox" name="acabamento" value="revestimento"> Revestimento</label>
-            <label><input type="checkbox" name="acabamento" value="lousa"> Lousa</label>
-          </div>
-
-          <div class="cores-opcoes" id="cores-padrao" style="display:none;">
-            <h4>Cores Padrão</h4>
-            <label><input type="radio" name="cor-padrao" value="preto"> Preto</label>
-            <label><input type="radio" name="cor-padrao" value="branco"> Branco</label>
-            <label><input type="radio" name="cor-padrao" value="azul"> Azul</label>
-            <label><input type="radio" name="cor-padrao" value="amarelo"> Amarelo</label>
-            <label><input type="radio" name="cor-padrao" value="rosa"> Rosa</label>
-            <label><input type="radio" name="cor-padrao" value="verde"> Verde</label>
-            <label><input type="radio" name="cor-padrao" value="vermelho"> Vermelho</label>
-          </div>
-
-          <div class="cores-opcoes" id="cores-revestimento" style="display:none;">
-            <h4>Cores de Revestimento</h4>
-            <label><input type="radio" name="cor-revestimento" value="preto"> Preto</label>
-            <label><input type="radio" name="cor-revestimento" value="branco"> Branco</label>
-            <label><input type="radio" name="cor-revestimento" value="azul"> Azul</label>
-            <label><input type="radio" name="cor-revestimento" value="amarelo"> Amarelo</label>
-            <label><input type="radio" name="cor-revestimento" value="rosa"> Rosa</label>
-            <label><input type="radio" name="cor-revestimento" value="vermelho"> Vermelho</label>
-          </div>
-        </div>
-      </div>
-
-      <!-- Carrossel de fotos (genérico por enquanto) -->
-      <div class="carrossel">
-        <h3>Outras fotos</h3>
-        <div class="carrossel-imagens">
-          <img src="images/torre01.jpg" alt="Foto 1">
-          <img src="images/torre02.jpg" alt="Foto 2">
-          <img src="images/torre03.jpg" alt="Foto 3">
-          <img src="images/torre04.jpg" alt="Foto 4">
-          <img src="images/torre05.jpg" alt="Foto 5">
-        </div>
-      </div>
-
-      <!-- Botões -->
-      <div class="botoes-torre">
-        <button id="btn-saiba-mais">Saiba Mais</button>
-        <button id="btn-comprar">Comprar</button>
-      </div>
-    </section>`;
-
-    // Placeholder da Fixa (depois trocamos pelo definitivo)
-    const templateTorreFixa = `
-    <section class="torre-bloco">
-      <h2 class="titulo-produto">Torre de Aprendizagem Fixa</h2>
-      <p>Conteúdo da Torre Fixa será adicionado aqui após finalizarmos a 3 em 1.</p>
-    </section>`;
-
-    // ========= Renderização e interações =========
-    function renderConteudo(tipo){
-      const container = document.getElementById('conteudo-torre');
-      container.innerHTML = (tipo === '3em1') ? templateTorre3em1 : templateTorreFixa;
-      container.hidden = false;
-      container.scrollIntoView({behavior:'smooth', block:'start'});
-
-      if(tipo === '3em1') initTorre3em1Interactions();
+    // Mostra o conteúdo e define alvo de rolagem
+    if (tipo === 'fixa') {
+      document.getElementById("conteudo-fixa").style.display = "block";
+      alvo = document.getElementById("conteudo-fixa");
+    } else if (tipo === '3em1') {
+      document.getElementById("conteudo-3em1").style.display = "block";
+      alvo = document.getElementById("conteudo-3em1");
+    } else if (tipo === 'curiosidade') {
+      document.getElementById("curiosidade").style.display = "block";
+      alvo = document.getElementById("curiosidade");
     }
 
-    function initTorre3em1Interactions(){
-      const raiz = document.getElementById('torre-3em1');
-      const checkboxPadrao = raiz.querySelector('input[value="padrao"]');
-      const checkboxRevest = raiz.querySelector('input[value="revestimento"]');
+    // Scroll suave até o conteúdo (se for desktop)
+    if (alvo && window.innerWidth > 768) {
+      setTimeout(() => {
+        alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 200); // espera animação terminar
+    }
+  }
 
-      const grupoPadrao = document.getElementById('cores-padrao');
-      const grupoRevest = document.getElementById('cores-revestimento');
+  // Ocultar topo ao rolar
+  let lastScrollTop = 0;
+  const topBar = document.getElementById("top-bar");
+  const dropdown = document.getElementById("menu-dropdown");
 
-      function atualizar(){
-        if(checkboxPadrao.checked){
-          checkboxRevest.checked = false;
-          grupoPadrao.style.display = 'block';
-          grupoRevest.style.display = 'none';
-        }else{
-          grupoPadrao.style.display = 'none';
+  window.addEventListener("scroll", function () {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      topBar.style.top = "-100px";
+      dropdown.style.display = "none";
+    } else {
+      topBar.style.top = "0";
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+  });
+
+  document.body.addEventListener("mousemove", function (e) {
+    if (e.clientY < 50) {
+      topBar.style.top = "0";
+    }
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    const checkboxPadrao = document.querySelector('input[value="padrao"]');
+    const checkboxRevestimento = document.querySelector('input[value="revestimento"]');
+    const checkboxLousa = document.querySelector('input[value="lousa"]');
+
+    const grupoCoresPadrao = document.getElementById('cores-padrao');
+    const grupoCoresRevestimento = document.getElementById('cores-revestimento');
+
+    // 🔁 função que atualiza a visibilidade das cores e o estado dos checkboxes
+    function atualizarInterface() {
+      // Controle exclusivo entre Padrão e Revestimento
+      if (checkboxPadrao.checked) {
+        checkboxRevestimento.checked = false;
+        grupoCoresPadrao.style.display = 'block';
+        grupoCoresRevestimento.style.display = 'none';
+      } else {
+        grupoCoresPadrao.style.display = 'none';
+      }
+
+      if (checkboxRevestimento.checked) {
+        checkboxPadrao.checked = false;
+        grupoCoresRevestimento.style.display = 'block';
+        grupoCoresPadrao.style.display = 'none';
+      } else {
+        grupoCoresRevestimento.style.display = 'none';
+      }
+    }
+
+    // ⏯️ Eventos de clique
+    checkboxPadrao.addEventListener('change', atualizarInterface);
+    checkboxRevestimento.addEventListener('change', atualizarInterface);
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    const bloco3em1 = document.getElementById('torre-3em1');
+    const blocoFixa  = document.getElementById('torre-fixa'); // só se existir
+
+    // garante que começam ocultos (não quebra nada se já estiverem escondidos)
+    if (bloco3em1) bloco3em1.hidden = true;
+    if (blocoFixa)  blocoFixa.hidden  = true;
+
+    // função utilitária para abrir/fechar
+    function mostrar(bloco) {
+      if (bloco3em1) bloco3em1.hidden = true;
+      if (blocoFixa)  blocoFixa.hidden  = true;
+      if (bloco) {
+        bloco.hidden = false;
+        bloco.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // ------------- LIGAÇÃO COM OS HOTSPOTS EXISTENTES -------------
+    // Seletores amplos para não depender do HTML exato:
+    // - element com data-torre="3em1" ou "fixa"
+    // - ou id="hotspot-3em1" / id="hotspot-fixa"
+    // - ou link com href contendo "#3em1" / "#fixa" / "torre-3em1" / "torre-fixa"
+    function ehHotspot3em1(el) {
+      return el.matches('[data-torre="3em1"], #hotspot-3em1, a[href*="3em1"], a[href*="torre-3em1"]');
+    }
+    function ehHotspotFixa(el) {
+      return el.matches('[data-torre="fixa"], #hotspot-fixa, a[href*="fixa"], a[href*="torre-fixa"]');
+    }
+
+    // Delegação de eventos: um único listener para toda a página
+    document.addEventListener('click', function (ev) {
+      const alvo = ev.target.closest('[data-torre], #hotspot-3em1, #hotspot-fixa, a[href*="3em1"], a[href*="fixa"], a[href*="torre-3em1"], a[href*="torre-fixa"]');
+      if (!alvo) return;
+
+      // Se o hotspot for um <a href="#">, evita pular pro topo
+      if (alvo.tagName === 'A') ev.preventDefault();
+
+      if (ehHotspot3em1(alvo)) {
+        mostrar(bloco3em1);
+      } else if (ehHotspotFixa(alvo)) {
+        mostrar(blocoFixa);
+      }
+    }, true); // capture = true para pegar antes de outros handlers
+
+    // ----------------- Mantém sua lógica dos checkboxes -----------------
+    // (Padrão x Revestimento exclusivos, Lousa combinável, mostrar cores)
+    // Só roda se o bloco existir (mesmo oculto ele está no DOM).
+    (function initMutuaExclusao(){
+      if (!bloco3em1) return;
+      const cbPadrao = bloco3em1.querySelector('input[value="padrao"]');
+      const cbRev    = bloco3em1.querySelector('input[value="revestimento"]');
+      const coresPad = document.getElementById('cores-padrao');
+      const coresRev = document.getElementById('cores-revestimento');
+      if (!cbPadrao || !cbRev) return;
+
+      function atualizar() {
+        if (cbPadrao.checked) {
+          cbRev.checked = false;
+          if (coresPad) coresPad.style.display = 'block';
+          if (coresRev) coresRev.style.display = 'none';
+        } else if (coresPad) {
+          coresPad.style.display = 'none';
         }
-
-        if(checkboxRevest.checked){
-          checkboxPadrao.checked = false;
-          grupoRevest.style.display = 'block';
-          grupoPadrao.style.display = 'none';
-        }else{
-          grupoRevest.style.display = 'none';
+        if (cbRev.checked) {
+          cbPadrao.checked = false;
+          if (coresRev) coresRev.style.display = 'block';
+          if (coresPad) coresPad.style.display = 'none';
+        } else if (coresRev) {
+          coresRev.style.display = 'none';
         }
       }
-      checkboxPadrao.addEventListener('change', atualizar);
-      checkboxRevest.addEventListener('change', atualizar);
-    }
+      cbPadrao.addEventListener('change', atualizar);
+      cbRev.addEventListener('change', atualizar);
+    })();
+  });
+</script>
 
-    document.addEventListener('DOMContentLoaded', ()=>{
-      // garante que o container comece oculto
-      const container = document.getElementById('conteudo-torre');
-      container.hidden = true;
-      container.innerHTML = '';
-
-      // eventos dos cards
-      document.querySelectorAll('.card-torre').forEach(card=>{
-        const tipo = card.dataset.torre;
-        card.addEventListener('click', ()=>renderConteudo(tipo));
-        card.addEventListener('keydown', (ev)=>{
-          if(ev.key === 'Enter' || ev.key === ' '){
-            ev.preventDefault();
-            renderConteudo(tipo);
-          }
-        });
-      });
-    });
-  </script>
 </body>
 </html>
