@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torre da Descoberta | Pau D’Alho</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Caudex&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Caudex', serif;
+      background-color: #fff;
+    }
+
+    /* TOPO */
+    #top-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      z-index: 9999;
+      transition: top 0.4s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .logo-menu-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    #logo-topo {
+      height: 40px;
+    }
+
+    #hamburguer {
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    #menu-dropdown {
+      display: none;
+      background: white;
+      border-top: 1px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    #menu-dropdown ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px 20px;
+    }
+
+    #menu-dropdown ul li {
+      position: relative;
+      padding: 8px 0;
+    }
+
+    #menu-dropdown ul li > ul {
+      display: none;
+      padding-left: 15px;
+    }
+
+    #menu-dropdown ul li:hover > ul {
+      display: block;
+    }
+
+    #menu-dropdown a {
+      text-decoration: none;
+      color: #333;
+      font-family: 'Caudex', serif;
+    }
+
+    @media screen and (max-width: 768px) {
+      #menu-dropdown a {
+        font-family: 'Caveat', cursive;
+        font-size: 20px;
+      }
+    }
+
+    /* IMAGEM PRINCIPAL */
+   .boas-vindas-torre {
+  background: #fffdf5;
+  padding: 60px 20px 20px;
+  text-align: center;
+  font-family: 'Caudex', serif;
+  border-bottom: 1px solid #eee;
+}
+
+.container-boas-vindas {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.boas-vindas-torre h1 {
+  font-size: 28px;
+  color: #4d3e2a;
+  margin-bottom: 15px;
+}
+
+.boas-vindas-torre p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .boas-vindas-torre {
+    font-family: 'Caveat', cursive;
+    padding: 50px 15px 15px;
+  }
+
+  .boas-vindas-torre h1 {
+    font-size: 24px;
+  }
+
+  .boas-vindas-torre p {
+    font-size: 18px;
+  }
+}
+
+
+    .imagem-torre {
+      width: 100%;
+      display: block;
+      position: relative;
+      margin-top: 70px;
+    }
+
+   .hotspot {
+  position: absolute;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.hotspot:hover {
+  box-shadow: 0 0 0 1px rgba(255, 193, 7, 0.4);
+  border: 0px dashed rgba(255, 193, 7, 0.5);
+}
+
+
+    /* HOTSPOTS AJUSTADOS */
+#hotspot-3em1 {
+  top: 45%;
+  left: 5%;
+  width: 20%;
+  height: 40%;
+}
+
+#hotspot-fixa {
+  top: 35%;
+  left: 40%;
+  width: 15%;
+  height: 40%;
+}
+
+#hotspot-capivara {
+  top: 23%;
+  left: 68%;
+  width: 10%;
+  height: 15%;
+}
+
+
+    /* CONTEÚDO DAS TORRES */
+   .torre-bloco {
+    font-family: "Caudex", serif;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    margin: 40px auto;
+    max-width: 960px;
+    background-color: #fdfdfd;
+  }
+
+  .titulo-produto {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .torre-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .foto-produto img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .acabamento-opcoes {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .checkbox-grupo,
+  .cores-opcoes {
+    margin-top: 10px;
+  }
+
+  .cores-opcoes label {
+    display: inline-block;
+    width: 100px;
+    margin: 5px 0;
+  }
+
+  .carrossel {
+    margin-top: 40px;
+  }
+
+   /* Quando "Sem cor" estiver ativo, desabilita visualmente as opções de cor */
+  #torre-3em1 #cores-padrao.off label {
+    opacity: .5;
+    pointer-events: none;
+  }
+
+  .carrossel-imagens {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+  }
+
+  .carrossel-imagens img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    cursor: pointer;
+    object-fit: cover;
+  }
+
+  .botoes-torre {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+  }
+
+  .botoes-torre button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  #btn-saiba-mais {
+    background-color: #ddd;
+  }
+
+  #btn-comprar {
+    background-color: #e8a229;
+    color: white;
+  }
+
+    /* CURIOSIDADE */
+    #curiosidade {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      background: #fff9e5;
+      border-left: 6px solid #ffc107;
+      font-style: italic;
+      font-size: 16px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
+/* ===== Modal Saiba Mais ===== */
+  body.modal-open { overflow: hidden; }
+
+  #modal-saiba-mais[hidden] { display: none !important; }
+  #modal-saiba-mais {
+    position: fixed; inset: 0; z-index: 1000;
+  }
+
+  #modal-saiba-mais .modal-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,.45);
+    backdrop-filter: blur(2px);
+  }
+
+  #modal-saiba-mais .modal-dialog {
+    position: relative;
+    max-width: 860px; width: calc(100% - 32px);
+    margin: 6vh auto 0;
+    background: #fdfdfd;
+    border: 2px solid #e5e5e5;
+    border-radius: 20px;
+    box-shadow: 0 14px 40px rgba(0,0,0,.18);
+    overflow: hidden;
+  }
+
+  #modal-saiba-mais header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px;
+    background: #fff7e9; /* leve, dentro da paleta */
+    border-bottom: 1px solid #f0e6d7;
+  }
+  #modal-saiba-mais header h3 {
+    margin: 0; font-size: 1.25rem; font-family: "Caudex", serif;
+  }
+  #modal-saiba-mais .btn-close {
+    background: transparent; border: none; cursor: pointer;
+    font-size: 1.6rem; line-height: 1; padding: 4px 8px;
+  }
+
+  #modal-saiba-mais .modal-content {
+    max-height: 68vh; overflow: auto; padding: 18px 20px 22px;
+  }
+
+  /* conteúdo interno (exemplo de estilo) */
+  #modal-saiba-mais .grid-infos {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  #modal-saiba-mais .card-info {
+    background: #ffffff;
+    border: 1px solid #eee; border-radius: 14px;
+    padding: 14px;
+  }
+  #modal-saiba-mais .card-info h4 {
+    margin: 0 0 8px; font-size: 1.05rem;
+  }
+
+  #modal-saiba-mais footer {
+    display: flex; gap: 10px; justify-content: flex-end;
+    padding: 12px 20px 18px; border-top: 1px solid #eee; background: #fff;
+  }
+  #modal-saiba-mais .btn {
+    padding: 10px 16px; border-radius: 10px; border: none; cursor: pointer;
+    font-size: 1rem;
+  }
+  #modal-saiba-mais .btn-neutral { background: #e6e6e6; }
+  #modal-saiba-mais .btn-primary { background: #e8a229; color: #fff; }
+  
+    /* RODAPÉ */
+    #rodape {
+      background: #f9f9f9;
+      color: #555;
+      text-align: center;
+      padding: 30px 10px 20px 10px;
+      font-size: 14px;
+      font-family: 'Caudex', serif;
+      border-top: 1px solid #ddd;
+      margin-top: 50px;
+    }
+
+    .links-rodape {
+      margin-bottom: 10px;
+    }
+
+    .links-rodape a {
+      margin: 0 10px;
+      color: #555;
+      text-decoration: none;
+    }
+
+    .links-rodape a:hover {
+      text-decoration: underline;
+    }
+
+    .frase-rodape {
+      font-style: italic;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    @media screen and (max-width: 768px) {
+      #rodape {
+        font-family: 'Caveat', cursive;
+        font-size: 16px;
+      }
+
+      .links-rodape a {
+        display: block;
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+    <section class="boas-vindas-torre">
+  <div class="container-boas-vindas">
+    <h1>Bem-vindo(a) à Torre da Descoberta!</h1>
+    <p>
+      Um lugar onde os pequenos sobem alto na imaginação!<br>
+      Aqui você vai conhecer nossas <strong>Torres de Aprendizagem</strong> — criadas para estimular a autonomia, o equilíbrio e a curiosidade das crianças de forma segura e divertida.<br>
+      <em>Clique em uma das torres para descobrir todos os detalhes…</em> e fique de olho na capivara, ela adora contar curiosidades!
+    </p>
+  </div>
+</section>
+
+  <!-- TOPO -->
+  <div id="top-bar">
+    <div class="logo-menu-container">
+      <a href="index.html">
+  <img src="images/logo.png" alt="Logo Pau D'Alho" id="logo-topo" />
+</a>
+      <div id="hamburguer" onclick="toggleMenu()">☰</div>
+    </div>
+    <nav id="menu-dropdown">
+      <ul>
+        <li>Produtos
+          <ul>
+            <li><a href="torre_de_aprendizagem.html">Torres de Aprendizagem</a></li>
+            <li><a href="clareira.html">Cadeiras</a></li>
+            <li><a href="clareira.html">Mesas</a></li>
+            <li><a href="caverna.html">Organização</a></li>
+          </ul>
+        </li>
+        <li><a href="laboratorio.html">Novidades</a></li>
+        <li><a href="pau_dalho.html">Sobre nós</a></li>
+        <li><a href="contato.html">Fale Conosco</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- IMAGEM CENÁRIO -->
+  <div style="position: relative;">
+    <img src="images/back_torre.webp" alt="Torres de Aprendizagem" class="imagem-torre" />
+    <div id="hotspot-3em1" class="hotspot" onclick="mostrar('3em1')"></div>
+<div id="hotspot-fixa" class="hotspot" onclick="mostrar('fixa')"></div>
+<div id="hotspot-capivara" class="hotspot" onclick="mostrar('curiosidade')"></div>
+
+  </div>
+
+  <!-- CURIOSIDADE -->
+  <div id="curiosidade">
+    🌿 Sabia que usamos compensado multilaminado de alta resistência, com acabamento atóxico e durável? Perfeito para aventuras seguras!
+  </div>
+
+  <!-- CONTEÚDO DAS TORRES -->
+  <!-- BLOCO TORRE 3 EM 1 -->
+<section id="torre-3em1" class="torre-bloco" hidden>
+  <h2 class="titulo-produto">Torre de Aprendizagem 3 em 1</h2>
+
+  <div class="torre-container">
+    <!-- Foto principal -->
+    <div class="foto-produto">
+      <img id="imagem-principal" src="images/torre_padrao_preto.jpg" alt="Foto da Torre 3 em 1">
+    </div>
+
+    <!-- Seleção de acabamento -->
+    <div class="acabamento-opcoes">
+      <h3>Tipos de Acabamento</h3>
+
+      <div class="checkbox-grupo">
+        <label><input type="checkbox" name="acabamento" value="padrao"> Acabamento Padrão</label>
+        <label><input type="checkbox" name="acabamento" value="revestimento"> Revestimento</label>
+        <label><input type="checkbox" name="acabamento" value="lousa"> Lousa</label>
+      </div>
+
+      <div class="cores-opcoes" id="cores-padrao" style="display:none;">
+        <h4>Cores Padrão</h4>
+        <label><input type="radio" name="cor-padrao" value="preto"> Preto</label>
+        <label><input type="radio" name="cor-padrao" value="branco"> Branco</label>
+        <label><input type="radio" name="cor-padrao" value="azul"> Azul</label>
+        <label><input type="radio" name="cor-padrao" value="amarelo"> Amarelo</label>
+        <label><input type="radio" name="cor-padrao" value="rosa"> Rosa</label>
+        <label><input type="radio" name="cor-padrao" value="verde"> Verde</label>
+        <label><input type="radio" name="cor-padrao" value="vermelho"> Vermelho</label>
+        <div class="linha-sem-cor" style="margin-top:8px;">
+  <label>
+    <input type="checkbox" id="padrao-sem-cor" name="padrao-sem-cor" value="sem-cor">
+    Sem cor (madeira)
+  </label>
+</div>
+      </div>
+
+      <div class="cores-opcoes" id="cores-revestimento" style="display:none;">
+        <h4>Cores de Revestimento</h4>
+        <label><input type="radio" name="cor-revestimento" value="preto"> Preto</label>
+        <label><input type="radio" name="cor-revestimento" value="branco"> Branco</label>
+        <label><input type="radio" name="cor-revestimento" value="azul"> Azul</label>
+        <label><input type="radio" name="cor-revestimento" value="amarelo"> Amarelo</label>
+        <label><input type="radio" name="cor-revestimento" value="rosa"> Rosa</label>
+        <label><input type="radio" name="cor-revestimento" value="vermelho"> Vermelho</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carrossel de fotos -->
+  <div class="carrossel">
+    <h3>Outras fotos</h3>
+    <div class="carrossel-imagens">
+      <img src="images/torre01.jpg" alt="Foto 1">
+      <img src="images/torre02.jpg" alt="Foto 2">
+      <img src="images/torre03.jpg" alt="Foto 3">
+      <img src="images/torre04.jpg" alt="Foto 4">
+      <img src="images/torre05.jpg" alt="Foto 5">
+    </div>
+  </div>
+
+  <!-- Botões -->
+  <div class="botoes-torre">
+    <button id="btn-saiba-mais">Saiba Mais</button>
+    <button id="btn-comprar">Comprar</button>
+  </div>
+</section>
+
+ <!-- ===== Modal: Saiba Mais (oculto por padrão) ===== -->
+<div id="modal-saiba-mais" role="dialog" aria-modal="true" aria-labelledby="modal-saiba-mais-titulo" hidden>
+  <div class="modal-backdrop" data-close-modal></div>
+
+  <div class="modal-dialog">
+    <header>
+      <h3 id="modal-saiba-mais-titulo">Informações técnicas — Torre 3 em 1</h3>
+      <button class="btn-close" type="button" aria-label="Fechar" data-close-modal>&times;</button>
+    </header>
+
+    <div class="modal-content" id="modal-saiba-mais-content">
+      <!-- Conteúdo exemplo (você pode editar livremente depois) -->
+      <p>
+        A Torre de Aprendizagem 3 em 1 é produzida em compensado multilaminado (plywood), com foco em segurança e durabilidade.
+        Abaixo, um resumo técnico que você pode ajustar com seus dados finais.
+      </p>
+
+      <div class="grid-infos">
+        <div class="card-info">
+          <h4>Dimensões</h4>
+          <ul>
+            <li>Altura: <em>definir</em></li>
+            <li>Largura: <em>definir</em></li>
+            <li>Profundidade: <em>definir</em></li>
+          </ul>
+        </div>
+
+        <div class="card-info">
+          <h4>Materiais</h4>
+          <ul>
+            <li>Compensado multilaminado</li>
+            <li>Acabamento: Padrão, Revestimento ou Lousa</li>
+            <li>Fixações e ferragens de alta resistência</li>
+          </ul>
+        </div>
+
+        <div class="card-info">
+          <h4>Capacidade</h4>
+          <ul>
+            <li>Carga máxima recomendada: <em>definir (Kg)</em></li>
+            <li>Uso supervisionado por adulto</li>
+          </ul>
+        </div>
+
+        <div class="card-info">
+          <h4>Faixa etária</h4>
+          <ul>
+            <li>Indicação: <em>definir</em></li>
+            <li>Adequar altura conforme a criança</li>
+          </ul>
+        </div>
+
+        <div class="card-info">
+          <h4>Segurança</h4>
+          <ul>
+            <li>Quinas arredondadas</li>
+            <li>Estabilidade e base reforçada</li>
+            <li>Acabamento não tóxico</li>
+          </ul>
+        </div>
+
+        <div class="card-info">
+          <h4>Personalizações</h4>
+          <ul>
+            <li>Cores conforme acabamento selecionado</li>
+            <li>Opções de borda quando sem revestimento</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="margin-top:12px">
+        <small><strong>Observação:</strong> você pode incluir aqui vídeos, GIFs ou um passo a passo de montagem, se desejar.</small>
+      </p>
+    </div>
+
+    <footer>
+      <button class="btn btn-neutral" type="button" data-close-modal>Fechar</button>
+      <button class="btn btn-primary" type="button" data-close-modal>Entendi</button>
+    </footer>
+  </div>
+</div> 
+
+  <!-- RODAPÉ -->
+  <footer id="rodape">
+    <div class="links-rodape">
+      <a href="torre_de_aprendizagem.html">Produtos</a>
+      <a href="pau_dalho.html">Sobre</a>
+      <a href="contato.html">Contato</a>
+      <a href="politica.html">Política</a>
+    </div>
+    <p class="frase-rodape">Feito com madeira, amor e imaginação</p>
+    <p class="copyright">© Pau D'Alho - Ideias Criativas. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+  function toggleMenu() {
+    const menu = document.getElementById("menu-dropdown");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+
+  function mostrar(tipo) {
+    // Oculta todos os blocos
+    document.getElementById("conteudo-fixa").style.display = "none";
+    document.getElementById("conteudo-3em1").style.display = "none";
+    document.getElementById("curiosidade").style.display = "none";
+
+    let alvo = null;
+
+    // Mostra o conteúdo e define alvo de rolagem
+    if (tipo === 'fixa') {
+      document.getElementById("conteudo-fixa").style.display = "block";
+      alvo = document.getElementById("conteudo-fixa");
+    } else if (tipo === '3em1') {
+      document.getElementById("conteudo-3em1").style.display = "block";
+      alvo = document.getElementById("conteudo-3em1");
+    } else if (tipo === 'curiosidade') {
+      document.getElementById("curiosidade").style.display = "block";
+      alvo = document.getElementById("curiosidade");
+    }
+
+    // Scroll suave até o conteúdo (se for desktop)
+    if (alvo && window.innerWidth > 768) {
+      setTimeout(() => {
+        alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 200); // espera animação terminar
+    }
+  }
+
+  // Ocultar topo ao rolar
+  let lastScrollTop = 0;
+  const topBar = document.getElementById("top-bar");
+  const dropdown = document.getElementById("menu-dropdown");
+
+  window.addEventListener("scroll", function () {
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      topBar.style.top = "-100px";
+      dropdown.style.display = "none";
+    } else {
+      topBar.style.top = "0";
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+  });
+
+  document.body.addEventListener("mousemove", function (e) {
+    if (e.clientY < 50) {
+      topBar.style.top = "0";
+    }
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    const checkboxPadrao = document.querySelector('input[value="padrao"]');
+    const checkboxRevestimento = document.querySelector('input[value="revestimento"]');
+    const checkboxLousa = document.querySelector('input[value="lousa"]');
+
+    const grupoCoresPadrao = document.getElementById('cores-padrao');
+    const grupoCoresRevestimento = document.getElementById('cores-revestimento');
+
+    // 🔁 função que atualiza a visibilidade das cores e o estado dos checkboxes
+    function atualizarInterface() {
+      // Controle exclusivo entre Padrão e Revestimento
+      if (checkboxPadrao.checked) {
+        checkboxRevestimento.checked = false;
+        grupoCoresPadrao.style.display = 'block';
+        grupoCoresRevestimento.style.display = 'none';
+      } else {
+        grupoCoresPadrao.style.display = 'none';
+      }
+
+      if (checkboxRevestimento.checked) {
+        checkboxPadrao.checked = false;
+        grupoCoresRevestimento.style.display = 'block';
+        grupoCoresPadrao.style.display = 'none';
+      } else {
+        grupoCoresRevestimento.style.display = 'none';
+      }
+    }
+
+    // ⏯️ Eventos de clique
+    checkboxPadrao.addEventListener('change', atualizarInterface);
+    checkboxRevestimento.addEventListener('change', atualizarInterface);
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    const bloco3em1 = document.getElementById('torre-3em1');
+    const blocoFixa  = document.getElementById('torre-fixa'); // só se existir
+
+    // garante que começam ocultos (não quebra nada se já estiverem escondidos)
+    if (bloco3em1) bloco3em1.hidden = true;
+    if (blocoFixa)  blocoFixa.hidden  = true;
+
+    // função utilitária para abrir/fechar
+    function mostrar(bloco) {
+      if (bloco3em1) bloco3em1.hidden = true;
+      if (blocoFixa)  blocoFixa.hidden  = true;
+      if (bloco) {
+        bloco.hidden = false;
+        bloco.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // ------------- LIGAÇÃO COM OS HOTSPOTS EXISTENTES -------------
+    // Seletores amplos para não depender do HTML exato:
+    // - element com data-torre="3em1" ou "fixa"
+    // - ou id="hotspot-3em1" / id="hotspot-fixa"
+    // - ou link com href contendo "#3em1" / "#fixa" / "torre-3em1" / "torre-fixa"
+    function ehHotspot3em1(el) {
+      return el.matches('[data-torre="3em1"], #hotspot-3em1, a[href*="3em1"], a[href*="torre-3em1"]');
+    }
+    function ehHotspotFixa(el) {
+      return el.matches('[data-torre="fixa"], #hotspot-fixa, a[href*="fixa"], a[href*="torre-fixa"]');
+    }
+
+    // Delegação de eventos: um único listener para toda a página
+    document.addEventListener('click', function (ev) {
+      const alvo = ev.target.closest('[data-torre], #hotspot-3em1, #hotspot-fixa, a[href*="3em1"], a[href*="fixa"], a[href*="torre-3em1"], a[href*="torre-fixa"]');
+      if (!alvo) return;
+
+      // Se o hotspot for um <a href="#">, evita pular pro topo
+      if (alvo.tagName === 'A') ev.preventDefault();
+
+      if (ehHotspot3em1(alvo)) {
+        mostrar(bloco3em1);
+      } else if (ehHotspotFixa(alvo)) {
+        mostrar(blocoFixa);
+      }
+    }, true); // capture = true para pegar antes de outros handlers
+
+    // ----------------- Mantém sua lógica dos checkboxes -----------------
+    // (Padrão x Revestimento exclusivos, Lousa combinável, mostrar cores)
+    // Só roda se o bloco existir (mesmo oculto ele está no DOM).
+    <script>
+  // SUBSTITUA sua função initTorre3em1Interactions por esta versão
+  function initTorre3em1Interactions(){
+    const raiz = document.getElementById('torre-3em1');
+    if (!raiz) return;
+
+    const checkboxPadrao = raiz.querySelector('input[value="padrao"]');
+    const checkboxRevest = raiz.querySelector('input[value="revestimento"]');
+    const checkboxLousa  = raiz.querySelector('input[value="lousa"]'); // continua combinável
+
+    const grupoPadrao = document.getElementById('cores-padrao');
+    const grupoRevest = document.getElementById('cores-revestimento');
+
+    // NOVO: sem cor
+    const semCor       = raiz.querySelector('#padrao-sem-cor');
+    const radiosPadrao = raiz.querySelectorAll('input[name="cor-padrao"]');
+
+    function aplicarSemCorUI() {
+      if (!grupoPadrao) return;
+      if (semCor && semCor.checked) {
+        // limpa e "desliga" as rádios de cor
+        radiosPadrao.forEach(r => { r.checked = false; });
+        grupoPadrao.classList.add('off');
+      } else {
+        grupoPadrao.classList.remove('off');
+      }
+    }
+
+    function atualizar(){
+      // Exclusividade Padrão x Revestimento
+      if (checkboxPadrao && checkboxPadrao.checked) {
+        if (checkboxRevest) checkboxRevest.checked = false;
+        if (grupoPadrao)    grupoPadrao.style.display = 'block';
+        if (grupoRevest)    grupoRevest.style.display = 'none';
+        aplicarSemCorUI();
+      } else {
+        if (grupoPadrao) grupoPadrao.style.display = 'none';
+      }
+
+      if (checkboxRevest && checkboxRevest.checked) {
+        if (checkboxPadrao) checkboxPadrao.checked = false;
+        if (semCor)         semCor.checked = false; // se for para revestimento, "Sem cor" não se aplica
+        if (grupoRevest)    grupoRevest.style.display = 'block';
+        if (grupoPadrao)    { grupoPadrao.style.display = 'none'; grupoPadrao.classList.remove('off'); }
+      } else {
+        if (grupoRevest) grupoRevest.style.display = 'none';
+      }
+    }
+
+    checkboxPadrao?.addEventListener('change', atualizar);
+    checkboxRevest?.addEventListener('change', atualizar);
+    semCor?.addEventListener('change', aplicarSemCorUI);
+
+    // chamada inicial protege contra estados prévios
+    atualizar();
+  }
+</script>
+
+
+  (function(){
+    const modal   = document.getElementById('modal-saiba-mais');
+    const content = document.getElementById('modal-saiba-mais-content');
+    let lastFocus = null;
+
+    function openModalSaibaMais(customHTML){
+      lastFocus = document.activeElement;
+      if (customHTML) content.innerHTML = customHTML;
+
+      modal.hidden = false;
+      document.body.classList.add('modal-open');
+
+      // foca o título para leitores de tela
+      const title = document.getElementById('modal-saiba-mais-titulo');
+      if (title) title.focus({ preventScroll: true });
+
+      // pequena proteção de foco dentro do modal (bem leve)
+      document.addEventListener('keydown', trapEsc, true);
+    }
+
+    function closeModalSaibaMais(){
+      modal.hidden = true;
+      document.body.classList.remove('modal-open');
+      document.removeEventListener('keydown', trapEsc, true);
+      if (lastFocus) lastFocus.focus({ preventScroll: true });
+    }
+
+    function trapEsc(e){
+      if (e.key === 'Escape') closeModalSaibaMais();
+    }
+
+    // Fechamento por clique no backdrop ou botões com data-close-modal
+    modal.addEventListener('click', function(e){
+      if (e.target.matches('[data-close-modal], .modal-backdrop')) {
+        closeModalSaibaMais();
+      }
+    });
+
+    // Delegação: abre quando clicar no botão Saiba Mais dentro do card
+    document.addEventListener('click', function(e){
+      const btn = e.target.closest('#btn-saiba-mais');
+      if (!btn) return;
+      // Se quiser, dá pra montar conteúdo dinâmico aqui com base nas seleções atuais
+      openModalSaibaMais();
+    });
+  })();
+
+  (function(){
+    // === CONFIG ===
+    const WHATSAPP_PHONE = "5511934045680"; // DDI+DDD+numero (sem +, sem espaços)
+
+    // utilitário simples para pegar label legível da cor
+    function labelCor(radiosSelector) {
+      const sel = document.querySelector(radiosSelector + ':checked');
+      if (!sel) return null;
+      // tenta pegar o texto do label associado
+      const lbl = sel.closest('label');
+      return (lbl && lbl.textContent.trim()) || sel.value;
+    }
+
+    function montarMensagem() {
+    const raiz   = document.getElementById('torre-3em1');
+    const prod   = "Torre de Aprendizagem 3 em 1";
+
+    const cbPadrao = raiz?.querySelector('input[value="padrao"]');
+    const cbRevest = raiz?.querySelector('input[value="revestimento"]');
+    const cbLousa  = raiz?.querySelector('input[value="lousa"]');
+
+    const lPadrao = cbPadrao && cbPadrao.checked;
+    const lRev    = cbRevest && cbRevest.checked;
+    const lLousa  = cbLousa  && cbLousa.checked;
+
+    // util para pegar label legível da cor
+    function labelCor(radiosSelector) {
+      const sel = raiz?.querySelector(radiosSelector + ':checked');
+      if (!sel) return null;
+      const lbl = sel.closest('label');
+      return (lbl && lbl.textContent.trim()) || sel.value;
+    }
+
+    if (!lPadrao && !lRev) {
+      alert("Por favor, selecione o tipo de acabamento (Padrão ou Revestimento) antes de comprar.");
+      cbPadrao?.focus();
+      return null;
+    }
+
+    let acabamento = "";
+    let corEscolhida = "";
+
+    if (lPadrao) {
+      acabamento = "Padrão";
+      const semCor = raiz?.querySelector('#padrao-sem-cor');
+      if (semCor && semCor.checked) {
+        corEscolhida = "Sem cor (madeira)";
+      } else {
+        const cor = labelCor('input[name="cor-padrao"]');
+        if (!cor) {
+          alert("Selecione a cor do acabamento Padrão ou marque 'Sem cor (madeira)'.");
+          return null;
+        }
+        corEscolhida = cor;
+      }
+    } else if (lRev) {
+      acabamento = "Revestimento";
+      const cor = labelCor('input[name="cor-revestimento"]');
+      if (!cor) {
+        alert("Selecione a cor do Revestimento antes de comprar.");
+        return null;
+      }
+      corEscolhida = cor;
+    }
+
+    const linhas = [
+      "Olá! Quero fazer um pedido 👋",
+      `Produto: ${prod}`,
+      `Acabamento: ${acabamento} (${corEscolhida})`,
+      `Lousa: ${lLousa ? "Sim" : "Não"}`,
+      `Página: ${location.href}`
+    ];
+
+    return linhas.join("\n");
+  }
+
+    // Listener do botão COMPRAR (funciona mesmo com o bloco inicialmente oculto)
+    document.addEventListener('click', function(e){
+      const btn = e.target.closest('#btn-comprar');
+      if (!btn) return;
+
+      const msg = montarMensagem();
+      if (!msg) return; // falhou validação
+
+      const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank', 'noopener');
+    });
+  })();
+</script>
+
+</body>
+</html>
