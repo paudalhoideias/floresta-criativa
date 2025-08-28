@@ -982,6 +982,52 @@
       window.open(url, '_blank', 'noopener');
     });
   })();
+
+  document.addEventListener('DOMContentLoaded', function () {
+  const bloco3em1 = document.getElementById('torre-3em1');
+  const blocoFixa = document.getElementById('torre-fixa'); // se existir
+
+  // começa oculto (idempotente)
+  if (bloco3em1) bloco3em1.hidden = true;
+  if (blocoFixa) blocoFixa.hidden = true;
+
+  function mostrar(bloco) {
+    if (bloco3em1) bloco3em1.hidden = true;
+    if (blocoFixa) blocoFixa.hidden = true;
+    if (!bloco) return;
+    bloco.hidden = false;
+    bloco.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // reativa a lógica dos checkboxes se for a 3 em 1
+    if (bloco.id === 'torre-3em1' && typeof initTorre3em1Interactions === 'function') {
+      initTorre3em1Interactions();
+    }
+  }
+
+  // Seletores tolerantes: funcionam para <a>, <button> ou div com data-atributo
+  function eh3em1(el) {
+    return el.matches('[data-torre="3em1"], #hotspot-3em1, a[href*="torre-3em1"], a[href*="#3em1"]');
+  }
+  function ehFixa(el) {
+    return el.matches('[data-torre="fixa"], #hotspot-fixa, a[href*="torre-fixa"], a[href*="#fixa"]');
+  }
+
+  // Delegação de clique (capture=true para passar “na frente” de outros handlers)
+  document.addEventListener('click', function (ev) {
+    const alvo = ev.target.closest(
+      '[data-torre], #hotspot-3em1, #hotspot-fixa, a[href*="torre-3em1"], a[href*="torre-fixa"], a[href*="#3em1"], a[href*="#fixa"]'
+    );
+    if (!alvo) return;
+
+    if (alvo.tagName === 'A') ev.preventDefault();
+
+    if (eh3em1(alvo)) {
+      mostrar(bloco3em1);
+    } else if (ehFixa(alvo)) {
+      mostrar(blocoFixa);
+    }
+  }, true);
+});
 </script>
 
 </body>
