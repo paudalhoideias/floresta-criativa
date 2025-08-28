@@ -1028,6 +1028,64 @@
     }
   }, true);
 });
+
+ (function(){
+    // Targets dos blocos (mantém tudo como já está no seu HTML atual)
+    const bloco3em1 = document.getElementById('torre-3em1');
+    const blocoFixa = document.getElementById('torre-fixa'); // opcional (quando existir)
+
+    // Função única pra mostrar um bloco e esconder o outro
+    function mostrar(bloco) {
+      if (bloco3em1) bloco3em1.hidden = true;
+      if (blocoFixa) blocoFixa.hidden = true;
+      if (!bloco) return;
+      bloco.hidden = false;
+      // rola suave até o conteúdo aberto
+      try { bloco.scrollIntoView({ behavior:'smooth', block:'start' }); } catch(e){}
+      // reativa a lógica interna (se houver essa função no seu JS)
+      if (bloco.id === 'torre-3em1' && typeof initTorre3em1Interactions === 'function') {
+        initTorre3em1Interactions();
+      }
+    }
+
+    // Seletores TOLERANTES para seus hotspots já existentes
+    // (cobre: data-torre, ids comuns de hotspot e anchors com href contendo o alvo)
+    const seletorHotspots = [
+      '[data-torre]',            // ex.: <button data-torre="3em1">
+      '#hotspot-3em1',           // se você usa id explícito
+      '#hotspot-fixa',
+      'a[href*="torre-3em1"]',   // anchors que apontem pra torre 3em1
+      'a[href*="torre-fixa"]',
+      'a[href="#3em1"]',
+      'a[href="#fixa"]'
+    ].join(',');
+
+    // Reativamos o clique por delegação – não atrapalha outros handlers
+    document.addEventListener('click', function (ev) {
+      const alvo = ev.target.closest(seletorHotspots);
+      if (!alvo) return;
+
+      // evita navegações do tipo href="#..."
+      if (alvo.tagName === 'A' && alvo.getAttribute('href') && alvo.getAttribute('href').charAt(0) === '#') {
+        ev.preventDefault();
+      }
+
+      // Decide qual bloco abrir
+      const tipo =
+        alvo.getAttribute('data-torre') ||
+        (alvo.id === 'hotspot-3em1' ? '3em1' : (alvo.id === 'hotspot-fixa' ? 'fixa' : null)) ||
+        (alvo.href && (
+          /torre-3em1|#3em1/i.test(alvo.href) ? '3em1' :
+          /torre-fixa|#fixa/i.test(alvo.href) ? 'fixa' : null
+        ));
+
+      if (tipo === '3em1') {
+        mostrar(bloco3em1);
+      } else if (tipo === 'fixa') {
+        mostrar(blocoFixa);
+      }
+    });
+  })();
 </script>
 
 </body>
