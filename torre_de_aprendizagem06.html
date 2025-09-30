@@ -209,11 +209,6 @@
     width: 100px;
     margin: 5px 0;
   }
-  /* radios desabilitados ficam “apagados” */
-  #torre-3em1 .cores-opcoes input[disabled] + * {
-    opacity: .5;
-    pointer-events: none;
-  }
  /* Quando "Sem cor" estiver ativo, desabilita visualmente as opções de cor */
   #torre-3em1 #cores-padrao.off label {
     opacity: .5;
@@ -453,39 +448,33 @@
     <div class="acabamento-opcoes">
       <h3>Tipos de Acabamento</h3>
 
-      <div class="checkbox-grupo">
-        <label><input type="checkbox" name="acabamento" value="padrao"> Acabamento Padrão</label>
-        <label><input type="checkbox" name="acabamento" value="revestimento"> Revestimento</label>
-        <label><input type="checkbox" name="acabamento" value="lousa"> Lousa</label>
-      </div>
-<div class="linha-sem-cor" style="margin-top:8px;">
-  <label>
-    <input type="checkbox" id="padrao-sem-cor" name="padrao-sem-cor" value="sem-cor">
-    Sem cor (madeira)
-  </label>
+<label><input type="radio" name="acabamento" value="padrao"> Acabamento Padrão</label>
+<label><input type="radio" name="acabamento" value="revestimento"> Revestimento</label>
+<label><input type="radio" name="acabamento" value="semcor"> Sem cor (madeira)</label>
+<label><input type="checkbox" id="lousa"> Lousa</label>
+
+<!-- Bloco de cores padrão -->
+<div id="cores-padrao" style="display:none; margin-top:10px;">
+  <h4>Cores Padrão</h4>
+  <label><input type="radio" name="cor-padrao" value="preto"> Preto</label>
+  <label><input type="radio" name="cor-padrao" value="branco"> Branco</label>
+  <label><input type="radio" name="cor-padrao" value="azul"> Azul</label>
+  <label><input type="radio" name="cor-padrao" value="amarelo"> Amarelo</label>
+  <label><input type="radio" name="cor-padrao" value="rosa"> Rosa</label>
+  <label><input type="radio" name="cor-padrao" value="verde"> Verde</label>
+  <label><input type="radio" name="cor-padrao" value="vermelho"> Vermelho</label>
 </div>
-      <div class="cores-opcoes" id="cores-padrao" style="display:none;">
-        <h4>Cores Padrão</h4>
-        <label><input type="radio" name="cor-padrao" value="preto"> Preto</label>
-        <label><input type="radio" name="cor-padrao" value="branco"> Branco</label>
-        <label><input type="radio" name="cor-padrao" value="azul"> Azul</label>
-        <label><input type="radio" name="cor-padrao" value="amarelo"> Amarelo</label>
-        <label><input type="radio" name="cor-padrao" value="rosa"> Rosa</label>
-        <label><input type="radio" name="cor-padrao" value="verde"> Verde</label>
-        <label><input type="radio" name="cor-padrao" value="vermelho"> Vermelho</label>
-      </div>
 
-
-
-      <div class="cores-opcoes" id="cores-revestimento" style="display:none;">
-        <h4>Cores de Revestimento</h4>
-        <label><input type="radio" name="cor-revestimento" value="preto"> Preto</label>
-        <label><input type="radio" name="cor-revestimento" value="branco"> Branco</label>
-        <label><input type="radio" name="cor-revestimento" value="azul"> Azul</label>
-        <label><input type="radio" name="cor-revestimento" value="amarelo"> Amarelo</label>
-        <label><input type="radio" name="cor-revestimento" value="rosa"> Rosa</label>
-        <label><input type="radio" name="cor-revestimento" value="vermelho"> Vermelho</label>
-      </div>
+<!-- Bloco de cores revestimento -->
+<div id="cores-revestimento" style="display:none; margin-top:10px;">
+  <h4>Cores de Revestimento</h4>
+  <label><input type="radio" name="cor-revest" value="azulclaro"> Azul Claro</label>
+  <label><input type="radio" name="cor-revest" value="amarelo"> Amarelo Alaranjado</label>
+  <label><input type="radio" name="cor-revest" value="preto"> Preto</label>
+  <label><input type="radio" name="cor-revest" value="branco"> Branco</label>
+  <label><input type="radio" name="cor-revest" value="rosa"> Rosa Escuro</label>
+  <label><input type="radio" name="cor-revest" value="vermelho"> Vermelho</label>
+</div>
     </div>
   </div>
 
@@ -659,32 +648,24 @@
     }
   });
   document.addEventListener('DOMContentLoaded', function () {
-    const checkboxPadrao = document.querySelector('input[value="padrao"]');
-    const checkboxRevestimento = document.querySelector('input[value="revestimento"]');
-    const checkboxLousa = document.querySelector('input[value="lousa"]');
+    const radios = document.querySelectorAll('input[name="acabamento"]');
+  const coresPadrao = document.getElementById('cores-padrao');
+  const coresRevest = document.getElementById('cores-revestimento');
 
-    const grupoCoresPadrao = document.getElementById('cores-padrao');
-    const grupoCoresRevestimento = document.getElementById('cores-revestimento');
-
-    // 🔁 função que atualiza a visibilidade das cores e o estado dos checkboxes
-    function atualizarInterface() {
-      // Controle exclusivo entre Padrão e Revestimento
-      if (checkboxPadrao.checked) {
-        checkboxRevestimento.checked = false;
-        grupoCoresPadrao.style.display = 'block';
-        grupoCoresRevestimento.style.display = 'none';
-      } else {
-        grupoCoresPadrao.style.display = 'none';
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (radio.value === 'padrao') {
+        coresPadrao.style.display = 'block';
+        coresRevest.style.display = 'none';
+      } else if (radio.value === 'revestimento') {
+        coresPadrao.style.display = 'none';
+        coresRevest.style.display = 'block';
+      } else if (radio.value === 'semcor') {
+        coresPadrao.style.display = 'none';
+        coresRevest.style.display = 'none';
       }
-
-      if (checkboxRevestimento.checked) {
-        checkboxPadrao.checked = false;
-        grupoCoresRevestimento.style.display = 'block';
-        grupoCoresPadrao.style.display = 'none';
-      } else {
-        grupoCoresRevestimento.style.display = 'none';
-      }
-    }
+    });
+  });
 
     // ⏯️ Eventos de clique
     checkboxPadrao.addEventListener('change', atualizarInterface);
@@ -738,126 +719,34 @@
     // ----------------- Mantém sua lógica dos checkboxes -----------------
     // (Padrão x Revestimento exclusivos, Lousa combinável, mostrar cores)
     // Só roda se o bloco existir (mesmo oculto ele está no DOM).
-    function initTorre3em1Interactions(){
-  const raiz = document.getElementById('torre-3em1');
-  if (!raiz) return;
+    (function initMutuaExclusao(){
+      if (!bloco3em1) return;
+      const cbPadrao = bloco3em1.querySelector('input[value="padrao"]');
+      const cbRev    = bloco3em1.querySelector('input[value="revestimento"]');
+      const coresPad = document.getElementById('cores-padrao');
+      const coresRev = document.getElementById('cores-revestimento');
+      if (!cbPadrao || !cbRev) return;
 
-  const cbPadrao = raiz.querySelector('input[value="padrao"]');
-  const cbRev    = raiz.querySelector('input[value="revestimento"]');
-  const cbLousa  = raiz.querySelector('input[value="lousa"]'); // combinável (sem mudanças)
-
-  const boxPadrao = document.getElementById('cores-padrao');
-  const boxRev    = document.getElementById('cores-revestimento');
-
-  const chkSemCor = raiz.querySelector('#padrao-sem-cor');           // checkbox “Sem cor (madeira)”
-  const rPadrao   = raiz.querySelectorAll('input[name="cor-padrao"]');      // rádios de Padrão
-  const rRev      = raiz.querySelectorAll('input[name="cor-revestimento"]'); // rádios de Revestimento
-
-  function setDisabled(nodeList, disabled){
-    nodeList.forEach(el => el.disabled = !!disabled);
-  }
-  function clearSelection(nodeList){
-    nodeList.forEach(el => el.checked = false);
-  }
-
-  function setMode(mode){
-    // mode: 'padrao' | 'revestimento' | null
-    if (mode === 'padrao') {
-      cbPadrao.checked = true;
-      cbRev.checked    = false;
-
-      // mostra Padrão, esconde Revest
-      if (boxPadrao) { boxPadrao.style.display = 'block'; }
-      if (boxRev)    { boxRev.style.display    = 'none';  }
-
-      // Se "Sem cor" marcado: nenhuma cor pode ser escolhida
-      if (chkSemCor && chkSemCor.checked) {
-        clearSelection(rPadrao);
-        clearSelection(rRev);
-        setDisabled(rPadrao, true);
-        setDisabled(rRev, true);
-      } else {
-        // Padrão ativo: habilita rádios de Padrão; desabilita de Revestimento
-        setDisabled(rPadrao, false);
-        setDisabled(rRev, true);
-        clearSelection(rRev); // limpamos seleção de Revestimento ao sair dele
+      function atualizar() {
+        if (cbPadrao.checked) {
+          cbRev.checked = false;
+          if (coresPad) coresPad.style.display = 'block';
+          if (coresRev) coresRev.style.display = 'none';
+        } else if (coresPad) {
+          coresPad.style.display = 'none';
+        }
+        if (cbRev.checked) {
+          cbPadrao.checked = false;
+          if (coresRev) coresRev.style.display = 'block';
+          if (coresPad) coresPad.style.display = 'none';
+        } else if (coresRev) {
+          coresRev.style.display = 'none';
+        }
       }
-    }
-    else if (mode === 'revestimento') {
-      cbRev.checked    = true;
-      cbPadrao.checked = false;
-
-      // Revestimento não usa “Sem cor”: desligamos se estiver ativo
-      if (chkSemCor) chkSemCor.checked = false;
-
-      // mostra Revest, esconde Padrão
-      if (boxRev)    { boxRev.style.display    = 'block'; }
-      if (boxPadrao) { boxPadrao.style.display = 'none';  }
-
-      // Habilita rádios de Revest; desabilita de Padrão
-      setDisabled(rRev, false);
-      setDisabled(rPadrao, true);
-      clearSelection(rPadrao); // limpamos seleção de Padrão ao sair dele
-    }
-    else {
-      // nenhum dos dois
-      cbPadrao.checked = false;
-      cbRev.checked    = false;
-      if (boxPadrao) boxPadrao.style.display = 'none';
-      if (boxRev)    boxRev.style.display    = 'none';
-      // por padrão deixamos tudo habilitado (ou tudo desabilitado, como preferir)
-      setDisabled(rPadrao, false);
-      setDisabled(rRev, false);
-    }
-  }
-
-  function onSemCorChange(){
-    // Só tem efeito no modo Padrão
-    if (!cbPadrao.checked) return;
-
-    if (chkSemCor.checked) {
-      // “Sem cor”: nenhuma cor pode ser escolhida (de nenhum grupo)
-      clearSelection(rPadrao);
-      clearSelection(rRev);
-      setDisabled(rPadrao, true);
-      setDisabled(rRev, true);
-    } else {
-      // volta a permitir escolha de cores do Padrão
-      setDisabled(rPadrao, false);
-      setDisabled(rRev, true);
-    }
-  }
-
-  function onChangePadrao(){
-    if (cbPadrao.checked) {
-      setMode('padrao');
-    } else if (!cbRev.checked) {
-      setMode(null);
-    }
-  }
-
-  function onChangeRevest(){
-    if (cbRev.checked) {
-      setMode('revestimento');
-    } else if (!cbPadrao.checked) {
-      setMode(null);
-    }
-  }
-
-  // Listeners
-  cbPadrao?.addEventListener('change', onChangePadrao);
-  cbRev?.addEventListener('change', onChangeRevest);
-  chkSemCor?.addEventListener('change', onSemCorChange);
-
-  // Estado inicial (respeita o que usuário já tinha marcado, se houver)
-  if (cbRev.checked) {
-    setMode('revestimento');
-  } else if (cbPadrao.checked) {
-    setMode('padrao');
-  } else {
-    setMode(null);
-  }
-}
+      cbPadrao.addEventListener('change', atualizar);
+      cbRev.addEventListener('change', atualizar);
+    })();
+  });
 
   (function(){
     const modal   = document.getElementById('modal-saiba-mais');
@@ -980,110 +869,6 @@
 
       const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank', 'noopener');
-    });
-  })();
-
-  document.addEventListener('DOMContentLoaded', function () {
-  const bloco3em1 = document.getElementById('torre-3em1');
-  const blocoFixa = document.getElementById('torre-fixa'); // se existir
-
-  // começa oculto (idempotente)
-  if (bloco3em1) bloco3em1.hidden = true;
-  if (blocoFixa) blocoFixa.hidden = true;
-
-  function mostrar(bloco) {
-    if (bloco3em1) bloco3em1.hidden = true;
-    if (blocoFixa) blocoFixa.hidden = true;
-    if (!bloco) return;
-    bloco.hidden = false;
-    bloco.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    // reativa a lógica dos checkboxes se for a 3 em 1
-    if (bloco.id === 'torre-3em1' && typeof initTorre3em1Interactions === 'function') {
-      initTorre3em1Interactions();
-    }
-  }
-
-  // Seletores tolerantes: funcionam para <a>, <button> ou div com data-atributo
-  function eh3em1(el) {
-    return el.matches('[data-torre="3em1"], #hotspot-3em1, a[href*="torre-3em1"], a[href*="#3em1"]');
-  }
-  function ehFixa(el) {
-    return el.matches('[data-torre="fixa"], #hotspot-fixa, a[href*="torre-fixa"], a[href*="#fixa"]');
-  }
-
-  // Delegação de clique (capture=true para passar “na frente” de outros handlers)
-  document.addEventListener('click', function (ev) {
-    const alvo = ev.target.closest(
-      '[data-torre], #hotspot-3em1, #hotspot-fixa, a[href*="torre-3em1"], a[href*="torre-fixa"], a[href*="#3em1"], a[href*="#fixa"]'
-    );
-    if (!alvo) return;
-
-    if (alvo.tagName === 'A') ev.preventDefault();
-
-    if (eh3em1(alvo)) {
-      mostrar(bloco3em1);
-    } else if (ehFixa(alvo)) {
-      mostrar(blocoFixa);
-    }
-  }, true);
-});
-
- (function(){
-    // Targets dos blocos (mantém tudo como já está no seu HTML atual)
-    const bloco3em1 = document.getElementById('torre-3em1');
-    const blocoFixa = document.getElementById('torre-fixa'); // opcional (quando existir)
-
-    // Função única pra mostrar um bloco e esconder o outro
-    function mostrar(bloco) {
-      if (bloco3em1) bloco3em1.hidden = true;
-      if (blocoFixa) blocoFixa.hidden = true;
-      if (!bloco) return;
-      bloco.hidden = false;
-      // rola suave até o conteúdo aberto
-      try { bloco.scrollIntoView({ behavior:'smooth', block:'start' }); } catch(e){}
-      // reativa a lógica interna (se houver essa função no seu JS)
-      if (bloco.id === 'torre-3em1' && typeof initTorre3em1Interactions === 'function') {
-        initTorre3em1Interactions();
-      }
-    }
-
-    // Seletores TOLERANTES para seus hotspots já existentes
-    // (cobre: data-torre, ids comuns de hotspot e anchors com href contendo o alvo)
-    const seletorHotspots = [
-      '[data-torre]',            // ex.: <button data-torre="3em1">
-      '#hotspot-3em1',           // se você usa id explícito
-      '#hotspot-fixa',
-      'a[href*="torre-3em1"]',   // anchors que apontem pra torre 3em1
-      'a[href*="torre-fixa"]',
-      'a[href="#3em1"]',
-      'a[href="#fixa"]'
-    ].join(',');
-
-    // Reativamos o clique por delegação – não atrapalha outros handlers
-    document.addEventListener('click', function (ev) {
-      const alvo = ev.target.closest(seletorHotspots);
-      if (!alvo) return;
-
-      // evita navegações do tipo href="#..."
-      if (alvo.tagName === 'A' && alvo.getAttribute('href') && alvo.getAttribute('href').charAt(0) === '#') {
-        ev.preventDefault();
-      }
-
-      // Decide qual bloco abrir
-      const tipo =
-        alvo.getAttribute('data-torre') ||
-        (alvo.id === 'hotspot-3em1' ? '3em1' : (alvo.id === 'hotspot-fixa' ? 'fixa' : null)) ||
-        (alvo.href && (
-          /torre-3em1|#3em1/i.test(alvo.href) ? '3em1' :
-          /torre-fixa|#fixa/i.test(alvo.href) ? 'fixa' : null
-        ));
-
-      if (tipo === '3em1') {
-        mostrar(bloco3em1);
-      } else if (tipo === 'fixa') {
-        mostrar(blocoFixa);
-      }
     });
   })();
 </script>
