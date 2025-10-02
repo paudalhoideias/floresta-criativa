@@ -253,22 +253,7 @@
     setupAcabamento("torre-3em1","cores-padrao-3em1","cores-revestimento-3em1");
     setupAcabamento("torre-fixa","cores-padrao-fixa","cores-revestimento-fixa");
 
-    // === Troca da imagem principal ao clicar no carrossel ===
-function setupCarrossel(blocoId) {
-  const bloco = document.getElementById(blocoId);
-  if (!bloco) return;
 
-  const imgPrincipal = bloco.querySelector('.foto-produto img');
-  const miniaturas = bloco.querySelectorAll('.carrossel-imagens img');
-
-  miniaturas.forEach(mini => {
-    mini.addEventListener('click', () => {
-      // troca src e alt da imagem principal
-      imgPrincipal.src = mini.src;
-      imgPrincipal.alt = mini.alt;
-    });
-  });
-}
 // Logica de acabamentos 3 em 1
 function montarImagens3em1(acabamento, cor, lousa) {
   let prefixo = "3em1_";
