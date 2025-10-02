@@ -258,24 +258,18 @@
 function montarImagens3em1(acabamento, cor, lousa) {
   let prefixo = "3em1_";
 
-  // Sem cor
   if (acabamento === "semcor") {
     prefixo += lousa ? "LSC" : "SC";
-  }
-
-  // Padrão
-  else if (acabamento === "padrao") {
+  } else if (acabamento === "padrao") {
+    if (!cor) return null; // precisa de cor
     prefixo += lousa ? "LAP" : "AP";
-    prefixo += cor; // exemplo: am, az, br, pt, ros, vm
-  }
-
-  // Revestimento
-  else if (acabamento === "revestimento") {
+    prefixo += cor;
+  } else if (acabamento === "revestimento") {
+    if (!cor) return null; // precisa de cor
     prefixo += lousa ? "LR" : "R";
-    prefixo += cor; // exemplo: am, az, br, pt, ros, vm
+    prefixo += cor;
   }
 
-  // Funções
   return {
     principal: `images/${prefixo}_cad.webp`,
     carrossel: [
@@ -286,7 +280,7 @@ function montarImagens3em1(acabamento, cor, lousa) {
     ]
   };
 }
-// Integração com a Torre 3 em 1
+
 function setupTrocaImagens3em1() {
   const bloco = document.getElementById("torre-3em1");
   if (!bloco) return;
@@ -304,14 +298,11 @@ function setupTrocaImagens3em1() {
     if (acabamento === "padrao") cor = corPadrao;
     if (acabamento === "revestimento") cor = corRevest;
 
-    if (!acabamento) return;
-
     const dados = montarImagens3em1(acabamento, cor, lousa);
+    if (!dados) return; // não muda nada se ainda não tiver seleção válida
 
-    // Atualiza principal
     imgPrincipal.src = dados.principal;
 
-    // Atualiza carrossel
     containerCarrossel.innerHTML = "";
     dados.carrossel.forEach(src => {
       const img = document.createElement("img");
