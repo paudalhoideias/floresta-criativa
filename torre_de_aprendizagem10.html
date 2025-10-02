@@ -229,126 +229,182 @@
 
   <!-- SCRIPTS -->
   <script>
-    function toggleMenu(){ const menu=document.getElementById("menu-dropdown"); menu.style.display=menu.style.display==="block"?"none":"block"; }
+/* ===== Menu e navegação entre blocos ===== */
+function toggleMenu(){
+  const menu=document.getElementById("menu-dropdown");
+  menu.style.display = menu.style.display==="block" ? "none" : "block";
+}
 
-    function mostrar(tipo){
-      const b3=document.getElementById("torre-3em1"), bf=document.getElementById("torre-fixa"), bc=document.getElementById("curiosidade");
-      b3.hidden=true; bf.hidden=true; bc.style.display="none";
-      let alvo=null;
-      if(tipo==='3em1'){b3.hidden=false;alvo=b3;}
-      else if(tipo==='fixa'){bf.hidden=false;alvo=bf;}
-      else if(tipo==='curiosidade'){bc.style.display="block";alvo=bc;}
-      if(alvo&&window.innerWidth>768){setTimeout(()=>alvo.scrollIntoView({behavior:'smooth',block:'start'}),200);}
-    }
+function mostrar(tipo){
+  const b3=document.getElementById("torre-3em1");
+  const bf=document.getElementById("torre-fixa");
+  const bc=document.getElementById("curiosidade");
 
-    function setupAcabamento(blocoId, cp, cr){
-      const radios=document.querySelectorAll(`#${blocoId} input[name^="acabamento"]`);
-      const coresPadrao=document.getElementById(cp), coresRevest=document.getElementById(cr);
-      radios.forEach(r=>r.addEventListener('change',()=>{
-        if(r.value==='padrao'){coresPadrao.style.display='block';coresRevest.style.display='none';}
-        else if(r.value==='revestimento'){coresPadrao.style.display='none';coresRevest.style.display='block';}
-        else {coresPadrao.style.display='none';coresRevest.style.display='none';}
-      }));
-    }
-    setupAcabamento("torre-3em1","cor-padrao-3em1","cor-revest-3em1");
-    setupAcabamento("torre-fixa","cor-padrao-fixa","cor-revest-fixa");
+  b3.hidden=true; bf.hidden=true; bc.style.display="none";
+  let alvo=null;
+  if(tipo==='3em1'){ b3.hidden=false; alvo=b3; }
+  else if(tipo==='fixa'){ bf.hidden=false; alvo=bf; }
+  else if(tipo==='curiosidade'){ bc.style.display="block"; alvo=bc; }
 
+  if(alvo && window.innerWidth>768){
+    setTimeout(()=>alvo.scrollIntoView({behavior:'smooth',block:'start'}), 200);
+  }
+}
 
-// Logica de acabamentos 3 em 1
-function montarImagens3em1(acabamento, cor, lousa) {
+/* ===== Mostra/esconde grupos de cores conforme acabamento ===== */
+function setupAcabamento(blocoId, cp, cr){
+  const radios=document.querySelectorAll(`#${blocoId} input[name^="acabamento"]`);
+  const coresPadrao=document.getElementById(cp);
+  const coresRevest=document.getElementById(cr);
+  radios.forEach(r=>{
+    r.addEventListener('change',()=>{
+      if(r.value==='padrao'){ coresPadrao.style.display='block'; coresRevest.style.display='none'; }
+      else if(r.value==='revestimento'){ coresPadrao.style.display='none'; coresRevest.style.display='block'; }
+      else { coresPadrao.style.display='none'; coresRevest.style.display='none'; }
+    });
+  });
+}
+setupAcabamento("torre-3em1","cores-padrao-3em1","cores-revestimento-3em1");
+setupAcabamento("torre-fixa","cores-padrao-fixa","cores-revestimento-fixa");
+
+/* ===== Util: normaliza valor de cor (palavra -> abreviação) ===== */
+const COR_MAP = {
+  am:"am", amarelo:"am",
+  az:"az", azul:"az",
+  br:"br", branco:"br",
+  pt:"pt", preto:"pt",
+  ros:"ros", rosa:"ros",
+  vm:"vm", vermelho:"vm",
+  vd:"vd", verde:"vd" // use vd somente se tiver arquivos com vd
+};
+function normalizaCor(v){
+  if(!v) return null;
+  v = String(v).toLowerCase();
+  return COR_MAP[v] || null;
+}
+
+/* ===== Monta caminhos das imagens da 3em1 conforme regras ===== */
+function montarImagens3em1(acabamento, corRaw, lousa){
   let prefixo = "3em1_";
+  const cor = normalizaCor(corRaw);
 
-  if (acabamento === "semcor") {
+  if(acabamento === "semcor"){
     prefixo += lousa ? "LSC" : "SC";
-  } else if (acabamento === "padrao") {
-    if (!cor) return null; // precisa de cor
-    prefixo += lousa ? "LAP" : "AP";
-    prefixo += cor;
-  } else if (acabamento === "revestimento") {
-    if (!cor) return null; // precisa de cor
-    prefixo += lousa ? "LR" : "R";
-    prefixo += cor;
+  } else if(acabamento === "padrao"){
+    if(!cor) return null;
+    prefixo += (lousa ? "LAP" : "AP") + cor;
+  } else if(acabamento === "revestimento"){
+    if(!cor) return null;
+    prefixo += (lousa ? "LR" : "R") + cor;
+  } else {
+    return null;
   }
 
+  const base = `images/torre/${prefixo}`;
   return {
-    principal: `images/${prefixo}_cad.webp`,
-    carrossel: [
-      `images/${prefixo}_mesa.webp`,
-      `images/${prefixo}_n01.webp`,
-      `images/${prefixo}_n02.webp`,
-      `images/${prefixo}_n03.webp`
-    ]
+    principal: `${base}_cad.webp`,
+    carrossel: [`${base}_mesa.webp`, `${base}_n01.webp`, `${base}_n02.webp`, `${base}_n03.webp`]
   };
 }
 
-function setupTrocaImagens3em1() {
+/* ===== Preenche o carrossel e liga clique nas miniaturas ===== */
+function popularCarrossel(container, imgPrincipal, lista){
+  container.innerHTML = "";
+  lista.forEach(src=>{
+    const img=document.createElement("img");
+    img.src = src;
+    img.alt = "Foto Torre 3 em 1";
+    img.addEventListener("click", ()=>{ imgPrincipal.src = src; });
+    container.appendChild(img);
+  });
+}
+
+/* ===== Inicializa carrossel a partir da imagem principal atual =====
+   Ex.: se a principal for images/torre/3em1_Ram_n01.webp → uso 3em1_Ram_*
+*/
+function initCarrosselFromPrincipal(blocoId){
+  const bloco = document.getElementById(blocoId);
+  if(!bloco) return;
+  const imgPrincipal = bloco.querySelector('.foto-produto img');
+  const container = bloco.querySelector('.carrossel-imagens');
+  if(!imgPrincipal || !container) return;
+
+  const m = imgPrincipal.src.match(/\/(3em1_[A-Za-z]+)_/);
+  if(!m) return; // se não bater o padrão, deixa vazio
+  const base = `images/torre/${m[1]}`;
+  popularCarrossel(container, imgPrincipal, [
+    `${base}_mesa.webp`, `${base}_n01.webp`, `${base}_n02.webp`, `${base}_n03.webp`
+  ]);
+}
+
+/* ===== Troca imagens (principal + carrossel) conforme seleção ===== */
+function setupTrocaImagens3em1(){
   const bloco = document.getElementById("torre-3em1");
-  if (!bloco) return;
+  if(!bloco) return;
 
   const imgPrincipal = bloco.querySelector('.foto-produto img');
   const containerCarrossel = bloco.querySelector('.carrossel-imagens');
 
-  function atualizar() {
+  function atualizar(){
     const acabamento = bloco.querySelector('input[name="acabamento-3em1"]:checked')?.value;
+    const lousa = bloco.querySelector('#lousa-3em1')?.checked;
     const corPadrao = bloco.querySelector('input[name="cor-padrao-3em1"]:checked')?.value;
     const corRevest = bloco.querySelector('input[name="cor-revest-3em1"]:checked')?.value;
-    const lousa = bloco.querySelector('#lousa-3em1')?.checked;
 
-    let cor = null;
-    if (acabamento === "padrao") cor = corPadrao;
-    if (acabamento === "revestimento") cor = corRevest;
+    const cor = (acabamento === "padrao") ? corPadrao :
+                (acabamento === "revestimento") ? corRevest : null;
 
     const dados = montarImagens3em1(acabamento, cor, lousa);
-    if (!dados) return; // não muda nada se ainda não tiver seleção válida
+    if(!dados) return; // ainda não há seleção suficiente
 
     imgPrincipal.src = dados.principal;
-
-    containerCarrossel.innerHTML = "";
-    dados.carrossel.forEach(src => {
-      const img = document.createElement("img");
-      img.src = src;
-      img.alt = "Foto Torre 3 em 1";
-      img.addEventListener("click", () => imgPrincipal.src = src);
-      containerCarrossel.appendChild(img);
-    });
+    popularCarrossel(containerCarrossel, imgPrincipal, dados.carrossel);
   }
 
+  // atualiza quando o usuário muda qualquer opção
   bloco.addEventListener("change", atualizar);
+
+  // preenche o carrossel com base na imagem que já está no HTML
+  initCarrosselFromPrincipal("torre-3em1");
 }
 setupTrocaImagens3em1();
 
-// aplicar nas duas torres
-setupCarrossel('torre-3em1');
-setupCarrossel('torre-fixa');
+/* ===== Modal “Saiba Mais” ===== */
+(function(){
+  const modal=document.getElementById('modal-saiba-mais');
+  const titulo=document.getElementById('modal-titulo');
+  const conteudo=document.getElementById('modal-conteudo');
+  document.addEventListener('click',e=>{
+    const btn=e.target.closest('.btn-saiba-mais'); if(!btn) return;
+    const bloco=btn.closest('.torre-bloco'); const nome=bloco.querySelector('h2').innerText;
+    titulo.innerText=`Informações técnicas — ${nome}`;
+    conteudo.innerHTML=`<p>${nome} é produzida em compensado multilaminado, com foco em segurança e durabilidade.</p>
+      <ul><li>Dimensões: definir</li><li>Materiais: definir</li><li>Capacidade: definir</li></ul>`;
+    modal.hidden=false;
+  });
+  modal.addEventListener('click',e=>{
+    if(e.target.matches('[data-close-modal], .modal-backdrop')) modal.hidden=true;
+  });
+})();
 
-    // Modal
-    (function(){
-      const modal=document.getElementById('modal-saiba-mais');
-      const titulo=document.getElementById('modal-titulo');
-      const conteudo=document.getElementById('modal-conteudo');
-      document.addEventListener('click',e=>{
-        const btn=e.target.closest('.btn-saiba-mais'); if(!btn)return;
-        const bloco=btn.closest('.torre-bloco'); const nome=bloco.querySelector('h2').innerText;
-        titulo.innerText=`Informações técnicas — ${nome}`;
-        conteudo.innerHTML=`<p>${nome} é produzida em compensado multilaminado, com foco em segurança e durabilidade.</p><ul><li>Dimensões: definir</li><li>Materiais: definir</li><li>Capacidade: definir</li></ul>`;
-        modal.hidden=false;
-      });
-      modal.addEventListener('click',e=>{ if(e.target.matches('[data-close-modal],.modal-backdrop')) modal.hidden=true; });
-    })();
-
-    // WhatsApp
-    const WHATSAPP_PHONE="5511934045680";
-    function montarMensagem(blocoId,nome){
-      const bloco=document.getElementById(blocoId);
-      const acabamento=bloco.querySelector('input[name^="acabamento"]:checked')?.value||"";
-      const lousa=bloco.querySelector('input[type="checkbox"]')?.checked;
-      return `Olá! Quero fazer um pedido 👋\nProduto: ${nome}\nAcabamento: ${acabamento}\nLousa: ${lousa?"Sim":"Não"}\nPágina: ${location.href}`;
-    }
-    document.addEventListener('click',e=>{
-      const btn=e.target.closest('.btn-comprar'); if(!btn)return;
-      const bloco=btn.closest('.torre-bloco'); const id=bloco.id; const nome=bloco.querySelector('h2').innerText;
-      const msg=montarMensagem(id,nome); window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`,'_blank');
-    });
-  </script>
+/* ===== WhatsApp Comprar ===== */
+const WHATSAPP_PHONE="5511934045680";
+function montarMensagem(blocoId,nome){
+  const bloco=document.getElementById(blocoId);
+  const acabamento=bloco.querySelector('input[name^="acabamento"]:checked')?.value||"";
+  const lousa=bloco.querySelector('input[type="checkbox"]')?.checked;
+  return `Olá! Quero fazer um pedido 👋
+Produto: ${nome}
+Acabamento: ${acabamento}
+Lousa: ${lousa?"Sim":"Não"}
+Página: ${location.href}`;
+}
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('.btn-comprar'); if(!btn) return;
+  const bloco=btn.closest('.torre-bloco'); const id=bloco.id; const nome=bloco.querySelector('h2').innerText;
+  const msg=montarMensagem(id,nome);
+  window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`,'_blank');
+});
+</script>
 </body>
 </html>
